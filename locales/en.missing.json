@@ -1,0 +1,8 @@
+{
+  "user": {
+    "invitation": {
+      "header": "user.invitation.header"
+    }
+  },
+  "There's an user already registered with this email ": "There's an user already registered with this email "
+}

@@ -1,0 +1,28 @@
+{
+    "maxSize": "60m",
+    "maxFile": "14d",
+    "levels": { 
+      "emerg": 0, 
+      "alert": 1, 
+      "crit": 2, 
+      "error": 3, 
+      "warn": 4, 
+      "notice": 5, 
+      "info": 6, 
+      "api": 7,
+      "debug": 8,
+      "silly": 9
+    },
+    "colors": {
+      "emerg": "bold black redBG", 
+      "alert": "bold black redBG", 
+      "crit": "bold black redBG", 
+      "error": "bold black redBG", 
+      "warn": "bold black yellowBG", 
+      "notice": "bold black whiteBG", 
+      "info": "bold black whiteBG", 
+      "api": "bold black cyanBG",
+      "debug": "bold black greenBG",
+      "silly": "bold black magentaBG"
+    }
+}

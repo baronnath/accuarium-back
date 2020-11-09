@@ -1,0 +1,84 @@
+{
+	"user": {
+		"permission": {
+			"denied": "You don't have enough permission to perform this action",
+			"notAny": "You don't have enough permission to modify other users"
+		},
+		"login": {
+			"success": "Hi {{user.name}}, you are now logged in",
+			"notExists": "This email is not registered yet, please register",
+			"notLoggedIn": "Please log in",
+			"sessionExpired": "Your session has expired, please log in",
+			"notConfirmed": "Please check your email in order to verify your account",
+			"alreadyConfirmed": "User has already been verified"
+		},
+		"logout": {
+			"success": "See you soon, {{user.name}}"
+		},
+		"verify": {
+			"success": "Welcome {{user.name}}, thank you for verifying your account"
+		},
+		"create": {
+			"success": "{{user.name}}'s user has been created successfully. Please check your email to confirm your account"
+		},
+		"update": {
+			"success": "The user {{user.name}} has been updated successfully"
+		},
+		"delete": {
+			"success": "The user {{user.name}} has been deleted successfully",
+			"error": "The user could not be deleted"
+		},
+		"invitation": {
+			"notSent": "Invitation could not be sent",
+			"subject": "Hi, {{user.name}}! Please confirm your email address",
+			"title": "Registration confirmation",
+			"preheader": "Thank you for registering. Only one more step! Confirm your email address"
+		}
+	},
+	"role": {
+		"permission": {
+			"denied": "You don't have enough permission to assign or modify the role"
+		}
+	},
+	"mailer": {
+		"error": {
+			"notSent": "Email could not be sent to user",
+			"rejected": "Email was rejected"
+		}
+	},
+	"validation": {
+		"user": {
+			"notExists": "User does not exist"
+		},
+		"id": {
+			"format": "This is not a valid id"
+		},
+		"email": {
+			"format": "This is not a valid email format",
+			"required": "The email is required",
+			"exists": "There's already an user registered with this email",
+			"notExists": "This email is not registered"
+		},
+		"password": {
+			"error": "Wrong password",
+			"required": "Please enter your password",
+			"lenght": "Password has to be at least {{passwordLenght}} characters"
+		},
+		"role": {
+			"notExists": "Please select an existing role"
+		},
+		"name": {
+			"required": "Please provide a name"
+		},
+		"emailOrId": {
+			"required": "Please provide a valid user email or id"
+		},
+		"confirmationToken": {
+			"error": "Wrong confirmation code",
+			"required": "Confirmation code is required"
+		},
+		"token": {
+			"notExists": "JWT token doesn't belong to any existing user"
+		}
+	}
+}

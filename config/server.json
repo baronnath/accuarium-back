@@ -1,0 +1,36 @@
+{
+  "test": {
+    "connectionString": "mongodb+srv://root:efervescente@cluster0-a9uwd.gcp.mongodb.net/accuarium-test?retryWrites=true&w=majority",
+    "database": "accuarium-test",
+    "username": "root",
+    "password": "efervescente",
+    "imagesFolder": "/public/images/"
+  },
+  "development": {
+    "connectionString": "mongodb+srv://root:efervescente@cluster0-a9uwd.gcp.mongodb.net/accuarium-dev?retryWrites=true&w=majority",
+    "database": "accuarium-dev",
+    "username": "root",
+    "password": "efervescente",
+    "allowOrigins": [
+      "http://localhost:19006"
+    ],
+    "front": {
+      "url": "http://localhost:19006"
+    },
+    "imagesFolder": "/public/images/"
+  },
+  "production": {
+    "connectionString": "mongodb+srv://root:efervescente@cluster0-a9uwd.gcp.mongodb.net/accuarium-prod?retryWrites=true&w=majority",
+    "database": "accuarium-prod",
+    "username": "root",
+    "password": "efervescente",
+    "allowOrigins": [
+      "http://localhost:19006"
+    ],
+    "front": {
+      "url": "http://localhost:19006"
+    },
+    "imagesFolder": "/public/images/"
+  }
+
+}

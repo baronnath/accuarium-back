@@ -1,0 +1,41 @@
+	{
+		"model": "family",
+		"documents": [
+			{
+				"_id": "5e8cdd3b8296523464c7462a",
+				"name": "catfish"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462b",
+				"name": "anabantids"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462c",
+				"name": "characins"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462d",
+				"name": "rainbow fish "
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462e",
+				"name": "brackish"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462f",
+				"name": "american cichlids"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74621",
+				"name": "tanganyka cichlids"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74622",
+				"name": "malawi cichlids"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74623",
+				"name": "dwarf cichlids"
+			}
+		]
+	}

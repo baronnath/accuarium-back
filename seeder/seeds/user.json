@@ -1,0 +1,48 @@
+	{
+		"model": "user",
+		"documents": [
+			{
+				"_id": "5e8cdd3b8296523464c7461a",
+				"name": "Admin",
+				"email": "admin@diology.io",
+				"password": "$2b$10$p5oW7LFWOhZvFwbj79zvJuri4hCeLD9KnFlZW0ypgfrzrpsR7scHO",
+				"role": "5e8cdd3b8296523464c7460e"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7461d",
+				"name": "Player 1",
+				"email": "player1@diology.io",
+				"password": "$2b$10$p5oW7LFWOhZvFwbj79zvJuri4hCeLD9KnFlZW0ypgfrzrpsR7scHO",
+				"role": "5e8cdd3b8296523464c7460b"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7461c",
+				"name": "Player 2",
+				"email": "player2@diology.io",
+				"password": "$2b$10$p5oW7LFWOhZvFwbj79zvJuri4hCeLD9KnFlZW0ypgfrzrpsR7scHO",
+				"role": "5e8cdd3b8296523464c7460b"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7461f",
+				"name": "Not verified",
+				"email": "notverified@diology.io",
+				"password": "$2b$10$p5oW7LFWOhZvFwbj79zvJuri4hCeLD9KnFlZW0ypgfrzrpsR7scHO",
+				"role": "5e8cdd3b8296523464c7460b",
+				"confirmationToken": "abcdefghijklmn"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7461b",
+				"name": "Moderator",
+				"email": "moderator@diology.io",
+				"password": "$2b$10$p5oW7LFWOhZvFwbj79zvJuri4hCeLD9KnFlZW0ypgfrzrpsR7scHO",
+				"role": "5e8cdd3b8296523464c7460d"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7461e",
+				"name": "Natan",
+				"email": "natan.morote@gmail.com",
+				"password": "$2b$10$p5oW7LFWOhZvFwbj79zvJuri4hCeLD9KnFlZW0ypgfrzrpsR7scHO",
+				"role": "5e8cdd3b8296523464c7460e"
+			}
+		]
+	}

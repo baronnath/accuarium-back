@@ -1,0 +1,41 @@
+	{
+		"model": "endPoint",
+		"documents": [
+			{
+				"_id": "5e8cdd3b8296523464c7462a",
+				"name": "user"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462b",
+				"name": "role"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462c",
+				"name": "permisson"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462d",
+				"name": "family"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462e",
+				"name": "depth"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462f",
+				"name": "type"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74621",
+				"name": "behavior"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74622",
+				"name": "species"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74623",
+				"name": "feed"
+			}
+		]
+	}

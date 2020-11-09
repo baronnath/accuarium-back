@@ -1,0 +1,17 @@
+	{
+		"model": "depth",
+		"documents": [
+			{
+				"_id": "5e8cdd3b8296523464c7462a",
+				"name": "bottom"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462b",
+				"name": "medium"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462c",
+				"name": "surface"
+			}
+		]
+	}

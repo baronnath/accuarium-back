@@ -1,0 +1,17 @@
+	{
+		"model": "behavior",
+		"documents": [
+			{
+				"_id": "5e8cdd3b8296523464c7462a",
+				"name": "schooling"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462b",
+				"name": "territorial"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462c",
+				"name": "agressive"
+			}
+		]
+	}

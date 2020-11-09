@@ -1,0 +1,20 @@
+	{
+		"model": "type",
+		"documents": [
+			{
+				"_id": "5e8cdd3b8296523464c7462a",
+				"name": "fish",
+				"icon": "fish"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462b",
+				"name": "invertebrate",
+				"icon": "snail"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462c",
+				"name": "plant",
+				"icon": "sprout"
+			}
+		]
+	}

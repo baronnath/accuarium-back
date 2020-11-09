@@ -1,0 +1,605 @@
+{
+	"model": "permission",
+	"documents": [
+		{
+			"_id": "5e8cdd3b8296523464c7461a",
+			"role": "5e8cdd3b8296523464c7460e",
+			"endPoint": "5e8cdd3b8296523464c7462a",
+			"grants": {
+				"createOwn": true,
+			    "readOwn": true,
+			    "updateOwn": true,
+			    "deleteOwn": true,
+			    "createAny": true,
+			    "readAny": true,
+			    "updateAny": true,
+			    "deleteAny": true
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c7461b",
+			"role": "5e8cdd3b8296523464c7460e",
+			"endPoint": "5e8cdd3b8296523464c7462b",
+			"grants": {
+				"createOwn": true,
+			    "readOwn": true,
+			    "updateOwn": true,
+			    "deleteOwn": true,
+			    "createAny": true,
+			    "readAny": true,
+			    "updateAny": true,
+			    "deleteAny": true
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c7461c",
+			"role": "5e8cdd3b8296523464c7460e",
+			"endPoint": "5e8cdd3b8296523464c7462c",
+			"grants": {
+				"createOwn": true,
+			    "readOwn": true,
+			    "updateOwn": true,
+			    "deleteOwn": true,
+			    "createAny": true,
+			    "readAny": true,
+			    "updateAny": true,
+			    "deleteAny": true
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c7461d",
+			"role": "5e8cdd3b8296523464c7460b",
+			"endPoint": "5e8cdd3b8296523464c7462a",
+			"grants": {
+				"createOwn": true,
+			    "readOwn": true,
+			    "updateOwn": true,
+			    "deleteOwn": true,
+			    "createAny": false,
+			    "readAny": true,
+			    "updateAny": false,
+			    "deleteAny": false
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": "role",
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": "role",
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c7461e",
+			"role": "5e8cdd3b8296523464c7460b",
+			"endPoint": "5e8cdd3b8296523464c7462b",
+			"grants": {
+				"createOwn": false,
+			    "readOwn": true,
+			    "updateOwn": false,
+			    "deleteOwn": false,
+			    "createAny": false,
+			    "readAny": true,
+			    "updateAny": false,
+			    "deleteAny": false
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c7461f",
+			"role": "5e8cdd3b8296523464c7460b",
+			"endPoint": "5e8cdd3b8296523464c7462c",
+			"grants": {
+				"createOwn": false,
+			    "readOwn": true,
+			    "updateOwn": false,
+			    "deleteOwn": false,
+			    "createAny": false,
+			    "readAny": false,
+			    "updateAny": false,
+			    "deleteAny": false
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c74611",
+			"role": "5e8cdd3b8296523464c7460b",
+			"endPoint": "5e8cdd3b8296523464c7462d",
+			"grants": {
+				"createOwn": true,
+			    "readOwn": true,
+			    "updateOwn": true,
+			    "deleteOwn": true,
+			    "createAny": false,
+			    "readAny": true,
+			    "updateAny": false,
+			    "deleteAny": false
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c74612",
+			"role": "5e8cdd3b8296523464c7460c",
+			"endPoint": "5e8cdd3b8296523464c7462d",
+			"grants": {
+				"createOwn": false,
+			    "readOwn": true,
+			    "updateOwn": false,
+			    "deleteOwn": false,
+			    "createAny": false,
+			    "readAny": true,
+			    "updateAny": false,
+			    "deleteAny": false
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c74613",
+			"role": "5e8cdd3b8296523464c7460e",
+			"endPoint": "5e8cdd3b8296523464c7462d",
+			"grants": {
+				"createOwn": true,
+			    "readOwn": true,
+			    "updateOwn": true,
+			    "deleteOwn": true,
+			    "createAny": true,
+			    "readAny": true,
+			    "updateAny": true,
+			    "deleteAny": true
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c74614",
+			"role": "5e8cdd3b8296523464c7460b",
+			"endPoint": "5e8cdd3b8296523464c7462e",
+			"grants": {
+				"createOwn": true,
+			    "readOwn": true,
+			    "updateOwn": true,
+			    "deleteOwn": true,
+			    "createAny": false,
+			    "readAny": true,
+			    "updateAny": false,
+			    "deleteAny": false
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c74615",
+			"role": "5e8cdd3b8296523464c7460c",
+			"endPoint": "5e8cdd3b8296523464c7462e",
+			"grants": {
+				"createOwn": false,
+			    "readOwn": true,
+			    "updateOwn": false,
+			    "deleteOwn": false,
+			    "createAny": false,
+			    "readAny": true,
+			    "updateAny": false,
+			    "deleteAny": false
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c74616",
+			"role": "5e8cdd3b8296523464c7460e",
+			"endPoint": "5e8cdd3b8296523464c7462e",
+			"grants": {
+				"createOwn": true,
+			    "readOwn": true,
+			    "updateOwn": true,
+			    "deleteOwn": true,
+			    "createAny": true,
+			    "readAny": true,
+			    "updateAny": true,
+			    "deleteAny": true
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c7462a",
+			"role": "5e8cdd3b8296523464c7460b",
+			"endPoint": "5e8cdd3b8296523464c7462f",
+			"grants": {
+				"createOwn": true,
+			    "readOwn": true,
+			    "updateOwn": true,
+			    "deleteOwn": true,
+			    "createAny": false,
+			    "readAny": true,
+			    "updateAny": false,
+			    "deleteAny": false
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c7462b",
+			"role": "5e8cdd3b8296523464c7460c",
+			"endPoint": "5e8cdd3b8296523464c7462f",
+			"grants": {
+				"createOwn": false,
+			    "readOwn": true,
+			    "updateOwn": false,
+			    "deleteOwn": false,
+			    "createAny": false,
+			    "readAny": true,
+			    "updateAny": false,
+			    "deleteAny": false
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c7462c",
+			"role": "5e8cdd3b8296523464c7460e",
+			"endPoint": "5e8cdd3b8296523464c7462f",
+			"grants": {
+				"createOwn": true,
+			    "readOwn": true,
+			    "updateOwn": true,
+			    "deleteOwn": true,
+			    "createAny": true,
+			    "readAny": true,
+			    "updateAny": true,
+			    "deleteAny": true
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c7462d",
+			"role": "5e8cdd3b8296523464c7460b",
+			"endPoint": "5e8cdd3b8296523464c74621",
+			"grants": {
+				"createOwn": true,
+			    "readOwn": true,
+			    "updateOwn": true,
+			    "deleteOwn": true,
+			    "createAny": false,
+			    "readAny": true,
+			    "updateAny": false,
+			    "deleteAny": false
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c7462e",
+			"role": "5e8cdd3b8296523464c7460c",
+			"endPoint": "5e8cdd3b8296523464c74621",
+			"grants": {
+				"createOwn": false,
+			    "readOwn": true,
+			    "updateOwn": false,
+			    "deleteOwn": false,
+			    "createAny": false,
+			    "readAny": true,
+			    "updateAny": false,
+			    "deleteAny": false
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c7462f",
+			"role": "5e8cdd3b8296523464c7460e",
+			"endPoint": "5e8cdd3b8296523464c74621",
+			"grants": {
+				"createOwn": true,
+			    "readOwn": true,
+			    "updateOwn": true,
+			    "deleteOwn": true,
+			    "createAny": true,
+			    "readAny": true,
+			    "updateAny": true,
+			    "deleteAny": true
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c7463a",
+			"role": "5e8cdd3b8296523464c7460b",
+			"endPoint": "5e8cdd3b8296523464c74622",
+			"grants": {
+				"createOwn": true,
+			    "readOwn": true,
+			    "updateOwn": true,
+			    "deleteOwn": true,
+			    "createAny": false,
+			    "readAny": true,
+			    "updateAny": false,
+			    "deleteAny": false
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c7463b",
+			"role": "5e8cdd3b8296523464c7460c",
+			"endPoint": "5e8cdd3b8296523464c74622",
+			"grants": {
+				"createOwn": false,
+			    "readOwn": true,
+			    "updateOwn": false,
+			    "deleteOwn": false,
+			    "createAny": false,
+			    "readAny": true,
+			    "updateAny": false,
+			    "deleteAny": false
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c7463c",
+			"role": "5e8cdd3b8296523464c7460e",
+			"endPoint": "5e8cdd3b8296523464c74623",
+			"grants": {
+				"createOwn": true,
+			    "readOwn": true,
+			    "updateOwn": true,
+			    "deleteOwn": true,
+			    "createAny": true,
+			    "readAny": true,
+			    "updateAny": true,
+			    "deleteAny": true
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c7463d",
+			"role": "5e8cdd3b8296523464c7460b",
+			"endPoint": "5e8cdd3b8296523464c74623",
+			"grants": {
+				"createOwn": true,
+			    "readOwn": true,
+			    "updateOwn": true,
+			    "deleteOwn": true,
+			    "createAny": false,
+			    "readAny": true,
+			    "updateAny": false,
+			    "deleteAny": false
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c7463e",
+			"role": "5e8cdd3b8296523464c7460c",
+			"endPoint": "5e8cdd3b8296523464c74623",
+			"grants": {
+				"createOwn": false,
+			    "readOwn": true,
+			    "updateOwn": false,
+			    "deleteOwn": false,
+			    "createAny": false,
+			    "readAny": true,
+			    "updateAny": false,
+			    "deleteAny": false
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c7463f",
+			"role": "5e8cdd3b8296523464c7460e",
+			"endPoint": "5e8cdd3b8296523464c74622",
+			"grants": {
+				"createOwn": true,
+			    "readOwn": true,
+			    "updateOwn": true,
+			    "deleteOwn": true,
+			    "createAny": true,
+			    "readAny": true,
+			    "updateAny": true,
+			    "deleteAny": true
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		}
+	]
+}

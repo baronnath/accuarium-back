@@ -1,0 +1,21 @@
+	{
+		"model": "role",
+		"documents": [
+			{
+				"_id": "5e8cdd3b8296523464c7460b",
+				"name": "player"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7460c",
+				"name": "premium"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7460d",
+				"name": "moderator"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7460e",
+				"name": "admin"
+			}
+		]
+	}
