@@ -74,9 +74,17 @@ exports.createRules = () => {
     body('temperature')
         .optional()
         .isNumeric().withMessage('validation.notNumber'),
-    body('ph')
+    body('minPh')
+        .isNumeric().withMessage('validation.notNumber')
+        .custom(value => {
+            return (value >= 1 && value <= 14);
+        }).withMessage('validation.ph.notValid'),
+    body('maxPh')
         .optional()
-        .isNumeric().withMessage('validation.notNumber'),
+        .isNumeric().withMessage('validation.notNumber')
+        .custom(value => {
+            return (value >= 1 && value <= 14);
+        }).withMessage('validation.ph.notValid'),
     body('lenght')
         .optional()
         .isNumeric().withMessage('validation.notNumber'),

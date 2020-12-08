@@ -26,6 +26,11 @@ const speciesSchema = new mongoose.Schema({
         ref: 'family',
         autopopulate: true
     },
+    group: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'group',
+        autopopulate: true
+    },
     parameters: {
         temperature: {
             min: {
@@ -46,13 +51,30 @@ const speciesSchema = new mongoose.Schema({
                 type: Number,
                 default: null
             }  
+        },
+        dh: {
+            min: {
+                type: Number,
+                default: null
+            },
+            max: {
+                type: Number,
+                default: null
+            } 
         }
     },
     litersSpecimen: {
         type: Number
     },
     lenght: {
-        type: Number
+        min: {
+            type: Number,
+            default: null
+        },
+        max: {
+            type: Number,
+            default: null
+        } 
     },
     feed: {
         type: mongoose.Schema.Types.ObjectId,
@@ -73,7 +95,7 @@ const speciesSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'behavior',
         autopopulate: true
-    },
+    }
 },
 { 
     timestamps: true

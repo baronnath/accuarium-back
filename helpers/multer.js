@@ -23,7 +23,11 @@ module.exports = (destination) => {
 	    }
 	}
 
-	return multer({ storage: storage, fileFilter: fileFilter });
+	return multer({
+		storage: storage,
+		fileFilter: fileFilter,
+		limits: { fieldSize: 25 * 1024 * 1024 },
+	});
 }
 
 

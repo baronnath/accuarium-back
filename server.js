@@ -4,8 +4,9 @@ const server 			= require('http').Server(app);
 const port     			= process.env.PORT || 8080;
 const env 				= process.env.NODE_ENV || 'development';
 const config 			= require(__dirname + '/config/server')[env];
+const bodyParser 		= require('body-parser');
 const i18next 			= require("i18next");
-const i18nextMiddleware 	= require('i18next-http-middleware')
+const i18nextMiddleware = require('i18next-http-middleware')
 const Backend 			= require("i18next-fs-backend");
 const translatorConfig	= require(__dirname + '/config/translator');
 const { 
@@ -21,12 +22,19 @@ const mongoose 			= require('mongoose');
 const mongooseConfig	= require(__dirname + '/config/mongoose');
 const cors 				= require('cors');
 
+// MongoDB connection
+mongoose.connect(config['connectionString'], mongooseConfig)
+.catch(err => {
+	logger.api(err.message);
+});
 
-app.use(express.json()); // transform all request in json
+// app.use(express.json()); // transform all request in json
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json({ limit: config.uploadMaxSize }))
 
 app.use(cors({
 	'origin': config.allowOrigins
-}))
+}));
 
 
 // Initialize translator
@@ -41,18 +49,11 @@ app.use(
 	)
 );
 
-// Initialize access control
+// Initialize access control (permissions system)
 accessControl.init();
 
 // // HTTP request logger
 app.use(httpLogger);
-
-// MongoDB connection
-mongoose.connect(config['connectionString'], mongooseConfig)
-.catch(err => {
-	handleError(err);
-});
-
 
 // Routes
 require('./routes')(app); // Load our routes and pass in our app

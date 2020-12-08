@@ -1,5 +1,6 @@
 // services/speciesService.js
 
+const fs 			= require('fs');
 const Species 		= require('../models/species');
 const Type 			= require('../models/type');
 const Family 		= require('../models/family');
@@ -9,22 +10,27 @@ const Behavior 		= require('../models/behavior');
 const {	ErrorHandler, handleError } = require('../helpers/errorHandler');
 const {	logger } 	= require('../helpers/logger');
 const config		= require('../config/preferences'); 
+const urlGenerator  = require('../helpers/urlGenerator');
+
+const imageUrl = urlGenerator.getImagesUrl() + 'species/';
 
 exports.create = async (req, res, next) => {
-
-	console.log(req.file);
 
 	const { 
 		name,
 		image,
 		typeId,
 		familyId,
+		groupId,
 		minTemperature,
 		maxTemperature,
 		minPh,
 		maxPh,
+		minDh,
+		maxDh,
 		literSpecimen,
-		lenght,
+		minLenght,
+		maxLenght,
 		feedId,
 		varietyOfId,
 		depthId,
@@ -33,9 +39,9 @@ exports.create = async (req, res, next) => {
 
 	species = new Species({
 		name: name,
-		image: image,
 		type: typeId,
 		family: familyId,
+		group: groupId,
 		parameters: {
 			temperature: {
 				min: minTemperature,
@@ -44,15 +50,36 @@ exports.create = async (req, res, next) => {
 			ph: {
 				min: minPh,
 				max: maxPh
+			},
+			dh: {
+				min: minDh,
+				max: maxDh
 			}
 		},
 		literSpecimen: literSpecimen,
-		lenght: lenght,
+		lenght: {
+			min: minLenght,
+			max: maxLenght
+		},
 		feed: feedId,
 		varietyOf: varietyOfId,
 		depth: depthId,
 		behavior: behaviorId
 	});
+
+	// Figure out image extension and store
+	let match = /\.(\w+)$/.exec(image.uri);
+	let fileType = match ? `${match[1]}` : `jpg`;
+	fs.writeFile(`${imageUrl}${species._id}.${fileType}`, image.base64, 'base64', function(err) {
+	  if(err)
+	  	throw new ErrorHandler(500, 'image.notSaved');
+	});
+
+	setTimeout(function(){
+		logger.silly(image.uri);
+		logger.silly(`${imageUrl}${name}.${fileType}`);
+		console.log(species);
+	}, 3000);
 
 	return await species.save();
 }
