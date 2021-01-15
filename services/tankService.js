@@ -1,6 +1,7 @@
-// services/speciesService.js
+// services/tankService.js
 
 const fs 			= require('fs');
+const Tank 			= require('../models/tank');
 const Species 		= require('../models/species');
 const Type 			= require('../models/type');
 const Family 		= require('../models/family');
@@ -12,77 +13,47 @@ const {	logger } 	= require('../helpers/logger');
 const config		= require('../config/preferences'); 
 const urlGenerator  = require('../helpers/urlGenerator');
 
-const imageUrl = urlGenerator.getImagesUrl() + 'species/';
+const imageUrl = urlGenerator.getImagesUrl() + 'tank/';
 
 exports.create = async (req, res, next) => {
 
 	const { 
 		name,
-		otherNames,
+		userId,
 		image,
-		typeId,
-		familyId,
-		groupId,
-		minTemperature,
-		maxTemperature,
-		minPh,
-		maxPh,
-		minDh,
-		maxDh,
-		literSpecimen,
-		minLength,
-		maxLength,
-		feedId,
-		varietyOfId,
-		depthId,
-		behaviorId
+		species,
+		quantity,
+		length,
+		width,
+		height,
+		liters,
 	} = req.body;
 
-	species = new Species({
+
+	tank = new Tank({
 		name: name,
-		otherNames: otherNames,
-		type: typeId,
-		family: familyId,
-		group: groupId,
-		parameters: {
-			temperature: {
-				min: minTemperature,
-				max: maxTemperature
-			},
-			ph: {
-				min: minPh,
-				max: maxPh
-			},
-			dh: {
-				min: minDh,
-				max: maxDh
-			}
-		},
-		literSpecimen: literSpecimen,
-		length: {
-			min: minLength,
-			max: maxLength
-		},
-		feed: feedId,
-		varietyOf: varietyOfId,
-		depth: depthId,
-		behavior: behaviorId
+		user: userId,
+		species: species,
+	    quantity: quantity,
+		measures: {
+	        height: height,
+	        width: width,
+	        length: length
+	    },
+	    liters: liters,
 	});
 
 	// Figure out image extension and store
-	let match = /\.(\w+)$/.exec(image.uri);
-	let fileType = match ? `${match[1]}` : `jpg`;
-	fs.writeFile(`${imageUrl}${species._id}.${fileType}`, image.base64, 'base64', function(err) {
-	  if(err)
-	  	throw new ErrorHandler(500, 'image.notSaved');
-	});
+	if(image){
+		let match = /\.(\w+)$/.exec(image.uri);
+		let fileType = match ? `${match[1]}` : `jpg`;
+		fs.writeFile(`${imageUrl}${tank._id}.${fileType}`, image.base64, 'base64', function(err) {
+		  if(err)
+		  	throw new ErrorHandler(500, 'image.notSaved');
+		});
+	}
 
-	setTimeout(function(){
-		logger.silly(familyId);
-		logger.silly(groupId);
-	}, 3000);
-
-	return await species.save();
+	return await tank.save();
 }
 
 exports.get = async (req, res, next) => {

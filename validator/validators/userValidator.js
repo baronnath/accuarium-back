@@ -146,3 +146,16 @@ exports.resendRules = () => {
         })
   ]
 }
+
+exports.searchRules = () => {
+  return [
+    query('page')
+        .optional()
+        .isNumeric().withMessage('validation.notNumber'),
+    query('direction')
+        .optional()
+        .custom(value => {
+            return (value == 'ascending' || value =='descending');
+        }).withMessage('validation.search.order.notValid'),
+  ]
+}

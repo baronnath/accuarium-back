@@ -1,19 +1,18 @@
-// controllers/speciesController.js
+// controllers/tankController.js
 
-const Species 			= require('../models/species');
-const speciesService	= require('../services/speciesService');
+const tankService	= require('../services/tankService');
 const {	ErrorHandler }	= require('../helpers/errorHandler');
 
-let species;
+let tank;
 
 exports.create = async (req, res, next) => {
 
 	try{
-		species = await speciesService.create(req, res, next);
+		tank = await tankService.create(req, res, next);
 
 		return res.status(201).json({
-			species: species,
-			message: req.i18n.t('species.create.success', {species}),
+			tank: tank,
+			message: req.i18n.t('tank.create.success', {tank}),
 		})
 
 	} catch (err) {
@@ -25,11 +24,11 @@ exports.update = async (req, res, next) => {
 
 	try {
 		
-		species = await speciesService.update(req, res, next);
+		tank = await tankService.update(req, res, next);
 
 		return res.status(200).json({
-			species,
-			message: req.i18n.t('species.update.success', {species}),
+			tank,
+			message: req.i18n.t('tank.update.success', {tank}),
 		})
 		
 	} catch (err) {
@@ -39,15 +38,15 @@ exports.update = async (req, res, next) => {
 
 exports.get = async (req, res, next) => {
 
-	const { speciesId } = req.query;
+	const { tankId } = req.query;
 
-	if(speciesId){
+	if(tankId){
 
 		try {
-			const species = await speciesService.get(req, res, next);
+			const tank = await tankService.get(req, res, next);
 
 			return res.status(200).json({
-				species
+				tank
 			})
 
 		} catch (err) {
@@ -66,10 +65,10 @@ exports.get = async (req, res, next) => {
 exports.getAll = async (req, res, next) => {
 		
 	try {
-		const species = await speciesService.getAll(req, res, next);
+		const tank = await tankService.getAll(req, res, next);
 
 		return res.status(200).json({
-			species
+			tank
 		})
 
 	} catch (err) {
@@ -80,10 +79,10 @@ exports.getAll = async (req, res, next) => {
 exports.search = async (req, res, next) => {
 		
 	try {
-		const { species, total } = await speciesService.search(req, res, next);
+		const { tank, total } = await tankService.search(req, res, next);
 
 		return res.status(200).json({
-			species,
+			tank,
 			total
 		})
 

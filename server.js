@@ -36,6 +36,8 @@ app.use(cors({
 	'origin': config.allowOrigins
 }));
 
+// Register static directory
+app.use(express.static(`${__dirname}/public`));
 
 // Initialize translator
 i18next

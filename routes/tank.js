@@ -1,0 +1,35 @@
+// routes/tankRoute.js
+
+const tankController    = require('../controllers').tank;
+const userController  	= require('../controllers').user;
+const { validate } 		= require('../validator/validator');
+const tankValidator 	= require('../validator/validators/tankValidator');
+const urlGenerator      = require('../helpers/urlGenerator');
+
+module.exports = function(app){
+
+	app.post('/tank',
+        userController.isLoggedIn,
+        userController.isAllowedTo('createAny', 'tank'),
+        tankValidator.createRules(),
+        validate,
+        tankController.create
+    );
+
+	app.get('/tank',
+        userController.isLoggedIn,
+        userController.isAllowedTo('readAny', 'tank'),
+        tankValidator.getRules(),
+        validate,
+        tankController.get
+    );
+
+    app.get('/tank/search',
+        userController.isLoggedIn,
+        userController.isAllowedTo('readAny', 'tank'),
+        tankValidator.searchRules(),
+        validate,
+        tankController.search
+    );
+
+}

@@ -8,14 +8,12 @@ const speciesSchema = new mongoose.Schema({
         type: String,
         trim: true,
     },
-    otherNames: {
-        type: String,
-        trim: true,
-    },
-    image: {
-        type: String,
-        default: 'https://dummyimage.com/225x225/aaaaaa/ffffff.jpg&text=Diologist',
-    },
+    otherNames: [
+        {
+            type: String,
+            trim: true,
+        }
+    ],
     type: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'type',
@@ -66,7 +64,7 @@ const speciesSchema = new mongoose.Schema({
     litersSpecimen: {
         type: Number
     },
-    lenght: {
+    length: {
         min: {
             type: Number,
             default: null
@@ -84,7 +82,8 @@ const speciesSchema = new mongoose.Schema({
     varietyOf: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'species',
-        autopopulate: true
+        autopopulate: true,
+        default: null,
     },
     depth: {
         type: mongoose.Schema.Types.ObjectId,

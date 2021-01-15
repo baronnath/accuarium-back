@@ -10,3 +10,11 @@ exports.isObject = (input) => {
 exports.ucFirst = (string) =>  {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+// Check if string
+exports.isString = (string) => {
+	if(typeof string === 'string')
+	  return true;
+	else
+	  return false;
+}

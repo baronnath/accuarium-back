@@ -8,6 +8,7 @@ const jwtSecret			= process.env.JWT_SECRET || 'th1s1sm7s3cr3tj4s0nw3bt0k3n';
 const {	ErrorHandler, handleError } = require('../helpers/errorHandler');
 const {	logger } 		= require('../helpers/logger');
 const mailer 			= require('../mailer/mailer');
+const config			= require('../config/preferences'); 
 
 let user;
 
@@ -338,6 +339,51 @@ exports.sendInvitation = async (user, req, res, next) => {
 	}
 }
 
+exports.search = async (req, res, next) => {
+
+	const keyword = req.query.keyword;
+	let field = req.query.sort;
+	let direction = req.query.direction;
+	let page = req.query.page;
+	const perPage = config.pagination;
+	let criteria = {};
+
+	if(!field){
+		field = 'name';
+	}
+	if(!direction){
+		direction = 'ascending';
+	}
+
+	if(!page){
+		page = 0;
+	}
+
+	if(keyword){
+		const regex = new RegExp(keyword, 'i');
+		criteria = {
+			$or: [ {name : { $regex: regex }}, { email: { $regex: regex } } ]
+		}
+	}
+
+	users = await User
+		.find(criteria)
+		.sort({[field]: direction})
+		.skip(perPage * page)
+    	.limit(perPage);
+
+   	total = await User
+		.find(criteria)
+		.countDocuments();
+
+		console.log(users);
+
+	return {
+		users,
+		total
+	}
+}
+
 async function validateToken (userId, accessToken) {
 	user = await User
 		.findByPk(userId);
@@ -356,4 +402,6 @@ async function hashPassword (password) {
 async function validatePassword (plainPassword, hashedPassword) {
 	return await bcrypt.compare(plainPassword, hashedPassword);
 }
+
+
 

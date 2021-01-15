@@ -384,5 +384,13 @@ module.exports = function(app){
         userController.delete
     );
 
+    app.get('/user/search',
+        userController.isLoggedIn,
+        userController.isAllowedTo('readAny', 'user'),
+        userValidator.searchRules(),
+        validate,
+        userController.search
+    );
+
 }
 

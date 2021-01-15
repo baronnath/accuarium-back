@@ -25,7 +25,7 @@ module.exports = function(app){
         userController.isAllowedTo('readAny', 'species'),
         // speciesValidator.getRules(),
         // validate,
-        speciesController.getAll
+        speciesController.get
     );
 
     app.get('/species/search',

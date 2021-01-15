@@ -169,3 +169,18 @@ exports.sendInvitation = async (user, req, res, next) => {
 		next(err)
 	}
 }
+
+exports.search = async (req, res, next) => {
+		
+	try {
+		const { users, total } = await userService.search(req, res, next);
+
+		return res.status(200).json({
+			users,
+			total
+		})
+
+	} catch (err) {
+		next(err)
+	}
+}
