@@ -62,6 +62,37 @@
 			    "varietyOf": null,
 			    "depth": "5e8cdd3b8296523464c7462b",
 			    "behavior": "5e8cdd3b8296523464c7462a"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462c",
+				"name": "Neon tetra",
+	    		"otherNames": ["Neon","Tetra"],
+	    		"type": "5e8cdd3b8296523464c7462a",
+	    		"family": "5e8cdd3b8296523464c7462c",
+	    		"group": "5e8cdd3b8296523464c7462e",
+	    		"parameters": {
+	    			"temperature": {
+		            	"min": 15,
+			            "max": 20
+			        },
+	        		"ph": {
+		            	"min": 5,
+			            "max": 8
+			        },
+			        "dh": {
+		            	"min": 0.1,
+			            "max": 0.3
+			        }
+			    },
+			    "litersSpecimen": 10,
+			    "length": {
+	            	"min": 15,
+		            "max": 20
+		        },
+			    "feed": "5e8cdd3b8296523464c7462b",
+			    "varietyOf": null,
+			    "depth": "5e8cdd3b8296523464c7462b",
+			    "behavior": "5e8cdd3b8296523464c7462a"
 			}
 		]
 	}

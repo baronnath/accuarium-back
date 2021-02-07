@@ -215,7 +215,6 @@ exports.search = async (req, res, next) => {
 	if(!page){
 		page = 0;
 	}
-	console.log(page);
 
 	if(keyword){
 		const regex = new RegExp(keyword, 'i');

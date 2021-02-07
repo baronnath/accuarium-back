@@ -38,15 +38,15 @@ exports.update = async (req, res, next) => {
 
 exports.get = async (req, res, next) => {
 
-	const { tankId } = req.query;
+	const { tankId, userId } = req.query;
 
-	if(tankId){
+	if(tankId || userId){
 
 		try {
-			const tank = await tankService.get(req, res, next);
+			const tanks = await tankService.get(req, res, next);
 
 			return res.status(200).json({
-				tank
+				tanks
 			})
 
 		} catch (err) {
@@ -54,7 +54,6 @@ exports.get = async (req, res, next) => {
 		}
 
 	}else{
-		console.log('this.getAll')
 		exports.getAll(req, res, next);
 	}
 
@@ -65,10 +64,10 @@ exports.get = async (req, res, next) => {
 exports.getAll = async (req, res, next) => {
 		
 	try {
-		const tank = await tankService.getAll(req, res, next);
+		const tanks = await tankService.getAll(req, res, next);
 
 		return res.status(200).json({
-			tank
+			tanks
 		})
 
 	} catch (err) {
@@ -79,10 +78,10 @@ exports.getAll = async (req, res, next) => {
 exports.search = async (req, res, next) => {
 		
 	try {
-		const { tank, total } = await tankService.search(req, res, next);
+		const { tanks, total } = await tankService.search(req, res, next);
 
 		return res.status(200).json({
-			tank,
+			tanks,
 			total
 		})
 

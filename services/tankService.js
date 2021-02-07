@@ -57,24 +57,27 @@ exports.create = async (req, res, next) => {
 }
 
 exports.get = async (req, res, next) => {
-	const { speciesId } = req.query;
+	const { tankId, userId } = req.query;
 
-	if(speciesId){
-		species = await Species
-			.findById(speciesId);
-	}else{
-		throw new ErrorHandler(404, 'species.notFound');
+	if(tankId){
+		tanks = await Tank.findById(tankId);
+	}
+	else if(userId){
+		tanks = await Tank
+			.find({user: userId});
 	}
 
-	return species
+	if(!tanks)
+		throw new ErrorHandler(404, 'tank.notFound');
 
+	return tanks
 }
  
 exports.getAll = async (req, res, next) => {
 
-	species = await Species.find().limit(50);
+	tanks = await Tank.find();
 
-	return species;
+	return tanks;
 }
 
 exports.update = async (req, res, next) => {
@@ -169,7 +172,7 @@ exports.update = async (req, res, next) => {
 
 exports.search = async (req, res, next) => {
 
-	const keyword = req.query.keyword;
+	let keyword = req.query.keyword;
 	let field = req.query.sort;
 	let direction = req.query.direction;
 	let page = req.query.page;
@@ -186,51 +189,58 @@ exports.search = async (req, res, next) => {
 	if(!page){
 		page = 0;
 	}
-	console.log(page);
 
-	if(keyword){
-		const regex = new RegExp(keyword, 'i');
-		criteria = {
-			$or: [ {name : { $regex: regex }}, { otherNames: { $regex: regex } } ]
-		}
+	if(!keyword){
+		keyword = '';
 	}
 
-	species = await Species
-		.find(criteria)
+	const regex = new RegExp(keyword, 'i');	
+
+
+	tanks = await Tank
+		.aggregate([
+			    {$lookup: {
+			        from: 'users', 
+			        localField: 'user', 
+			        foreignField: '_id', 
+			        as: 'user'
+			    }},
+			    {$unwind: {path: '$user'}},
+			    {$match: {
+			    	$or: [
+			    		{ 'name': { $regex: regex }},
+			    		{ 'user.name': { $regex: regex }},
+			    		{ 'user.email': { $regex: regex }}
+			    	]
+			    }},
+		])
 		.sort({[field]: direction})
 		.skip(perPage * page)
     	.limit(perPage);
 
-   	total = await Species
-		.find(criteria)
-		.count();
+
+   	total = await Tank
+		.aggregate([
+			    // {$match: { 'name' : { $regex: regex } }},
+			    {$lookup: {
+			        from: 'users', 
+			        localField: 'user', 
+			        foreignField: '_id', 
+			        as: 'user'
+			    }},
+			    {$unwind: {path: '$user'}},
+			    {$match: {
+			    	$or: [
+			    		{ 'name': { $regex: regex }},
+			    		{ 'user.name': { $regex: regex }},
+			    		{ 'user.email': { $regex: regex }}
+			    	]
+			    }},
+			    { $count: "total" }
+		])	;
 
 	return {
-		species,
-		total
+		tanks,
+		total: total[0].total
 	}
-
-	 // db.collection.aggregate([
-
-	 //      //{$sort: {...}}
-
-	 //      //{$match:{...}}
-
-	 //      {$facet:{
-
-	 //        "stage1" : [ {"$group": {_id:null, count:{$sum:1}}} ],
-
-	 //        "stage2" : [ { "$skip": 0}, {"$limit": 2} ]
-	  
-	 //      }},
-	     
-	 //     {$unwind: "$stage1"},
-	  
-	 //      //output projection
-	 //     {$project:{
-	 //        count: "$stage1.count",
-	 //        data: "$stage2"
-	 //     }}
-
-	 // ]);
 }

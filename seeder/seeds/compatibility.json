@@ -1,0 +1,23 @@
+	{
+		"model": "compatibility",
+		"documents": [
+			{
+				"_id": "5e8cdd3b8296523464c7462a",
+				"speciesA": "5e8cdd3b8296523464c7462a",
+				"speciesB": "5e8cdd3b8296523464c7462b",
+				"warning": []
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462b",
+				"speciesA": "5e8cdd3b8296523464c7462a",
+				"speciesB": "5e8cdd3b8296523464c7462c",
+				"warning": []
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462c",
+				"speciesA": "5e8cdd3b8296523464c7462b",
+				"speciesB": "5e8cdd3b8296523464c7462c",
+				"warning": []
+			}
+		]
+	}

@@ -1,22 +1,23 @@
 // models/tank.js
 
 const mongoose  = require('mongoose');
+const mongooseAutopopulate = require('mongoose-autopopulate');
 
 const tankSchema = new mongoose.Schema({
     name: {
       type: String,
       default: null
     },
-    user: [
-      {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "user"
-      }
-    ],
+        ref: "user",
+        autopopulate: true
+    },
     species: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "species"
+        ref: "species",
+        autopopulate: true
       }
     ],
     quantity: {
@@ -42,6 +43,8 @@ const tankSchema = new mongoose.Schema({
         default: null
     },
 });
+
+tankSchema.plugin(mongooseAutopopulate);
 
 const tank = mongoose.model('tank', tankSchema);
 

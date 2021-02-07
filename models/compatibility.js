@@ -15,10 +15,12 @@ const compatibilitySchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    warning:  {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'warning'
-    }
+    warnings:  [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'warning'
+        }
+    ]
 });
 
 compatibilitySchema.index({ speciesA: 1, speciesB: 1 }, { unique: true })
