@@ -5,18 +5,23 @@
 				"_id": "5e8cdd3b8296523464c7462a",
 				"speciesA": "5e8cdd3b8296523464c7462a",
 				"speciesB": "5e8cdd3b8296523464c7462b",
-				"warning": []
+				"compatibility": 0,
+				"warning": [
+
+				]
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462b",
 				"speciesA": "5e8cdd3b8296523464c7462a",
 				"speciesB": "5e8cdd3b8296523464c7462c",
+				"compatibility": 1,
 				"warning": []
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462c",
 				"speciesA": "5e8cdd3b8296523464c7462b",
 				"speciesB": "5e8cdd3b8296523464c7462c",
+				"compatibility": 2,
 				"warning": []
 			}
 		]

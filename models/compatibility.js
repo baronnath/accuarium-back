@@ -12,8 +12,8 @@ const compatibilitySchema = new mongoose.Schema({
         ref: 'species'
     },
     compatibility: {
-        type: Boolean,
-        default: false
+        type: Number,
+        default: 0
     },
     warnings:  [
         {
