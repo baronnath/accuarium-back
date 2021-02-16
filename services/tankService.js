@@ -196,7 +196,7 @@ exports.search = async (req, res, next) => {
 
 	const regex = new RegExp(keyword, 'i');	
 
-
+	// Retrieve tanks
 	tanks = await Tank
 		.aggregate([
 			    {$lookup: {
@@ -219,6 +219,7 @@ exports.search = async (req, res, next) => {
     	.limit(perPage);
 
 
+    // Retrive search total number of tanks 
    	total = await Tank
 		.aggregate([
 			    // {$match: { 'name' : { $regex: regex } }},
@@ -237,10 +238,17 @@ exports.search = async (req, res, next) => {
 			    	]
 			    }},
 			    { $count: "total" }
-		])	;
+		]);
+
+	if(total[0]){
+		total = total[0].total
+	}
+	else{
+		total = 0;
+	}
 
 	return {
 		tanks,
-		total: total[0].total
+		total,
 	}
 }
