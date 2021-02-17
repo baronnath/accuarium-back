@@ -21,7 +21,8 @@ exports.create = async (req, res, next) => {
 		name,
 		userId,
 		image,
-		species,
+		speciesIds,
+		mainSpeciesId,
 		quantity,
 		length,
 		width,
@@ -33,7 +34,8 @@ exports.create = async (req, res, next) => {
 	tank = new Tank({
 		name: name,
 		user: userId,
-		species: species,
+		species: speciesIds,
+		mainSpecies: mainSpeciesId,
 	    quantity: quantity,
 		measures: {
 	        height: height,

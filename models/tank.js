@@ -20,6 +20,10 @@ const tankSchema = new mongoose.Schema({
         autopopulate: true
       }
     ],
+    mainSpecies: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "species",
+    },
     quantity: {
         type: Map,
         of: Number
