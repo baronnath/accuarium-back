@@ -1,12 +1,13 @@
 // services/compatibilityService.js
 
 const fs 			= require('fs');
-const Compatibility 		= require('../models/compatibility');
+const Compatibility = require('../models/compatibility');
 const Type 			= require('../models/type');
 const Family 		= require('../models/family');
 const Feed 			= require('../models/feed');
 const Depth 		= require('../models/depth');
 const Behavior 		= require('../models/behavior');
+const Tank 			= require('../models/tank');
 const {	ErrorHandler, handleError } = require('../helpers/errorHandler');
 const {	logger } 	= require('../helpers/logger');
 const config		= require('../config/preferences'); 
@@ -37,20 +38,60 @@ exports.create = async (req, res, next) => {
 exports.get = async (req, res, next) => {
 	const { 
 		compatibilityId,
+		tankId,
 		speciesAId,
 		speciesBId
 	} = req.query;
 
+
 	if(compatibilityId){
+
 		compatibility = await Compatibility
 			.findById(compatibilityId);
+
+	}else if(tankId){
+
+		let query = [];
+		tank = await Tank.findById(tankId);
+
+		if(tank){
+
+			tank.species.forEach(function(speciesA) {
+				tank.species.forEach(function(speciesB) {
+					if(speciesA._id != speciesB._id){
+						query.push(
+							{ $and: [
+					          	{speciesA: speciesA._id},
+					          	{speciesB: speciesB._id}
+					        ]}
+					    );
+					}
+				});
+			});
+			// console.log(`${JSON.stringify(query)}`);
+			compatibility = await Compatibility
+				.find({
+				      $or: query
+			  	})
+
+		}else{
+			throw new ErrorHandler(404, 'tank.notFound');
+		}
+
 	}
 	else{
+
 		compatibility = await Compatibility
-			.findOne.find({
-			      $and: [
-			          { $or: [{speciesA: speciesAId}, {speciesA: speciesBId}] },
-			          { $or: [{speciesB: speciesAId}, {speciesB: speciesBId}] }
+			.find({
+			      $or: [
+			          { $and: [
+			          	{speciesA: speciesAId},
+			          	{speciesB: speciesBId}
+			          ]},
+			          { $and: [
+			          	{speciesA: speciesBId},
+			          	{speciesB: speciesAId}
+			          ]},
 			      ]
 		  	})
 	}

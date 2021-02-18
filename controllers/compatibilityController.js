@@ -39,9 +39,9 @@ exports.update = async (req, res, next) => {
 
 exports.get = async (req, res, next) => {
 
-	const { compatibilityId } = req.query;
+	const { compatibilityId, speciesAId, speciesBId, tankId } = req.query;
 
-	if(compatibilityId){
+	if(compatibilityId || (speciesAId && speciesBId) || tankId){
 
 		try {
 			const compatibility = await compatibilityService.get(req, res, next);
