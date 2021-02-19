@@ -43,7 +43,6 @@ exports.get = async (req, res, next) => {
 		speciesBId
 	} = req.query;
 
-
 	if(compatibilityId){
 
 		compatibility = await Compatibility
@@ -51,49 +50,12 @@ exports.get = async (req, res, next) => {
 
 	}else if(tankId){
 
-		let query = [];
-		tank = await Tank.findById(tankId);
-
-		if(tank){
-
-			tank.species.forEach(function(speciesA) {
-				tank.species.forEach(function(speciesB) {
-					if(speciesA._id != speciesB._id){
-						query.push(
-							{ $and: [
-					          	{speciesA: speciesA._id},
-					          	{speciesB: speciesB._id}
-					        ]}
-					    );
-					}
-				});
-			});
-			// console.log(`${JSON.stringify(query)}`);
-			compatibility = await Compatibility
-				.find({
-				      $or: query
-			  	})
-
-		}else{
-			throw new ErrorHandler(404, 'tank.notFound');
-		}
+		compatibility = await getTankCompatibility(tankId);
 
 	}
 	else{
 
-		compatibility = await Compatibility
-			.find({
-			      $or: [
-			          { $and: [
-			          	{speciesA: speciesAId},
-			          	{speciesB: speciesBId}
-			          ]},
-			          { $and: [
-			          	{speciesA: speciesBId},
-			          	{speciesB: speciesAId}
-			          ]},
-			      ]
-		  	})
+		compatibility = await getSpeciesCompatibility(speciesAId,speciesBId);
 	}
 
 	if(!compatibility) {
@@ -133,46 +95,141 @@ exports.update = async (req, res, next) => {
 	return await compatibility.save();
 }
 
-// exports.search = async (req, res, next) => {
 
-// 	const keyword = req.query.keyword;
-// 	let field = req.query.sort;
-// 	let direction = req.query.direction;
-// 	let page = req.query.page;
-// 	const perPage = config.pagination;
-// 	let criteria = {};
+getSpeciesCompatibility = async (tankId) => {	
 
-// 	if(!field){
-// 		field = 'name';
-// 	}
-// 	if(!direction){
-// 		direction = 'ascending';
-// 	}
+	compatibility = await Compatibility
+		.find({
+		      $or: [
+		          { $and: [
+		          	{speciesA: speciesAId},
+		          	{speciesB: speciesBId}
+		          ]},
+		          { $and: [
+		          	{speciesA: speciesBId},
+		          	{speciesB: speciesAId}
+		          ]},
+		      ]
+	  	});
 
-// 	if(!page){
-// 		page = 0;
-// 	}
+	return compatibility;
+}
 
-// 	if(keyword){
-// 		const regex = new RegExp(keyword, 'i');
-// 		criteria = {
-// 			$or: [ {name : { $regex: regex }}, { otherNames: { $regex: regex } } ]
-// 		}
-// 	}
 
-// 	compatibility = await Compatibility
-// 		.find(criteria)
-// 		.sort({[field]: direction})
-// 		.skip(perPage * page)
-//     	.limit(perPage);
+getTankCompatibility = async (tankId) => {
 
-//    	total = await Compatibility
-// 		.find(criteria)
-// 		.count();
+	let query = [];
+	tank = await Tank.findById(tankId);
 
-// 	return {
-// 		compatibility,
-// 		total
-// 	}
+	if(tank){
 
-// }
+		tank.species.forEach(function(speciesA) {
+			tank.species.forEach(function(speciesB) {
+				if(speciesA._id != speciesB._id){
+					query.push(
+						{ $and: [
+				          	{speciesA: speciesA._id},
+				          	{speciesB: speciesB._id}
+				        ]}
+				    );
+				}
+			});
+		});
+		// console.log(`${JSON.stringify(query)}`);
+		compatibility = await Compatibility
+			.find({ $or: query });
+
+		return splitCompatibilitiesBySpecies(tank.species,compatibility);
+
+	}else{
+		throw new ErrorHandler(404, 'tank.notFound');
+	}
+}
+
+
+
+// CHECK COMPATIBILTY
+/**
+ * @api areCompatible
+ * @apiPrivate
+ * @apiDescription Check species compatibility.
+ * @apiGroup Compatibility
+ * @apiPermission none
+ * @apiVersion 0.1.0
+ *
+ * @apiParam {String,Array} tankId or speciesId array                     Species can be provided or the species from the specified tank.
+ *
+ */
+areCompatible = async (data) => {
+
+	let tankCompatibility = {
+		species: {},
+		parameters: {}
+	};
+	
+	if(data.isArray){ // speciesId array
+		throw new ErrorHandler(501, 'notImplemented');
+		speciesId = data.speciesId;
+		mainSpeciesId = data.mainSpeciesId;
+
+		// Get species data
+		// ...
+	}
+	else{ // tankId provided
+
+		const tankId = data;
+		tank = await Tank.findById(tankId);
+
+		species = tank.species;
+		mainSpeciesId = tank.mainSpecies;
+
+		compatibilities = await getTankCompatibility(tankId);
+	}
+
+	// Species compatibilities
+
+	tankCompatibility['species'] = splitCompatibilitiesBySpecies(species, compatibilities);
+
+	// Parameters compatibility: compare parameters with main species
+	species.forEach(function(species) {
+
+		// Temperature
+		temperatureCompatibility = 1;
+
+		// pH
+		phCompatibility = 1;
+
+		// dH
+		dhCompatibility = 1;
+
+		tankCompatibility['parameters'][species._id] = {
+			temperature: temperatureCompatibility,
+			ph: phCompatibility,
+			dh: dhCompatibility
+		}
+	});
+
+	console.log(tankCompatibility);
+
+}
+
+splitCompatibilitiesBySpecies = (species, compatibilities) => {
+	
+	// Declare objects
+	splittedCompatibilities = {};
+	species.forEach(function(species) {
+		splittedCompatibilities[species._id] = {} 
+	});
+
+	compatibilities.forEach(function(compatibility) {
+		compatibilityData = {
+			compatibility: compatibility.compatibility,
+			warnings: compatibility.warnings
+		}
+
+		splittedCompatibilities[compatibility.speciesA][compatibility.speciesB] = compatibilityData;
+		splittedCompatibilities[compatibility.speciesB][compatibility.speciesA] = compatibilityData;
+	});
+
+	return splittedCompatibilities;
+}
