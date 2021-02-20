@@ -115,39 +115,6 @@ getSpeciesCompatibility = async (tankId) => {
 	return compatibility;
 }
 
-
-getTankCompatibility = async (tankId) => {
-
-	let query = [];
-	tank = await Tank.findById(tankId);
-
-	if(tank){
-
-		tank.species.forEach(function(speciesA) {
-			tank.species.forEach(function(speciesB) {
-				if(speciesA._id != speciesB._id){
-					query.push(
-						{ $and: [
-				          	{speciesA: speciesA._id},
-				          	{speciesB: speciesB._id}
-				        ]}
-				    );
-				}
-			});
-		});
-		// console.log(`${JSON.stringify(query)}`);
-		compatibility = await Compatibility
-			.find({ $or: query });
-
-		return splitCompatibilitiesBySpecies(tank.species,compatibility);
-
-	}else{
-		throw new ErrorHandler(404, 'tank.notFound');
-	}
-}
-
-
-
 // CHECK COMPATIBILTY
 /**
  * @api areCompatible
@@ -160,7 +127,7 @@ getTankCompatibility = async (tankId) => {
  * @apiParam {String,Array} tankId or speciesId array                     Species can be provided or the species from the specified tank.
  *
  */
-areCompatible = async (data) => {
+getTankCompatibility = async (data) => {
 
 	let tankCompatibility = {
 		species: {},
@@ -180,27 +147,26 @@ areCompatible = async (data) => {
 		const tankId = data;
 		tank = await Tank.findById(tankId);
 
+		if(!tank)
+			throw new ErrorHandler(404, 'tank.notFound');
+
 		species = tank.species;
-		mainSpeciesId = tank.mainSpecies;
+		mainSpecies = species.find(species => species._id.toString() == tank.mainSpecies.toString());
 
-		compatibilities = await getTankCompatibility(tankId);
+		tankCompatibility['species'] = await getTankSpeciesCompatibility(tankId);
 	}
-
-	// Species compatibilities
-
-	tankCompatibility['species'] = splitCompatibilitiesBySpecies(species, compatibilities);
 
 	// Parameters compatibility: compare parameters with main species
 	species.forEach(function(species) {
 
 		// Temperature
-		temperatureCompatibility = 1;
+		temperatureCompatibility = isParameterCompatible(mainSpecies.parameters.temperature, species.parameters.temperature);
 
 		// pH
-		phCompatibility = 1;
+		phCompatibility = isParameterCompatible(mainSpecies.parameters.ph, species.parameters.ph);
 
 		// dH
-		dhCompatibility = 1;
+		dhCompatibility = isParameterCompatible(mainSpecies.parameters.dh, species.parameters.dh);
 
 		tankCompatibility['parameters'][species._id] = {
 			temperature: temperatureCompatibility,
@@ -209,8 +175,35 @@ areCompatible = async (data) => {
 		}
 	});
 
-	console.log(tankCompatibility);
+	return tankCompatibility
+}
 
+
+getTankSpeciesCompatibility = async (tankId) => {
+
+	let query = [];
+	tank = await Tank.findById(tankId);
+
+	if(!tank)
+		throw new ErrorHandler(404, 'tank.notFound');
+
+	tank.species.forEach(function(speciesA) {
+		tank.species.forEach(function(speciesB) {
+			if(speciesA._id != speciesB._id){
+				query.push(
+					{ $and: [
+			          	{speciesA: speciesA._id},
+			          	{speciesB: speciesB._id}
+			        ]}
+			    );
+			}
+		});
+	});
+	// console.log(`${JSON.stringify(query)}`);
+	compatibility = await Compatibility
+		.find({ $or: query });
+
+	return splitCompatibilitiesBySpecies(tank.species,compatibility);
 }
 
 splitCompatibilitiesBySpecies = (species, compatibilities) => {
@@ -232,4 +225,28 @@ splitCompatibilitiesBySpecies = (species, compatibilities) => {
 	});
 
 	return splittedCompatibilities;
+}
+
+// Formula: c = (b1-a1)*(b1-a2) where a1 is the smaller value  -> if c <= 0 means superposition
+isParameterCompatible = (rangeA, rangeB) => {
+
+	// Look for the smaller range of parameters
+	if(rangeA.min <= rangeB){
+		a = rangeA;
+		b = rangeB;
+	}else{
+		a = rangeB;
+		b = rangeA;
+	}
+
+	// Check values are set
+	if(!a.min || !a.max || !b.min){
+		return null;
+	}
+
+	intersection = (b.min - a.min)*(b.min - a.max);
+
+	// Intersecion <= 0 means that values are share
+	return intersection <= 0;
+
 }
