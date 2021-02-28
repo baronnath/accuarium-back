@@ -1,7 +1,7 @@
 // src/helpers/multer.js
-
 const multer = require('multer');
-const path = require('path')
+const path = require('path');
+const moment = require('moment');
 
 module.exports = (destination) => {
 
@@ -10,8 +10,8 @@ module.exports = (destination) => {
 	        cb(null, destination );
 	    },
 	    filename: (req, file, cb) => {
-	        cb(null, file.originalname  + path.extname(file.originalname));
-	        // cb(null, Date.now() + path.extname(file.originalname));
+	        // cb(null, file.originalname  + path.extname(file.originalname));
+	        cb(null, moment().format('DDMMYYYYHHmmss') + path.extname(file.originalname));
 	    }
 	});
 
@@ -25,7 +25,7 @@ module.exports = (destination) => {
 
 	return multer({
 		storage: storage,
-		fileFilter: fileFilter,
+		// fileFilter: fileFilter,
 		limits: { fieldSize: 25 * 1024 * 1024 },
 	});
 }

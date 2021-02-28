@@ -91,3 +91,17 @@ exports.search = async (req, res, next) => {
 		next(err)
 	}
 }
+
+exports.uploadFile = async (req, res, next) => {
+		
+	try {
+		await speciesService.uploadFile(req, res, next);
+
+		return res.status(200).json({
+			message: req.i18n.t('species.upload.success', {species}),
+		})
+
+	} catch (err) {
+		next(err)
+	}
+}

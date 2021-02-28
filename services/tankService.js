@@ -1,19 +1,18 @@
 // services/tankService.js
 
-const fs 			= require('fs');
-const Tank 			= require('../models/tank');
-const Species 		= require('../models/species');
-const Type 			= require('../models/type');
-const Family 		= require('../models/family');
-const Feed 			= require('../models/feed');
-const Depth 		= require('../models/depth');
-const Behavior 		= require('../models/behavior');
+const fs			= require('fs');
+const Tank			= require('../models/tank');
+const Species		= require('../models/species');
+const Type			= require('../models/type');
+const Family		= require('../models/family');
+const Feed			= require('../models/feed');
+const Depth			= require('../models/depth');
+const Behavior		= require('../models/behavior');
 const {	ErrorHandler, handleError } = require('../helpers/errorHandler');
-const {	logger } 	= require('../helpers/logger');
+const {	logger }	= require('../helpers/logger');
 const config		= require('../config/preferences'); 
-const urlGenerator  = require('../helpers/urlGenerator');
-
-const imageUrl = urlGenerator.getImagesUrl() + 'tank/';
+const urlGenerator	= require('../helpers/urlGenerator');
+const imageUrl 		= urlGenerator.getImagesUrl() + 'tank/';
 
 exports.create = async (req, res, next) => {
 

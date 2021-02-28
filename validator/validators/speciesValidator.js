@@ -113,4 +113,8 @@ exports.searchRules = () => {
   ]
 }
 
+exports.uploadFileRules = () => {
+  return []
+}
+
 

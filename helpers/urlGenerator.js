@@ -6,3 +6,7 @@ const config 			= require(__dirname + '../../config/server')[env];
 exports.getImagesUrl = () =>  {
 	return __dirname + '/../' + config.imagesFolder;
 }
+
+exports.getUploadsUrl = () =>  {
+	return __dirname + '/../' + config.uploadsFolder;
+}

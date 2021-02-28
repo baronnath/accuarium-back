@@ -1,16 +1,17 @@
 // services/speciesService.js
 
-const fs 			= require('fs');
-const Species 		= require('../models/species');
-const Type 			= require('../models/type');
-const Family 		= require('../models/family');
-const Feed 			= require('../models/feed');
-const Depth 		= require('../models/depth');
-const Behavior 		= require('../models/behavior');
+const fs			= require('fs');
+const Species		= require('../models/species');
+const Type			= require('../models/type');
+const Family		= require('../models/family');
+const Feed			= require('../models/feed');
+const Depth			= require('../models/depth');
+const Behavior		= require('../models/behavior');
 const {	ErrorHandler, handleError } = require('../helpers/errorHandler');
-const {	logger } 	= require('../helpers/logger');
+const {	logger }	= require('../helpers/logger');
 const config		= require('../config/preferences'); 
-const urlGenerator  = require('../helpers/urlGenerator');
+const urlGenerator	= require('../helpers/urlGenerator');
+const excel			= require('../helpers/excel');
 
 const imageUrl = urlGenerator.getImagesUrl() + 'species/';
 
@@ -261,4 +262,14 @@ exports.search = async (req, res, next) => {
 	 //     }}
 
 	 // ]);
+}
+
+exports.uploadFile = async (req, res, next) => {
+
+	const { path } = req.file;
+
+	console.log(excel.toJSON(path));
+
+	return true;
+	
 }

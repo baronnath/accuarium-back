@@ -1,4 +1,4 @@
-// helpers/stringy.js
+// helpers/string.js
 
 // Check if object
 exports.isObject = (input) => {
