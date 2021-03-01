@@ -1,25 +1,21 @@
 {
-  	"init": {
-		"debug": false,
-		"saveMissing": false,
-		"load": "languageOnly",
-		"backend": {
-			"loadPath": "./locales/{{lng}}.json",
-			"addPath": "./locales/{{lng}}.missing.json",
-			"jsonIndent": 4
-		},
-		"whitelist": ["en", "es"],
-		"fallbackLng": {
-			"en-US": ["en"],
-			"es-ES": ["es"],
-			"default": ["en"]
-		}
+	"debug": false,
+	"saveMissing": false,
+	"load": "languageOnly",
+	"backend": {
+		"loadPath": "./locales/{{lng}}.json",
+		"addPath": "./locales/{{lng}}.missing.json",
+		"jsonIndent": 4
 	},
-	"middleware": {
-  		"detection": {
-		 	"order": ["querystring","header"],
-			"lookupQuerystring": "locale",
-			"lookupHeader": "accept-language"
-	  	}
-  	}  	
+	"whitelist": ["en", "es"],
+	"fallbackLng": {
+		"en-US": ["en"],
+		"es-ES": ["es"],
+		"default": ["en"]
+	},
+	"detection": {
+	 	"order": ["querystring","header"],
+		"lookupQuerystring": "locale",
+		"lookupHeader": "accept-language"
+  	}	
 }
