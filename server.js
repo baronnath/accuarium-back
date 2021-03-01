@@ -43,12 +43,9 @@ app.use(express.static(`${__dirname}/public`));
 i18next
 	.use(i18nextMiddleware.LanguageDetector)
 	.use(Backend)
-	.init(translatorConfig['init']);
+	.init(translatorConfig);
 app.use(
-	i18nextMiddleware.handle(
-		i18next,
-		translatorConfig['middleware']
-	)
+	i18nextMiddleware.handle(i18next)
 );
 
 // Initialize access control (permissions system)
