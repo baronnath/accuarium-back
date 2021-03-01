@@ -3,6 +3,7 @@
 const User 				= require('../models/user');
 const userService		= require('../services/userService');
 const {	ErrorHandler }	= require('../helpers/errorHandler');
+const defaultLocale		= require('../config/translator')['fallbackLng']['default'][0]
 
 let user;
 
@@ -19,7 +20,7 @@ exports.isLoggedIn = async (req, res, next) => {
 exports.isAllowedTo = (action, endpoint) => {
 	return async (req, res, next) => {
 
-		const access = ac.can(req.user.role.name)[action](endpoint);
+		const access = ac.can(req.user.role.name[defaultLocale])[action](endpoint);
         if(access.granted)
         	next()
         else

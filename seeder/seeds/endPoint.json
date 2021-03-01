@@ -3,51 +3,87 @@
 		"documents": [
 			{
 				"_id": "5e8cdd3b8296523464c7462a",
-				"name": "user"
+				"name": {
+					"en": "user",
+					"es": "usuario"
+				}
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462b",
-				"name": "role"
+				"name": {
+					"en": "role",
+					"es": "rol"
+				}
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462c",
-				"name": "permisson"
+				"name": {
+					"en": "permission",
+					"es": "permiso"
+				}
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462d",
-				"name": "family"
+				"name": {
+					"en": "family",
+					"es": "familia"
+				}
 			},
 			{
 				"_id": "5e8cdd3b8296523464c74656",
-				"name": "group"
+				"name": {
+					"en": "group",
+					"es": "grupo"
+				}
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462e",
-				"name": "depth"
+				"name": {
+					"en": "depth",
+					"es": "profundidad"
+				}
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462f",
-				"name": "type"
+				"name": {
+					"en": "type",
+					"es": "tipo"
+				}
 			},
 			{
 				"_id": "5e8cdd3b8296523464c74621",
-				"name": "behavior"
+				"name": {
+					"en": "behavior",
+					"es": "comportamiento"
+				}
 			},
 			{
 				"_id": "5e8cdd3b8296523464c74622",
-				"name": "species"
+				"name": {
+					"en": "species",
+					"es": "especie"
+				}
 			},
 			{
 				"_id": "5e8cdd3b8296523464c74623",
-				"name": "feed"
+				"name": {
+					"en": "feed",
+					"es": "alimentación"
+				}
 			},
 			{
 				"_id": "5e8cdd3b8296523464c74624",
-				"name": "tank"
+				"name": {
+					"en": "tank",
+					"es": "acuario"
+				}
 			},
 			{
 				"_id": "5e8cdd3b8296523464c74625",
-				"name": "compatibility"
+				"name": {
+					"en": "compatibility",
+					"es": "compatibilidad"
+				}
 			}
 		]
 	}

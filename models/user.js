@@ -8,7 +8,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         unique: true
     },
-    name: String,
+    name: {
+        type: String,
+        default: null
+    },
     confirmationToken: {
         type: String,
         default: null
@@ -37,7 +40,7 @@ const userSchema = new mongoose.Schema({
     synchronizedAt: {
         type: Date,
         default: Date.now
-    }
+    },
 },
 { 
     timestamps: true

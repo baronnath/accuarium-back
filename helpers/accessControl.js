@@ -4,6 +4,7 @@ const Role 			= require('../models/role');
 const EndPoint 		= require('../models/endPoint');
 const Permission 	= require('../models/permission');
 const AccessControl = require('accesscontrol');
+const defaultLocale		= require('../config/translator')['fallbackLng']['default'][0]
 
 global.ac;
 
@@ -35,7 +36,7 @@ exports.init = async () => {
 	  		}
 
   			if(permission.grants[grant])
-				ac.grant(permission.role.name)[grant](permission.endPoint.name, attributes);
+				ac.grant(permission.role.name[defaultLocale])[grant](permission.endPoint.name[defaultLocale], attributes);
 
 		});
 

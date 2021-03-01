@@ -5,15 +5,29 @@ const mongooseAutopopulate = require('mongoose-autopopulate');
 
 const speciesSchema = new mongoose.Schema({
     name: {
-        type: String,
-        trim: true,
-    },
-    otherNames: [
-        {
+        en: {
             type: String,
-            trim: true,
-        }
-    ],
+            default: null
+        },
+        es: {
+            type: String,
+            default: null
+        },
+    },
+    otherNames: {
+        en: [
+            {
+                type: String,
+                trim: true,
+            }
+        ],
+        es: [
+            {
+                type: String,
+                trim: true,
+            }
+        ],
+    },
     type: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'type',

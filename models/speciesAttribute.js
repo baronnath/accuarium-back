@@ -12,8 +12,14 @@ const speciesAttributeSchema = new mongoose.Schema({
         ref: 'attribute'
     },
     value: {
-      type: String,
-      default: null
+        en: {
+            type: String,
+            default: null
+        },
+        es: {
+            type: String,
+            default: null
+        },
     },
 });
 

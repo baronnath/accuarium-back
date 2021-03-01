@@ -3,7 +3,16 @@
 const mongoose  = require('mongoose');
 
 const warningSchema = new mongoose.Schema({
-    name: String,
+    name: {
+    	en: {
+        	type: String,
+            default: null
+        },
+        es: {
+        	type: String,
+            default: null
+        },
+    },
 });
 
 const warning = mongoose.model('warning', warningSchema);

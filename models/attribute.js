@@ -4,8 +4,14 @@ const mongoose  = require('mongoose');
 
 const attributeSchema = new mongoose.Schema({
     name: {
-        type: String,
-        default: null
+        en: {
+        	type: String,
+            default: null
+        },
+        es: {
+        	type: String,
+            default: null
+        },
     }
 });
 

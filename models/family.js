@@ -3,7 +3,16 @@
 const mongoose  = require('mongoose');
 
 const familySchema = new mongoose.Schema({
-    name: String,
+    name: {
+        en: {
+        	type: String,
+            default: null
+        },
+        es: {
+        	type: String,
+            default: null
+        },
+    }
 });
 
 const family = mongoose.model('family', familySchema);

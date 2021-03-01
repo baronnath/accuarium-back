@@ -3,19 +3,31 @@
 		"documents": [
 			{
 				"_id": "5e8cdd3b8296523464c7460b",
-				"name": "player"
+				"name": {
+					"en": "user",
+					"es": "usuario"
+				}
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7460c",
-				"name": "premium"
+				"name": {
+					"en": "premium",
+					"es": "premium"
+				}
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7460d",
-				"name": "moderator"
+				"name": {
+					"en": "moderator",
+					"es": "moderador"
+				}
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7460e",
-				"name": "admin"
+				"name": {
+					"en": "admin",
+					"es": "administrador"
+				}
 			}
 		]
 	}
