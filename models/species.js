@@ -4,6 +4,11 @@ const mongoose  = require('mongoose');
 const mongooseAutopopulate = require('mongoose-autopopulate');
 
 const speciesSchema = new mongoose.Schema({
+    scientificName: {
+        type: String,
+        trim: true,
+        default: null
+    },
     name: {
         en: {
             type: String,
@@ -78,6 +83,19 @@ const speciesSchema = new mongoose.Schema({
     litersSpecimen: {
         type: Number
     },
+    minTankLiters: {
+        type: Number
+    },
+    specimenNumber: {
+        min: {
+            type: Number,
+            default: null
+        },
+        max: {
+            type: Number,
+            default: null
+        } 
+    },
     length: {
         min: {
             type: Number,
@@ -87,6 +105,18 @@ const speciesSchema = new mongoose.Schema({
             type: Number,
             default: null
         } 
+    },
+    salt: {
+        type: Boolean,
+        default: false
+    },
+    cleaning: {
+        type: Boolean,
+        default: false
+    },
+    wild: {
+        type: Boolean,
+        default: false
     },
     feed: {
         type: mongoose.Schema.Types.ObjectId,
@@ -108,7 +138,14 @@ const speciesSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'behavior',
         autopopulate: true
-    }
+    },
+    color: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'color',
+            autopopulate: true
+        }
+    ]
 },
 { 
     timestamps: true
