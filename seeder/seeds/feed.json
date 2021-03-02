@@ -3,15 +3,24 @@
 		"documents": [
 			{
 				"_id": "5e8cdd3b8296523464c7462a",
-				"name": "pearl"
+				"name": {
+					"en": "omnivore",
+					"es": "omnívoro"
+				}
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462b",
-				"name": "flakes"
+				"name": {
+					"en": "herbivore",
+					"es": "herbívore"
+				}
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462c",
-				"name": "insects"
+				"name": {
+					"en": "carnivore",
+					"es": "carnívoro"
+				}
 			}
 		]
 	}

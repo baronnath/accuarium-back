@@ -3,17 +3,26 @@
 		"documents": [
 			{
 				"_id": "5e8cdd3b8296523464c7462a",
-				"name": "fish",
+				"name": {
+					"en": "fish",
+					"es": "pez"
+				},
 				"icon": "fish"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462b",
-				"name": "invertebrate",
+				"name": {
+					"en": "invertebrate",
+					"es": "invertebrado"
+				},
 				"icon": "snail"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462c",
-				"name": "plant",
+				"name": {
+					"en": "plant",
+					"es": "planta"
+				},
 				"icon": "sprout"
 			}
 		]

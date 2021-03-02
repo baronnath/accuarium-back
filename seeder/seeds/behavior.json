@@ -3,15 +3,24 @@
 		"documents": [
 			{
 				"_id": "5e8cdd3b8296523464c7462a",
-				"name": "schooling"
+				"name": {
+					"en": "schooling",
+					"es": "cardumen"
+				}
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462b",
-				"name": "territorial"
+				"name": {
+					"en": "territorial",
+					"es": "territorial"
+				}
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462c",
-				"name": "agressive"
+				"name": {
+					"en": "agressive",
+					"es": "agresivo"
+				}
 			}
 		]
 	}

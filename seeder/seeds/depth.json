@@ -3,15 +3,24 @@
 		"documents": [
 			{
 				"_id": "5e8cdd3b8296523464c7462a",
-				"name": "bottom"
+				"name": {
+					"en": "bottom",
+					"es": "fondo"
+				}
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462b",
-				"name": "medium"
+				"name": {
+					"en": "medium",
+					"es": "medio"
+				}
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462c",
-				"name": "surface"
+				"name": {
+					"en": "surface",
+					"es": "superficie"
+				}
 			}
 		]
 	}

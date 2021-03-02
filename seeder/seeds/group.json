@@ -3,23 +3,24 @@
 		"documents": [
 			{
 				"_id": "5e8cdd3b8296523464c7462a",
-				"name": "gourami"
+				"name": {
+					"en": "gourami",
+					"es": "gourami"
+				}
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462b",
-				"name": "betta"
+				"name": {
+					"en": "betta",
+					"es": "betta"
+				}
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462c",
-				"name": "discus"
-			},
-			{
-				"_id": "5e8cdd3b8296523464c7462d",
-				"name": "rainbow fish "
-			},
-			{
-				"_id": "5e8cdd3b8296523464c7462e",
-				"name": "tetra"
-			}
+				"name": {
+					"en": "discus",
+					"es": "disco"
+				}
+			}			
 		]
 	}
