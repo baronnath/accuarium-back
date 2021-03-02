@@ -11,6 +11,7 @@ const {	ErrorHandler, handleError } = require('../helpers/errorHandler');
 const {	logger }	= require('../helpers/logger');
 const config		= require('../config/preferences'); 
 const urlGenerator	= require('../helpers/urlGenerator');
+const defaultLocale	= require('../config/translator')['fallbackLng']['default'][0]
 const excel			= require('../helpers/excel');
 
 const imageUrl = urlGenerator.getImagesUrl() + 'species/';
@@ -40,8 +41,12 @@ exports.create = async (req, res, next) => {
 	} = req.body;
 
 	species = new Species({
-		name: name,
-		otherNames: otherNames,
+		name: {
+			[defaultLocale]: name
+		},
+		otherNames: {
+			[defaultLocale]: otherNames
+		},
 		type: typeId,
 		family: familyId,
 		group: groupId,
@@ -198,7 +203,7 @@ exports.update = async (req, res, next) => {
 }
 
 exports.search = async (req, res, next) => {
-
+	const locale = req.user.locale || defaultLocale;
 	const keyword = req.query.keyword;
 	let field = req.query.sort;
 	let direction = req.query.direction;
@@ -218,9 +223,11 @@ exports.search = async (req, res, next) => {
 	}
 
 	if(keyword){
-		const regex = new RegExp(keyword, 'i');
+		let regex = new RegExp(keyword, 'i');
+		let nameField = 'name.'+locale;
+		let otherNamesField= 'otherNames.'+locale;
 		criteria = {
-			$or: [ {name : { $regex: regex }}, { otherNames: { $regex: regex } } ]
+			$or: [ { [nameField] : { $regex: regex }}, { [otherNamesField]: { $regex: regex } } ]
 		}
 	}
 

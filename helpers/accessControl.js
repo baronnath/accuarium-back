@@ -4,7 +4,7 @@ const Role 			= require('../models/role');
 const EndPoint 		= require('../models/endPoint');
 const Permission 	= require('../models/permission');
 const AccessControl = require('accesscontrol');
-const defaultLocale		= require('../config/translator')['fallbackLng']['default'][0]
+const defaultLocale	= require('../config/translator')['fallbackLng']['default'][0]
 
 global.ac;
 

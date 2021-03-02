@@ -37,6 +37,10 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
+    locale: {
+        type: String,
+        default: 'en'
+    },
     synchronizedAt: {
         type: Date,
         default: Date.now
