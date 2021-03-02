@@ -1,0 +1,33 @@
+	{
+		"model": "color",
+		"documents": [
+			{
+				"_id": "5e8cdd3b8296523464c7462a",
+				"name": {
+					"en": "white",
+					"es": "blanco"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462b",
+				"name": {
+					"en": "black",
+					"es": "negro"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462c",
+				"name": {
+					"en": "silver",
+					"es": "plateado"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462d",
+				"name": {
+					"en": "golden",
+					"es": "dorado"
+				}
+			}
+		]
+	}
