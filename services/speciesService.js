@@ -11,6 +11,7 @@ const {	ErrorHandler, handleError } = require('../helpers/errorHandler');
 const {	logger }	= require('../helpers/logger');
 const config		= require('../config/preferences'); 
 const urlGenerator	= require('../helpers/urlGenerator');
+const stringHelper	= require('../helpers/string');
 const defaultLocale	= require('../config/translator')['fallbackLng']['default'][0]
 const excel			= require('../helpers/excel');
 
@@ -274,8 +275,57 @@ exports.search = async (req, res, next) => {
 exports.uploadFile = async (req, res, next) => {
 
 	const { path } = req.file;
+	let { species: speciesList } = excel.toJSON(path);
+	const deleteProps = [
+		'nameEn',
+		'nameEs',
+		'otherNamesEn',
+		'otherNamesEs',
+		'minLength',
+		'maxLength',
+		'minPh',
+		'maxPh',
+		'minDh',
+		'maxDh',
+	];
 
-	console.log(excel.toJSON(path));
+	// Retrieve all from type, family, groups, feed and colors
+
+	// Transform otherNames in array
+	
+	speciesList.forEach(function(species, index) {
+
+		this[index] = {
+			...this[index],
+			name: {
+				en: species.nameEn,
+				es: species.nameEs,
+			},
+			otherNames: {
+				en: species.otherNamesEn,
+				es: species.otherNamesEs,
+			},
+			parameters: {
+				temperature: {
+					min: species.minLength,
+					max: species.maxLength
+				},
+				ph: {
+					min: species.minPh,
+					max: species.maxPh
+				},
+				dh: {
+					min: species.minDh,
+					max: species.maxPhDh
+				}
+			}
+		};
+		
+		stringHelper.deleteProps(this[index], deleteProps);
+
+	}, speciesList);
+
+	console.log(speciesList);
 
 	return true;
 	
