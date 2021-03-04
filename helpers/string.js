@@ -18,3 +18,10 @@ exports.isString = (string) => {
 	else
 	  return false;
 }
+
+// Delete object properties
+exports.deleteProps = (obj, prop) => {
+    for (const p of prop) {
+        (p in obj) && (delete obj[p]);
+    }    
+}
