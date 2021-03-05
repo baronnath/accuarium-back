@@ -12,6 +12,11 @@ const familySchema = new mongoose.Schema({
         	type: String,
             default: null
         },
+    },
+    type: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'type',
+        default: '60416e0b83a985b52213d892'
     }
 });
 

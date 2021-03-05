@@ -2,7 +2,7 @@
 		"model": "type",
 		"documents": [
 			{
-				"_id": "5e8cdd3b8296523464c7462a",
+				"_id": "60416e0b83a985b52213d892",
 				"name": {
 					"en": "fish",
 					"es": "pez"
@@ -10,7 +10,7 @@
 				"icon": "fish"
 			},
 			{
-				"_id": "5e8cdd3b8296523464c7462b",
+				"_id": "60416e13bf576133e50d8daa",
 				"name": {
 					"en": "invertebrate",
 					"es": "invertebrado"
@@ -18,12 +18,20 @@
 				"icon": "snail"
 			},
 			{
-				"_id": "5e8cdd3b8296523464c7462c",
+				"_id": "60416e1775dbcaccda655ae4",
 				"name": {
 					"en": "plant",
 					"es": "planta"
 				},
 				"icon": "sprout"
+			},
+			{
+				"_id": "60416e1c182065bbf6b03e3c",
+				"name": {
+					"en": "amphibian",
+					"es": "anfibio"
+				},
+				"icon": "frog"
 			}
 		]
 	}

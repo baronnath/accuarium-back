@@ -12,6 +12,10 @@ const colorSchema = new mongoose.Schema({
         	type: String,
             default: null
         }
+    },
+    hex: {
+        type: String,
+        default: null
     }
 });
 

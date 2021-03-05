@@ -6,28 +6,88 @@
 				"name": {
 					"en": "white",
 					"es": "blanco"
-				}
+				},
+				"hex": "ffffff" 
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462b",
 				"name": {
 					"en": "black",
 					"es": "negro"
-				}
+				},
+				"hex": "000000"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462c",
 				"name": {
 					"en": "silver",
 					"es": "plateado"
-				}
+				},
+				"hex": "c0c0c0"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462d",
 				"name": {
 					"en": "golden",
 					"es": "dorado"
-				}
-			}
+				},
+				"hex": "d4af37"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462d",
+				"name": {
+					"en": "red",
+					"es": "rojo"
+				},
+				"hex": "ff0000"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462d",
+				"name": {
+					"en": "brown",
+					"es": "marrón"
+				},
+				"hex": "654321"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462d",
+				"name": {
+					"en": "yellow",
+					"es": "amarillo"
+				},
+				"hex": "ffff00"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462d",
+				"name": {
+					"en": "green",
+					"es": "verde"
+				},
+				"hex": "00ff00"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462d",
+				"name": {
+					"en": "blue",
+					"es": "azul"
+				},
+				"hex": "0000ff"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462d",
+				"name": {
+					"en": "pink",
+					"es": "rosa"
+				},
+				"hex": "ff00ff"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462d",
+				"name": {
+					"en": "purple",
+					"es": "morado"
+				},
+				"hex": "800080"
+			},
 		]
 	}

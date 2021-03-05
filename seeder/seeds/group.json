@@ -4,23 +4,198 @@
 			{
 				"_id": "5e8cdd3b8296523464c7462a",
 				"name": {
-					"en": "gourami",
-					"es": "gourami"
+					"en": "cichlids",
+					"es": "cíclidos"
 				}
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462b",
 				"name": {
-					"en": "betta",
-					"es": "betta"
+					"en": "gouramis",
+					"es": "gouramis"
 				}
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462c",
 				"name": {
-					"en": "discus",
-					"es": "disco"
+					"en": "eels",
+					"es": "ánguilas"
 				}
-			}			
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462d",
+				"name": {
+					"en": "rainbow",
+					"es": "arcoiris"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462e",
+				"name": {
+					"en": "arowanas",
+					"es": "arowanas"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462f",
+				"name": {
+					"en": "bettas",
+					"es": "bettas"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74621",
+				"name": {
+					"en": "botias",
+					"es": "botias"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74622",
+				"name": {
+					"en": "corydoras",
+					"es": "corydoras"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74623",
+				"name": {
+					"en": "danios",
+					"es": "danios"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74624",
+				"name": {
+					"en": "discus",
+					"es": "discos"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74625",
+				"name": {
+					"en": "scalars",
+					"es": "escalares"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74626",
+				"name": {
+					"en": "guppies",
+					"es": "guppies"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74627",
+				"name": {
+					"en": "killis",
+					"es": "killis"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74628",
+				"name": {
+					"en": "labeos",
+					"es": "labeos"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74629",
+				"name": {
+					"en": "mollies",
+					"es": "mollies"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7463a",
+				"name": {
+					"en": "oscar",
+					"es": "óscar"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7463b",
+				"name": {
+					"en": "crocodilefishes",
+					"es": "peces cocodrillo"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7463c",
+				"name": {
+					"en": "knifefishes",
+					"es": "peces cuchillo"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7463d",
+				"name": {
+					"en": "blowfishes",
+					"es": "peces globo"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7463e",
+				"name": {
+					"en": "sawfishes",
+					"es": "peces sierra"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7463f",
+				"name": {
+					"en": "piranhas",
+					"es": "pirañas"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74631",
+				"name": {
+					"en": "platies",
+					"es": "platies"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74632",
+				"name": {
+					"en": "rams",
+					"es": "ramirezis"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74633",
+				"name": {
+					"en": "rasboras",
+					"es": "rasboras"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74634",
+				"name": {
+					"en": "stingrays",
+					"es": "rayas"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74635",
+				"name": {
+					"en": "tetras",
+					"es": "tetras"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74636",
+				"name": {
+					"en": "xiphos",
+					"es": "xiphos"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74637",
+				"name": {
+					"en": "barb",
+					"es": "barbs"
+				}
+			},
 		]
 	}
