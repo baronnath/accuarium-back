@@ -1,17 +1,19 @@
 // services/compatibilityService.js
 
-const fs 			= require('fs');
-const Compatibility = require('../models/compatibility');
-const Type 			= require('../models/type');
-const Family 		= require('../models/family');
-const Feed 			= require('../models/feed');
-const Depth 		= require('../models/depth');
-const Behavior 		= require('../models/behavior');
-const Tank 			= require('../models/tank');
+const fs						= require('fs');
+const Compatibility	= require('../models/compatibility');
+const Species				= require('../models/species');
+const Type					= require('../models/type');
+const Family				= require('../models/family');
+const Feed					= require('../models/feed');
+const Depth					= require('../models/depth');
+const Behavior			= require('../models/behavior');
+const Tank					= require('../models/tank');
 const {	ErrorHandler, handleError } = require('../helpers/errorHandler');
-const {	logger } 	= require('../helpers/logger');
-const config		= require('../config/preferences'); 
-const urlGenerator  = require('../helpers/urlGenerator');
+const {	logger }		= require('../helpers/logger');
+const config				= require('../config/preferences'); 
+const urlGenerator	= require('../helpers/urlGenerator');
+const excel					= require('../helpers/excel');
 
 const imageUrl = urlGenerator.getImagesUrl() + 'compatibility/';
 
@@ -249,4 +251,53 @@ isParameterCompatible = (rangeA, rangeB) => {
 	// Intersecion <= 0 means that values are share
 	return intersection <= 0;
 
+}
+
+exports.uploadFile = async (req, res, next) => {
+
+	const { path } = req.file;
+	let { compatibility: compatibilityList } = excel.toJSON(path);
+	let compatibilities = [];
+
+
+	// Retrieve all species
+	const species = await Species.find();
+
+	compatibilityList.forEach(function(compatibility, index) {
+
+		// Skip first empty values
+		if(!compatibility.scientificName){
+			return;
+		}
+
+		let speciesA = species.find(species => species.scientificName === compatibility.scientificName);
+
+		if(!speciesA){
+			throw new ErrorHandler(404, 'species.notFound', compatibility.scientificName);
+		}
+
+		Object.keys(compatibility).forEach(key => {
+
+			// Skip first line or compatibility between same species
+			if(key === compatibility.scientificName || key === 'scientificName'){
+				return;
+			}
+
+			let speciesB = species.find(species => species.scientificName === key);
+
+			if(!speciesB){
+				throw new ErrorHandler(404, 'species.notFound', key);
+			}
+
+			this.push({
+				speciesA: speciesA._id,
+				speciesB: speciesB._id,
+				compatibility: compatibility[key]
+			});
+		});
+
+	}, compatibilities);
+
+	return await Compatibility.insertMany(compatibilities);
+	
 }
