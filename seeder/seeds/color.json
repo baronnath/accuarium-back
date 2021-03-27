@@ -34,7 +34,7 @@
 				"hex": "d4af37"
 			},
 			{
-				"_id": "5e8cdd3b8296523464c7462d",
+				"_id": "5e8cdd3b8296523464c7462e",
 				"name": {
 					"en": "red",
 					"es": "rojo"
@@ -42,7 +42,7 @@
 				"hex": "ff0000"
 			},
 			{
-				"_id": "5e8cdd3b8296523464c7462d",
+				"_id": "5e8cdd3b8296523464c7462f",
 				"name": {
 					"en": "brown",
 					"es": "marrón"
@@ -50,7 +50,7 @@
 				"hex": "654321"
 			},
 			{
-				"_id": "5e8cdd3b8296523464c7462d",
+				"_id": "5e8cdd3b8296523464c74621",
 				"name": {
 					"en": "yellow",
 					"es": "amarillo"
@@ -58,7 +58,7 @@
 				"hex": "ffff00"
 			},
 			{
-				"_id": "5e8cdd3b8296523464c7462d",
+				"_id": "5e8cdd3b8296523464c74622",
 				"name": {
 					"en": "green",
 					"es": "verde"
@@ -66,7 +66,7 @@
 				"hex": "00ff00"
 			},
 			{
-				"_id": "5e8cdd3b8296523464c7462d",
+				"_id": "5e8cdd3b8296523464c74623",
 				"name": {
 					"en": "blue",
 					"es": "azul"
@@ -74,7 +74,7 @@
 				"hex": "0000ff"
 			},
 			{
-				"_id": "5e8cdd3b8296523464c7462d",
+				"_id": "5e8cdd3b8296523464c74624",
 				"name": {
 					"en": "pink",
 					"es": "rosa"
@@ -82,12 +82,28 @@
 				"hex": "ff00ff"
 			},
 			{
-				"_id": "5e8cdd3b8296523464c7462d",
+				"_id": "5e8cdd3b8296523464c74625",
 				"name": {
 					"en": "purple",
 					"es": "morado"
 				},
 				"hex": "800080"
 			},
+			{
+				"_id": "5e8cdd3b8296523464c74626",
+				"name": {
+					"en": "orange",
+					"es": "naranja"
+				},
+				"hex": "ff8000"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74626",
+				"name": {
+					"en": "multicolor",
+					"es": "multicolor"
+				},
+				"hex": ""
+			}
 		]
 	}
