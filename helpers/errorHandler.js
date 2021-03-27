@@ -5,12 +5,12 @@ const { logger }    = require('./logger');
 
 // Error class extension
 exports.ErrorHandler = class ErrorHandler extends Error {
-  constructor(statusCode, message, err) {
+  constructor(statusCode, message, data) {
     super();
     this.statusCode = statusCode;
     this.status = `${statusCode}`.startsWith('4') ? 'fail' : 'error';
     this.message = message;
-    this.err = err;
+    this.data = data;
   }
 }
 // exports.ErrorHandler = class ErrorHandler extends Error {
@@ -27,7 +27,7 @@ exports.handleError = (err, req, res) => {
 
   	err.statusCode = err.statusCode || 500;
   	err.status = err.status || 'error';
-  	err.message = req.i18n.t(err.message) + (err.err ? ': ' + err.err : '' );
+  	err.message = req.i18n.t(err.message) + (err.data ? ': ' + err.data : '' );
 
   	if (env === 'development') {
 	    sendErrorDev(err, req, res);
