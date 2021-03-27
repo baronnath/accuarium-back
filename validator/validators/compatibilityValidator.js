@@ -59,4 +59,8 @@ exports.deleteRules = this.getRules;
 //   ]
 // }
 
+exports.uploadFileRules = () => {
+  return []
+}
+
 

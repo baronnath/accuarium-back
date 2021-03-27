@@ -1,10 +1,13 @@
 // routes/compatibilityRoute.js
 
-const compatibilityController = require('../controllers').compatibility;
-const userController  	= require('../controllers').user;
-const { validate } 		= require('../validator/validator');
-const compatibilityValidator 	= require('../validator/validators/compatibilityValidator');
+const compatibilityController   = require('../controllers').compatibility;
+const userController            = require('../controllers').user;
+const { validate }              = require('../validator/validator');
+const compatibilityValidator    = require('../validator/validators/compatibilityValidator');
 const urlGenerator      = require('../helpers/urlGenerator');
+const multer            = require('../helpers/multer');
+
+const upload = multer(urlGenerator.getUploadsUrl());
 
 module.exports = function(app){
 
@@ -31,5 +34,14 @@ module.exports = function(app){
     //     validate,
     //     compatibilityController.search
     // );
+
+    app.post('/compatibility/uploadFile',
+        userController.isLoggedIn,
+        userController.isAllowedTo('createAny', 'compatibility'),
+        upload.single('file'),
+        compatibilityValidator.uploadFileRules(),
+        validate,
+        compatibilityController.uploadFile
+    );
 
 }

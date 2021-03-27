@@ -89,3 +89,18 @@ exports.getAll = async (req, res, next) => {
 // 		next(err)
 // 	}
 // }
+
+		
+exports.uploadFile = async (req, res, next) => {
+		
+	try {
+		await compatibilityService.uploadFile(req, res, next);
+
+		return res.status(200).json({
+			message: req.i18n.t('compatibility.upload.success', {compatibility}),
+		})
+
+	} catch (err) {
+		next(err)
+	}
+}
