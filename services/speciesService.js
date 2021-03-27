@@ -4,7 +4,9 @@ const fs			= require('fs');
 const Species		= require('../models/species');
 const Type			= require('../models/type');
 const Family		= require('../models/family');
+const Group			= require('../models/group');
 const Feed			= require('../models/feed');
+const Color			= require('../models/color');
 const Depth			= require('../models/depth');
 const Behavior		= require('../models/behavior');
 const {	ErrorHandler, handleError } = require('../helpers/errorHandler');
@@ -287,13 +289,35 @@ exports.uploadFile = async (req, res, next) => {
 		'maxPh',
 		'minDh',
 		'maxDh',
+		'behavior', // TO BE FIXED
 	];
 
 	// Retrieve all from type, family, groups, feed and colors
+	const types = await Type.find();
+	const families = await Family.find();
+	const groups = await Group.find();
+	const feeds = await Feed.find();
+	const colors = await Color.find();
+	const depths = await Depth.find();
 
 	// Transform otherNames in array
-	
+
+
 	speciesList.forEach(function(species, index) {
+
+		type = types.find(type => type.name[defaultLocale] === species.type);
+		family = families.find(family => family.name[defaultLocale] === species.family);
+		group = groups.find(group => group.name[defaultLocale] === species.group);
+		feed = feeds.find(feed => feed.name[defaultLocale] === species.feed);
+		depth = depths.find(depth => depth.name[defaultLocale] === species.depth);
+		
+		let colorList = [];
+		if(species.color){
+			col = species.color.split(',');
+			col.forEach(function(c, index) {
+				this[index] = colors.find(color => color.name[defaultLocale] === c);
+			}, colorList);
+		}
 
 		this[index] = {
 			...this[index],
@@ -302,13 +326,13 @@ exports.uploadFile = async (req, res, next) => {
 				es: species.nameEs,
 			},
 			otherNames: {
-				en: species.otherNamesEn,
-				es: species.otherNamesEs,
+				en: species.otherNamesEn ? species.otherNamesEn.split(',') : [],
+				es: species.otherNamesEs ? species.otherNamesEs.split(',') : [],
 			},
 			parameters: {
 				temperature: {
-					min: species.minLength,
-					max: species.maxLength
+					min: species.minTemp,
+					max: species.maxTemp
 				},
 				ph: {
 					min: species.minPh,
@@ -316,9 +340,19 @@ exports.uploadFile = async (req, res, next) => {
 				},
 				dh: {
 					min: species.minDh,
-					max: species.maxPhDh
+					max: species.maxDh
 				}
-			}
+			},
+			length: {
+				min: species.minLength,
+				max: species.maxLength
+			},
+			type: type ? type._id : null,
+			family: family ? family._id : null,
+			group: group ? group._id : null,
+			feed: feed ? feed._id : null,
+			depth: depth ? depth._id : null,
+			color: colorList,
 		};
 		
 		stringHelper.deleteProps(this[index], deleteProps);
@@ -327,6 +361,6 @@ exports.uploadFile = async (req, res, next) => {
 
 	console.log(speciesList);
 
-	return true;
+	return await Species.insertMany(speciesList);
 	
 }
