@@ -12,7 +12,7 @@ const {	ErrorHandler, handleError } = require('../helpers/errorHandler');
 const {	logger }	= require('../helpers/logger');
 const config		= require('../config/preferences'); 
 const urlGenerator	= require('../helpers/urlGenerator');
-const imageUrl 		= urlGenerator.getImagesUrl() + 'tank/';
+const imagePath 		= urlGenerator.getImagesPath() + 'tank/';
 
 exports.create = async (req, res, next) => {
 
@@ -37,18 +37,19 @@ exports.create = async (req, res, next) => {
 		mainSpecies: mainSpeciesId,
 	    quantity: quantity,
 		measures: {
-	        height: height,
-	        width: width,
-	        length: length
-	    },
-	    liters: liters,
+      height: height,
+      width: width,
+      length: length
+    },
+    liters: liters,
 	});
+
 
 	// Figure out image extension and store
 	if(image){
 		let match = /\.(\w+)$/.exec(image.uri);
 		let fileType = match ? `${match[1]}` : `jpg`;
-		fs.writeFile(`${imageUrl}${tank._id}.${fileType}`, image.base64, 'base64', function(err) {
+		fs.writeFile(`${imagePath}${tank._id}.${fileType}`, image.base64, 'base64', function(err) {
 		  if(err)
 		  	throw new ErrorHandler(500, 'image.notSaved');
 		});
@@ -71,7 +72,7 @@ exports.get = async (req, res, next) => {
 	if(!tanks)
 		throw new ErrorHandler(404, 'tank.notFound');
 
-	return tanks
+	return tanks;
 }
  
 exports.getAll = async (req, res, next) => {

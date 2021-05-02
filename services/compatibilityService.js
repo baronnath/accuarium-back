@@ -15,7 +15,7 @@ const config				= require('../config/preferences');
 const urlGenerator	= require('../helpers/urlGenerator');
 const excel					= require('../helpers/excel');
 
-const imageUrl = urlGenerator.getImagesUrl() + 'compatibility/';
+const imagePath = urlGenerator.getImagesPath('compatibility');
 
 exports.create = async (req, res, next) => {
 
