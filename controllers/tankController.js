@@ -86,7 +86,30 @@ exports.search = async (req, res, next) => {
 		})
 
 	} catch (err) {
-		console.log(err);
 		next(err)
 	}
+}
+
+exports.delete = async (req, res, next) => {
+
+	try {
+		const tanks = await tankService.delete(req, res, next);
+
+		if(tanks.length == 1){
+			return res.status(200).json({
+				tanks,
+				message: req.i18n.t('tank.delete.success', {tank: tanks[0]}),
+			})
+		}else{
+			return res.status(200).json({
+				tanks,
+				message: req.i18n.t('tank.delete.success'),
+			})
+		}
+
+	} catch (err) {
+		next(err)
+
+	}
+
 }

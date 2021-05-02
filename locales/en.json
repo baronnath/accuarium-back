@@ -40,6 +40,12 @@
 			"denied": "You don't have enough permission to assign or modify the role"
 		}
 	},
+	"tank": {
+		"delete": {
+			"success": "The tank {{tank.name}} has been deleted successfully",
+			"error": "The tank could not be deleted"
+		}
+	},
 	"mailer": {
 		"error": {
 			"notSent": "Email could not be sent to user",

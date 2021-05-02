@@ -49,6 +49,7 @@ exports.create = async (req, res, next) => {
 	if(image){
 		let match = /\.(\w+)$/.exec(image.uri);
 		let fileType = match ? `${match[1]}` : `jpg`;
+		console.log(imagePath);
 		fs.writeFile(`${imagePath}${tank._id}.${fileType}`, image.base64, 'base64', function(err) {
 		  if(err)
 		  	throw new ErrorHandler(500, 'image.notSaved');
@@ -253,4 +254,23 @@ exports.search = async (req, res, next) => {
 		tanks,
 		total,
 	}
+}
+
+exports.delete = async (req, res, next) => {
+	const { tankId, userId } = req.query;
+
+	if(tankId){
+		tanks = await Tank.findByIdAndDelete(tankId);
+	}
+	else if(userId){
+		tanks = await Tank
+			.deleteMany({user: userId});
+	}
+
+	if(!tanks)
+		throw new ErrorHandler(404, 'tank.notFound');
+
+	console.log(tanks);
+
+	return tanks;
 }

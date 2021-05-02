@@ -10,7 +10,7 @@ module.exports = function(app){
 
 	app.post('/tank',
         userController.isLoggedIn,
-        userController.isAllowedTo('createAny', 'tank'),
+        userController.isAllowedTo('createOwn', 'tank'),
         tankValidator.createRules(),
         validate,
         tankController.create
@@ -30,6 +30,14 @@ module.exports = function(app){
         tankValidator.searchRules(),
         validate,
         tankController.search
+    );
+
+    app.delete('/tank',
+        userController.isLoggedIn,
+        userController.isAllowedTo('deleteOwn', 'tank'),
+        tankValidator.deleteRules(),
+        validate,
+        tankController.delete
     );
 
 }
