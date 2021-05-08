@@ -40,4 +40,12 @@ module.exports = function(app){
         tankController.delete
     );
 
+    app.put('/tank/addspecies',
+        userController.isLoggedIn,
+        userController.isAllowedTo('createOwn', 'tank'),
+        tankValidator.addSpeciesRules(),
+        validate,
+        tankController.addSpecies
+    );
+
 }

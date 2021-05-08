@@ -35,7 +35,7 @@ exports.create = async (req, res, next) => {
 		user: userId,
 		species: speciesIds,
 		mainSpecies: mainSpeciesId,
-	    quantity: quantity,
+	  quantity: quantity,
 		measures: {
       height: height,
       width: width,
@@ -95,7 +95,7 @@ exports.update = async (req, res, next) => {
 		minPh,
 		maxPh,
 		literSpecimen,
-		lenght,
+		length,
 		feedId,
 		varietyOfId,
 		depthId,
@@ -131,8 +131,8 @@ exports.update = async (req, res, next) => {
 	if(literSpecimen){
 		species.literSpecimen = literSpecimen;
 	}
-	if(lenght){
-		species.lenght = lenght;
+	if(length){
+		species.length = length;
 	}
 
 	if(familyId){
@@ -219,7 +219,7 @@ exports.search = async (req, res, next) => {
 		])
 		.sort({[field]: direction})
 		.skip(perPage * page)
-    	.limit(perPage);
+    .limit(perPage);
 
 
     // Retrive search total number of tanks 
@@ -273,4 +273,30 @@ exports.delete = async (req, res, next) => {
 	console.log(tanks);
 
 	return tanks;
+}
+
+// species is an object { species, quantity, main }
+exports.addSpecies = async (req, res, next) => {
+	const { tankId, species } = req.body;
+
+	tank = await Tank.findById(tankId);
+
+	species.forEach(function(newSp){
+		let found = false;
+
+		tank.species.forEach(function(tankSp) {
+			// console.log(tankSp.species._id.equals(newSp.species))
+    	if (tankSp.species._id.equals(newSp.species)) found = true;
+		});
+
+		if(!found){
+			tank.species.push(newSp)
+		} else{
+			throw new ErrorHandler(404, 'tank.species.alreadyExists');
+		}
+  });
+
+  await tank.save();
+  return await Tank.findById(tankId);
+
 }

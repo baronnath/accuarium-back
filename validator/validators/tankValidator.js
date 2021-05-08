@@ -8,6 +8,7 @@ const Depth = require('../../models/depth');
 const Feed = require('../../models/feed');
 const Behavior = require('../../models/behavior');
 const Species = require('../../models/species');
+const Tank = require('../../models/tank');
 
 exports.createRules = () => {
   return [
@@ -35,7 +36,6 @@ exports.createRules = () => {
     body('species.*')
         .optional()
         .custom(speciesId => {
-            console.log(speciesId);
             return Species.findById(speciesId).then(species => {
                 if (!species) {
                   return Promise.reject('validation.species.notExists')
@@ -74,6 +74,36 @@ exports.searchRules = () => {
             return (value == 'ascending' || value =='descending');
         }).withMessage('validation.search.order.notValid'),
   ]
+}
+
+exports.addSpeciesRules = () => {
+    return [
+        body('tankId')
+            .custom(value => {
+                return Tank.findById(value).then(tank => {
+                    if (!tank) {
+                      return Promise.reject('validation.tank.notExists')
+                    }
+                })
+            }),
+        body('species')
+            .exists().withMessage('validation.species.required'),
+        body('species').isArray().withMessage('validation.species.notArray'),
+        body("species.*.species")
+            .custom(value => {
+                return Species.findById(value).then(species => {
+                    if (!species) {
+                      return Promise.reject('validation.species.notExists')
+                    }
+                })
+            }),
+        body("species.*.quantity")
+            .optional()
+            .isNumeric().withMessage('validation.notNumber'),
+        body("species.*.main")
+            .optional({ checkFalsy: true })
+            .isBoolean().withMessage('validation.notBoolean'),
+    ]
 }
 
 

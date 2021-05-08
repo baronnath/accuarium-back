@@ -113,3 +113,16 @@ exports.delete = async (req, res, next) => {
 	}
 
 }
+
+exports.addSpecies = async (req, res, next) => {
+
+	try {
+		const tank = await tankService.addSpecies(req, res, next);
+		return res.status(200).json({
+			tank,
+			message: req.i18n.t('tank.addSpecies.success', {tank}),
+		})
+	} catch (err) {
+		next(err)
+	}
+}

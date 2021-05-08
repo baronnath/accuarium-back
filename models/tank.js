@@ -15,19 +15,30 @@ const tankSchema = new mongoose.Schema({
     },
     species: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "species",
-        autopopulate: true
+        species: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "species",
+            autopopulate: true
+        },
+        quantity: {
+            type: Number,
+            default: 1
+        },
+        main: {
+            type: Boolean,
+            default: false
+        },
+        _id: false,
       }
     ],
-    mainSpecies: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "species",
-    },
-    quantity: {
-        type: Map,
-        of: Number
-    },
+    // mainSpecies: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "species",
+    // },
+    // quantity: {
+    //     type: Map,
+    //     of: Number
+    // },
     measures: {
         height: {
             type: Number,
