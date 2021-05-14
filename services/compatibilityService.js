@@ -131,6 +131,8 @@ getSpeciesCompatibility = async (tankId) => {
  */
 getTankCompatibility = async (data) => {
 
+	let species = [];
+	let mainSpecies = null;
 	let tankCompatibility = {
 		species: {},
 		parameters: {}
@@ -152,11 +154,16 @@ getTankCompatibility = async (data) => {
 		if(!tank)
 			throw new ErrorHandler(404, 'tank.notFound');
 
-		species = tank.species;
-		mainSpecies = species.find(species => species._id.toString() == tank.mainSpecies.toString());
+		// extract species from tank data
+		tank.species.forEach(function(sp) {
+			species.push(sp.species);
+			if(sp.main)
+				mainSpecies = sp.species;
+		});
 
-		tankCompatibility['species'] = await getTankSpeciesCompatibility(tankId);
 	}
+
+	tankCompatibility['species'] = await getTankSpeciesCompatibility(species);
 
 	// Parameters compatibility: compare parameters with main species
 	species.forEach(function(species) {
@@ -181,16 +188,12 @@ getTankCompatibility = async (data) => {
 }
 
 
-getTankSpeciesCompatibility = async (tankId) => {
+getSpeciesCompatibility = async (species) => {
 
 	let query = [];
-	tank = await Tank.findById(tankId);
 
-	if(!tank)
-		throw new ErrorHandler(404, 'tank.notFound');
-
-	tank.species.forEach(function(speciesA) {
-		tank.species.forEach(function(speciesB) {
+	species.forEach(function(speciesA) {
+		species.forEach(function(speciesB) {
 			if(speciesA._id != speciesB._id){
 				query.push(
 					{ $and: [
@@ -205,7 +208,7 @@ getTankSpeciesCompatibility = async (tankId) => {
 	compatibility = await Compatibility
 		.find({ $or: query });
 
-	return splitCompatibilitiesBySpecies(tank.species,compatibility);
+	return splitCompatibilitiesBySpecies(species,compatibility);
 }
 
 splitCompatibilitiesBySpecies = (species, compatibilities) => {
