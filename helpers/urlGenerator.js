@@ -18,7 +18,7 @@ exports.getUploadsUrl = (relativePath = '') =>  {
 }
 
 exports.getUploadsPath = (relativePath = '') =>  {
-	return __dirname + '/../' + config.uploadsFolder + addFinalSlash(relativePath);
+	return __dirname + '/../' + config.uploadsFolder;
 }
 
 addFinalSlash = (path) => {

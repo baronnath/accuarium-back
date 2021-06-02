@@ -238,9 +238,9 @@ exports.search = async (req, res, next) => {
 		.find(criteria)
 		.sort({[field]: direction})
 		.skip(perPage * page)
-    	.limit(perPage);
+  	.limit(perPage);
 
-   	total = await Species
+ 	total = await Species
 		.find(criteria)
 		.count();
 

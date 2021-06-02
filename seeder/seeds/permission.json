@@ -481,14 +481,14 @@
 			"role": "5e8cdd3b8296523464c7460c",
 			"endPoint": "5e8cdd3b8296523464c74622",
 			"grants": {
-				"createOwn": false,
-			    "readOwn": true,
-			    "updateOwn": false,
-			    "deleteOwn": false,
-			    "createAny": false,
-			    "readAny": true,
-			    "updateAny": false,
-			    "deleteAny": false
+				"createOwn": true,
+		    "readOwn": true,
+		    "updateOwn": true,
+		    "deleteOwn": true,
+		    "createAny": true,
+		    "readAny": true,
+		    "updateAny": true,
+		    "deleteAny": true
 			},
 			"excludes": {
 				"createOwn": null,
@@ -507,13 +507,13 @@
 			"endPoint": "5e8cdd3b8296523464c74623",
 			"grants": {
 				"createOwn": true,
-			    "readOwn": true,
-			    "updateOwn": true,
-			    "deleteOwn": true,
-			    "createAny": true,
-			    "readAny": true,
-			    "updateAny": true,
-			    "deleteAny": true
+		    "readOwn": true,
+		    "updateOwn": true,
+		    "deleteOwn": true,
+		    "createAny": true,
+		    "readAny": true,
+		    "updateAny": true,
+		    "deleteAny": true
 			},
 			"excludes": {
 				"createOwn": null,
