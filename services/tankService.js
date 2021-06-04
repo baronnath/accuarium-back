@@ -267,12 +267,8 @@ exports.delete = async (req, res, next) => {
 			.deleteMany({user: userId});
 	}
 
-	console.log(tankId);
-
 	if(!tanks)
 		throw new ErrorHandler(404, 'tank.notFound');
-
-	console.log(tanks);
 
 	return tanks;
 }
