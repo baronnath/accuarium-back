@@ -84,93 +84,33 @@ exports.getAll = async (req, res, next) => {
 }
 
 exports.update = async (req, res, next) => {
-	const {
-		speciesId,
+
+	const { 
+		tankId,
 		name,
 		image,
-		typeId,
-		familyId,
-		minTemperature,
-		maxTemperature,
-		minPh,
-		maxPh,
-		literSpecimen,
+		species,
 		length,
-		feedId,
-		varietyOfId,
-		depthId,
-		behaviorId
+		width,
+		height,
+		liters,
 	} = req.body;
 
-	if(speciesId){
-		species = await Species
-			.findById(speciesId);
-	}
+	tank = await Tank.findById(tankId);
 
-	if(name){
-		species.name = name;
-	}
-	if(image){
-		species.image = image;
-	}
-	if(typeId){
-		species.typeId = typeId;
-	}
-	if(temperature){
-		if(maxTemperature)
-			species.parameters.temperature.max = maxTemperature;
-		if(mimTemperature)
-			species.parameters.temperature.min = minTemperature;
-	}
-	if(ph){
-		if(maxPh)
-			species.parameters.ph.max = maxPh
-		if(mimPh)
-			species.parameters.ph.min = minPh;
-	}
-	if(literSpecimen){
-		species.literSpecimen = literSpecimen;
-	}
-	if(length){
-		species.length = length;
-	}
+	if(!tanks)
+		throw new ErrorHandler(404, 'tank.notFound');
 
-	if(familyId){
-		family = await Family
-			.findOne(familyId);
+	tank.name = name;
+	tank.species = species;
+	tank.measures.length = length;
+	tank.measures.width = width;
+	tank.measures.height = height;
+	tank.liters = liters;
 
-		species.family = family;
-	}
+	// **update image
 
-	if(feedId){
-		feed = await Feed
-			.findOne(feedId);
-
-		species.feed = feed;
-	}
-
-	if(varietyOfId){
-		varietyOf = await Species
-			.findOne(varietyOfId);
-
-		species.varietyOf = varietyOf;
-	}
-
-	if(depthId){
-		depth = await Depth
-			.findOne(depthId);
-
-		species.depth = depth;
-	}
-
-	if(behaviorId){
-		behavior = await Behavior
-			.findOne(behaviorId);
-
-		species.behavior = behavior;
-	}
-
-	return await species.save();
+	return await tank.save();
 }
 
 exports.search = async (req, res, next) => {

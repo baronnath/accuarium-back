@@ -13,14 +13,7 @@ const Tank = require('../../models/tank');
 exports.createRules = () => {
   return [
   	body('name')
-        .not().isEmpty().withMessage('validation.name.required')
-        .custom(value => {
-            return Species.findOne({name: value}).then(tank => {
-                if (tank) {
-                  return Promise.reject('validation.tank.name.alreadyExists')
-                }
-            })
-        }),
+        .not().isEmpty().withMessage('validation.name.required'),
   	body('userId')
         .optional({ checkFalsy: true })
         .custom(value => {
@@ -44,21 +37,58 @@ exports.createRules = () => {
         }),
     body('width')
         .optional({ checkFalsy: true })
-        .isNumeric().withMessage('1validation.notNumber'),
+        .isNumeric().withMessage('validation.notNumber'),
     body('height')
         .optional({ checkFalsy: true })
-        .isNumeric().withMessage('2validation.notNumber'),
+        .isNumeric().withMessage('validation.notNumber'),
     body('length')
         .optional({ checkFalsy: true })
-        .isNumeric().withMessage('3validation.notNumber'),
+        .isNumeric().withMessage('validation.notNumber'),
     body('liters')
         .optional({ checkFalsy: true })
-        .isNumeric().withMessage('4validation.notNumber'),
+        .isNumeric().withMessage('validation.notNumber'),
   ]
 }
 
 exports.getRules = () => {
   return []
+}
+
+exports.updateRules = () => {
+  return [
+    body('tankId')
+        .custom(value => {
+            return Tank.findById(value).then(tank => {
+                if (!tank) {
+                  return Promise.reject('validation.tank.notExists')
+                }
+            })
+        }),
+    body('species')
+        .optional()
+        .isArray().withMessage('validation.species.notArray'),
+    body('species.*')
+        .optional()
+        .custom(speciesId => {
+            return Species.findById(speciesId).then(species => {
+                if (!species) {
+                  return Promise.reject('validation.species.notExists')
+                }
+            })
+        }),
+    body('width')
+        .optional({ checkFalsy: true })
+        .isNumeric().withMessage('validation.notNumber'),
+    body('height')
+        .optional({ checkFalsy: true })
+        .isNumeric().withMessage('validation.notNumber'),
+    body('length')
+        .optional({ checkFalsy: true })
+        .isNumeric().withMessage('validation.notNumber'),
+    body('liters')
+        .optional({ checkFalsy: true })
+        .isNumeric().withMessage('validation.notNumber'),
+  ]
 }
 
 exports.deleteRules = this.getRules;

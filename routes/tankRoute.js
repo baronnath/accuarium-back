@@ -32,6 +32,14 @@ module.exports = function(app){
         tankController.search
     );
 
+    app.put('/tank',
+        userController.isLoggedIn,
+        userController.isAllowedTo('updateOwn', 'tank'),
+        tankValidator.updateRules(),
+        validate,
+        tankController.update
+    );
+
     app.delete('/tank',
         userController.isLoggedIn,
         userController.isAllowedTo('deleteOwn', 'tank'),
@@ -42,7 +50,7 @@ module.exports = function(app){
 
     app.put('/tank/addspecies',
         userController.isLoggedIn,
-        userController.isAllowedTo('createOwn', 'tank'),
+        userController.isAllowedTo('updateOwn', 'tank'),
         tankValidator.addSpeciesRules(),
         validate,
         tankController.addSpecies
