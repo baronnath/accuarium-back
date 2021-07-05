@@ -69,9 +69,9 @@ exports.updateRules = () => {
         .isArray().withMessage('validation.species.notArray'),
     body('species.*')
         .optional()
-        .custom(speciesId => {
-            return Species.findById(speciesId).then(species => {
-                if (!species) {
+        .custom(species => {
+            return Species.findById(species.species).then(sp => {
+                if (!sp) {
                   return Promise.reject('validation.species.notExists')
                 }
             })

@@ -98,7 +98,7 @@ exports.update = async (req, res, next) => {
 
 	tank = await Tank.findById(tankId);
 
-	if(!tanks)
+	if(!tank)
 		throw new ErrorHandler(404, 'tank.notFound');
 
 	tank.name = name;
@@ -108,9 +108,10 @@ exports.update = async (req, res, next) => {
 	tank.measures.height = height;
 	tank.liters = liters;
 
-	// **update image
+	// TO FIX: update image
 
-	return await tank.save();
+	await tank.save();
+  return await Tank.findById(tankId);
 }
 
 exports.search = async (req, res, next) => {
