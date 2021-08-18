@@ -18,8 +18,71 @@
 			{
 				"_id": "5e8cdd3b8296523464c7462c",
 				"name": {
-					"en": "agressive",
+					"en": "aggressive",
 					"es": "agresivo"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462d",
+				"name": {
+					"en": "jumper",
+					"es": "saltador"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462e",
+				"name": {
+					"en": "algae eater",
+					"es": "come algas"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462f",
+				"name": {
+					"en": "predator",
+					"es": "predador"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7463a",
+				"name": {
+					"en": "quiet",
+					"es": "tranquilo"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7463b",
+				"name": {
+					"en": "sand digger",
+					"es": "excavador"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7463c",
+				"name": {
+					"en": "snail eater",
+					"es": "come caracoles"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7463d",
+				"name": {
+					"en": "clumsy",
+					"es": "torpe"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7463e",
+				"name": {
+					"en": "lively",
+					"es": "enérgico"
+				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7463e",
+				"name": {
+					"en": "nocturnal",
+					"es": "nocturno"
 				}
 			}
 		]
