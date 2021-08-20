@@ -2,13 +2,6 @@
 	"model": "group",
 	"documents": [
 		{
-			"_id": "5e8cdd3b8296523464c7462a",
-			"name": {
-				"en": "cichlids",
-				"es": "cíclidos"
-			}
-		},
-		{
 			"_id": "5e8cdd3b8296523464c7462b",
 			"name": {
 				"en": "gouramis",
@@ -19,7 +12,7 @@
 			"_id": "5e8cdd3b8296523464c7462c",
 			"name": {
 				"en": "eels",
-				"es": "ánguilas"
+				"es": "anguilas"
 			}
 		},
 		{
@@ -195,6 +188,69 @@
 			"name": {
 				"en": "barbs",
 				"es": "barbos"
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c74638",
+			"name": {
+				"en": "south american cichlids",
+				"es": "cíclidos sudamericanos"
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c74639",
+			"name": {
+				"en": "central american cichlids",
+				"es": "cíclidos centroamericanos"
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c74616",
+			"name": {
+				"en": "north american cichlids",
+				"es": "cíclidos norteamericanos"
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c74640",
+			"name": {
+				"en": "african rives cichlids",
+				"es": "cíclidos africanos fluviales"
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c74641",
+			"name": {
+				"en": "victoria cichlids",
+				"es": "cíclidos victoria"
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c74642",
+			"name": {
+				"en": "malawi cichlids",
+				"es": "cíclidos malawi"
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c74643",
+			"name": {
+				"en": "tanganika cichlids",
+				"es": "cíclidos tanganika"
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c74644",
+			"name": {
+				"en": "central american cichlids",
+				"es": "cíclidos asiáticos"
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c74645",
+			"name": {
+				"en": "catfishes",
+				"es": "siluros"
 			}
 		}
 	]

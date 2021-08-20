@@ -4,8 +4,8 @@
 			{
 				"_id": "5e8cdd3b8296523464c7462a",
 				"name": {
-					"en": "Barbus",
-					"es": "Barbo"
+					"en": "species one",
+					"es": "especie uno"
 				},
 	    		"otherNames": {
 	    			"en": ["Barbus","Barbies"],
@@ -36,13 +36,15 @@
 			    "feed": "5e8cdd3b8296523464c7462b",
 			    "varietyOf": null,
 			    "depth": "5e8cdd3b8296523464c7462b",
-			    "behavior": "5e8cdd3b8296523464c7462a"
+			    "behavior": [
+					"5e8cdd3b8296523464c7462a"
+				]
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462b",
 				"name": {
-					"en": "Betta splendens",
-					"es": "Batta"
+					"en": "species two",
+					"es": "especie dos"
 				},
 	    		"otherNames": {
 	    			"en": ["Thai fighter","Betta"],
@@ -73,13 +75,16 @@
 			    "feed": "5e8cdd3b8296523464c7462b",
 			    "varietyOf": null,
 			    "depth": "5e8cdd3b8296523464c7462b",
-			    "behavior": "5e8cdd3b8296523464c7462a"
+			    "behavior": [
+					"5e8cdd3b8296523464c7462a",
+					"5e8cdd3b8296523464c7463e"
+				]
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462c",
 				"name": {
-					"en": "Neon tetra",
-					"es": "Batta"
+					"en": "species three",
+					"es": "especie tres"
 				},
 	    		"otherNames": {
 	    			"en": ["Neonius", "Fluorescent fish"],
@@ -110,7 +115,10 @@
 			    "feed": "5e8cdd3b8296523464c7462b",
 			    "varietyOf": null,
 			    "depth": "5e8cdd3b8296523464c7462b",
-			    "behavior": "5e8cdd3b8296523464c7462a"
+			    "behavior": [
+					"5e8cdd3b8296523464c7462a",
+					"5e8cdd3b8296523464c7463d"
+				]
 			}
 		]
 	}

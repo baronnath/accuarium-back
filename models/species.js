@@ -134,11 +134,13 @@ const speciesSchema = new mongoose.Schema({
         ref: 'depth',
         autopopulate: true
     },
-    behavior: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'behavior',
-        autopopulate: true
-    },
+    behavior: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'behavior',
+            autopopulate: true
+        }
+    ],
     color: [
         {
             type: mongoose.Schema.Types.ObjectId,

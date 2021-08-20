@@ -98,6 +98,14 @@
 				"hex": "ff8000"
 			},
 			{
+				"_id": "5e8cdd3b8296523464c74628",
+				"name": {
+					"en": "gray",
+					"es": "gris"
+				},
+				"hex": "#666666"
+			},
+			{
 				"_id": "5e8cdd3b8296523464c74627",
 				"name": {
 					"en": "multicolor",
