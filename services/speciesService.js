@@ -278,6 +278,7 @@ exports.uploadFile = async (req, res, next) => {
 
 	const { path } = req.file;
 	let { species: speciesList } = excel.toJSON(path);
+
 	const deleteProps = [
 		'nameEn',
 		'nameEs',
@@ -289,19 +290,16 @@ exports.uploadFile = async (req, res, next) => {
 		'maxPh',
 		'minDh',
 		'maxDh',
-		'behavior', // TO BE FIXED
 	];
 
-	// Retrieve all from type, family, groups, feed and colors
-	const types = await Type.find();
-	const families = await Family.find();
-	const groups = await Group.find();
-	const feeds = await Feed.find();
-	const colors = await Color.find();
-	const depths = await Depth.find();
-
-	// Transform otherNames in array
-
+	// Retrieve all from type, family, groups, feed, behaviors and colors
+	const types 	= await Type.find();
+	const families 	= await Family.find();
+	const groups 	= await Group.find();
+	const feeds		= await Feed.find();
+	const behaviors = await Behavior.find();
+	const colors 	= await Color.find();
+	const depths 	= await Depth.find();
 
 	speciesList.forEach(function(species, index) {
 
@@ -310,6 +308,15 @@ exports.uploadFile = async (req, res, next) => {
 		group = groups.find(group => group.name[defaultLocale] === species.group);
 		feed = feeds.find(feed => feed.name[defaultLocale] === species.feed);
 		depth = depths.find(depth => depth.name[defaultLocale] === species.depth);
+
+		let behaviorList = [];
+		if(species.behavior){
+			beh = species.behavior.split(',');
+
+			beh.forEach(function(b, index) {
+				this[index] = behaviors.find(behavior => behavior.name[defaultLocale] === b);
+			}, behaviorList);
+		}
 		
 		let colorList = [];
 		if(species.color){
@@ -353,14 +360,20 @@ exports.uploadFile = async (req, res, next) => {
 			feed: feed ? feed._id : null,
 			depth: depth ? depth._id : null,
 			color: colorList,
+			behavior: behaviorList,
 		};
 		
+		// Delete props in the excel list that don't match the species model (species list is not duplicated for memory optimization)
 		stringHelper.deleteProps(this[index], deleteProps);
 
 	}, speciesList);
 
-	console.log(speciesList);
-
-	return await Species.insertMany(speciesList);
+	return await Species.bulkWrite(speciesList.map(species => ({
+		updateOne: {
+			filter: {scientificName: species.scientificName},
+			update: species,
+			upsert: true,
+		}
+	})))
 	
 }

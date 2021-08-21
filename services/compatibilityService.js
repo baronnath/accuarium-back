@@ -1,19 +1,19 @@
 // services/compatibilityService.js
 
-const fs						= require('fs');
-const Compatibility	= require('../models/compatibility');
-const Species				= require('../models/species');
-const Type					= require('../models/type');
-const Family				= require('../models/family');
-const Feed					= require('../models/feed');
-const Depth					= require('../models/depth');
+const fs				= require('fs');
+const Compatibility		= require('../models/compatibility');
+const Species			= require('../models/species');
+const Type				= require('../models/type');
+const Family			= require('../models/family');
+const Feed				= require('../models/feed');
+const Depth				= require('../models/depth');
 const Behavior			= require('../models/behavior');
-const Tank					= require('../models/tank');
+const Tank				= require('../models/tank');
 const {	ErrorHandler, handleError } = require('../helpers/errorHandler');
 const {	logger }		= require('../helpers/logger');
-const config				= require('../config/preferences'); 
-const urlGenerator	= require('../helpers/urlGenerator');
-const excel					= require('../helpers/excel');
+const config			= require('../config/preferences'); 
+const urlGenerator		= require('../helpers/urlGenerator');
+const excel				= require('../helpers/excel');
 
 const imagePath = urlGenerator.getImagesPath('compatibility');
 
@@ -259,48 +259,61 @@ isParameterCompatible = (rangeA, rangeB) => {
 exports.uploadFile = async (req, res, next) => {
 
 	const { path } = req.file;
-	let { compatibility: compatibilityList } = excel.toJSON(path);
+	const { compatibility: compatibilityList } = excel.toJSON(path);
 	let compatibilities = [];
+	let speciesIncluded = []; // Skip duplicated information about same pair of species
 
-
-	// Retrieve all species
 	const species = await Species.find();
 
-	compatibilityList.forEach(function(compatibility, index) {
+	compatibilityList.forEach(function(speciesCompatibility, index) {
 
-		// Skip first empty values
-		if(!compatibility.scientificName){
-			return;
-		}
+		// Iterate over item properties (as it was an array)
+		Object.keys(speciesCompatibility).forEach(function(prop) {
+			let speciesB = null;
 
-		let speciesA = species.find(species => species.scientificName === compatibility.scientificName);
-
-		if(!speciesA){
-			throw new ErrorHandler(404, 'species.notFound', compatibility.scientificName);
-		}
-
-		Object.keys(compatibility).forEach(key => {
-
-			// Skip first line or compatibility between same species
-			if(key === compatibility.scientificName || key === 'scientificName'){
+			if(prop == 'scientificName'){
+				speciesA = species.find(sp => sp.scientificName === speciesCompatibility[prop]);
+				if(!speciesA){
+					throw new ErrorHandler(404, 'species.notFound', speciesCompatibility[prop]);
+				}
+				speciesIncluded.push(speciesA.scientificName);
 				return;
 			}
-
-			let speciesB = species.find(species => species.scientificName === key);
-
+			
+			if(speciesCompatibility[prop] == 'x') return; // 'x' represents same species compatibility cell
+			
+			speciesB = species.find(sp => sp.scientificName === prop);
 			if(!speciesB){
-				throw new ErrorHandler(404, 'species.notFound', key);
+				throw new ErrorHandler(404, 'species.notFound', prop);
 			}
 
-			this.push({
-				speciesA: speciesA._id,
-				speciesB: speciesB._id,
-				compatibility: compatibility[key]
-			});
+			if(speciesIncluded.find(incl => incl == speciesB.scientificName)){ // Skip if compatibility  pair was registered previously
+				compatibilities.push({
+					speciesA: speciesA._id,
+					speciesB: speciesB._id,
+					compatibility: speciesCompatibility[prop],
+				});
+			}
 		});
+	});
 
-	}, compatibilities);
-
-	return await Compatibility.insertMany(compatibilities);
+	return await Compatibility.bulkWrite(compatibilities.map(compatibility => ({
+		updateOne: {
+			filter: {
+				$or: [
+					{ $and: [
+						{speciesA: compatibility.speciesA},
+						{speciesB: compatibility.speciesB}
+					]},
+					{ $and: [
+						{speciesA: compatibility.speciesB},
+						{speciesB: compatibility.speciesA}
+					]},
+				]
+			},
+			update: compatibility,
+			upsert: true,
+		}
+	})));
 	
 }
