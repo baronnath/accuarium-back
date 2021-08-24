@@ -60,7 +60,7 @@ exports.create = async (req, res, next) => {
 }
 
 exports.get = async (req, res, next) => {
-	const { tankId, userId } = req.query;
+	const { tankId, userId, compatibility } = req.query;
 
 	if(tankId){
 		tanks = await Tank.findById(tankId);
@@ -68,6 +68,11 @@ exports.get = async (req, res, next) => {
 	else if(userId){
 		tanks = await Tank
 			.find({user: userId});
+	}
+
+	if(compatibility){
+		// Feature to add the comatibility to the tanks (avoid two calls from app to retrieve the tank and then the compat.)
+		throw new ErrorHandler(501, 'notImplemented');
 	}
 
 	if(!tanks)

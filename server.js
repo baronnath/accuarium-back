@@ -1,25 +1,25 @@
 const express					= require('express');
-const app							= express();
+const app						= express();
 const server					= require('http').Server(app);
 const port						= process.env.PORT || 8080;
-const env							= process.env.NODE_ENV || 'development';
+const env						= process.env.NODE_ENV || 'development';
 const config					= require(__dirname + '/config/server')[env];
-const bodyParser			= require('body-parser');
+const bodyParser				= require('body-parser');
 const i18next					= require("i18next");
-const i18nextMiddleware = require('i18next-http-middleware')
+const i18nextMiddleware 		= require('i18next-http-middleware')
 const Backend					= require("i18next-fs-backend");
-const translatorConfig	= require(__dirname + '/config/translator');
+const translatorConfig			= require(__dirname + '/config/translator');
 const { 
 	logger,
 	httpLogger
-}											= require('./helpers/logger');
-const accessControl		= require('./helpers/accessControl');
+}								= require('./helpers/logger');
+const accessControl				= require('./helpers/accessControl');
 const {
 	handleError,
 	ErrorHandler
-}											= require('./helpers/errorHandler');
-const mongoose 				= require('mongoose');
-const mongooseConfig	= require(__dirname + '/config/mongoose');
+}								= require('./helpers/errorHandler');
+const mongoose 					= require('mongoose');
+const mongooseConfig			= require(__dirname + '/config/mongoose');
 const cors						= require('cors');
 
 // MongoDB connection

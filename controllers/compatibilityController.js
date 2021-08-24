@@ -55,10 +55,8 @@ exports.get = async (req, res, next) => {
 		}
 
 	}else{
-		exports.getAll(req, res, next);
+		next(new ErrorHandler(400, 'missingRequestParameters'));
 	}
-
-
 }
 
 exports.getAll = async (req, res, next) => {

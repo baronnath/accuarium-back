@@ -51,7 +51,7 @@ exports.get = async (req, res, next) => {
 			.findById(compatibilityId);
 
 	}else if(tankId){
-
+		
 		compatibility = await getTankCompatibility(tankId);
 
 	}
@@ -64,7 +64,7 @@ exports.get = async (req, res, next) => {
 		throw new ErrorHandler(404, 'compatibility.notFound');
 	}
 
-	return compatibility
+	return compatibility;
 
 }
  
@@ -163,7 +163,15 @@ getTankCompatibility = async (data) => {
 
 	}
 
-	tankCompatibility['species'] = await getTankSpeciesCompatibility(species);
+	if(!tank.species.length){
+		throw new ErrorHandler(404, 'tank.speciesNotFound');
+	}
+	
+	if(!mainSpecies){
+		throw new ErrorHandler(404, 'tank.mainSpeciesNotFound');
+	}
+
+	tankCompatibility['species'] = await getSpeciesCompatibility(species);
 
 	// Parameters compatibility: compare parameters with main species
 	species.forEach(function(species) {
