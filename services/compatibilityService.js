@@ -175,21 +175,23 @@ getTankCompatibility = async (data) => {
 
 	// Parameters compatibility: compare parameters with main species
 	species.forEach(function(species) {
+		// if(species._id != mainSpecies._id) {
 
-		// Temperature
-		temperatureCompatibility = isParameterCompatible(mainSpecies.parameters.temperature, species.parameters.temperature);
+			// Temperature
+			temperatureCompatibility = isParameterCompatible(mainSpecies.parameters.temperature, species.parameters.temperature);
 
-		// pH
-		phCompatibility = isParameterCompatible(mainSpecies.parameters.ph, species.parameters.ph);
+			// pH
+			phCompatibility = isParameterCompatible(mainSpecies.parameters.ph, species.parameters.ph);
 
-		// dH
-		dhCompatibility = isParameterCompatible(mainSpecies.parameters.dh, species.parameters.dh);
+			// dH
+			dhCompatibility = isParameterCompatible(mainSpecies.parameters.dh, species.parameters.dh);
 
-		tankCompatibility['parameters'][species._id] = {
-			temperature: temperatureCompatibility,
-			ph: phCompatibility,
-			dh: dhCompatibility
-		}
+			tankCompatibility['parameters'][species._id] = {
+				temperature: temperatureCompatibility,
+				ph: phCompatibility,
+				dh: dhCompatibility
+			}
+		// }
 	});
 
 	return tankCompatibility
