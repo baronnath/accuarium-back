@@ -11,7 +11,7 @@
 	    			"en": ["Barbus","Barbies"],
 	    			"es": ["Barba","Barbarie"]
 	    		},
-	    		"type": "5e8cdd3b8296523464c7462a",
+	    		"type": "60416e0b83a985b52213d892",
 	    		"family": "5e8cdd3b8296523464c7462c",
 	    		"group": "5e8cdd3b8296523464c7462b",
 	    		"parameters": {
@@ -37,7 +37,12 @@
 			    "varietyOf": null,
 			    "depth": "5e8cdd3b8296523464c7462b",
 			    "behavior": [
-					"5e8cdd3b8296523464c7462a"
+					"5e8cdd3b8296523464c7462a",
+					"5e8cdd3b8296523464c7462b",
+					"5e8cdd3b8296523464c7462c",
+					"5e8cdd3b8296523464c7462d",
+					"5e8cdd3b8296523464c7462e",
+					"5e8cdd3b8296523464c7462f"
 				]
 			},
 			{
@@ -50,7 +55,7 @@
 	    			"en": ["Thai fighter","Betta"],
 	    			"es": ["Betita","Luchador de Xian"]
 	    		},
-	    		"type": "5e8cdd3b8296523464c7462a",
+	    		"type": "60416e0b83a985b52213d892",
 	    		"family": "5e8cdd3b8296523464c7462c",
 	    		"group": "5e8cdd3b8296523464c7462a",
 	    		"parameters": {
@@ -90,7 +95,7 @@
 	    			"en": ["Neonius", "Fluorescent fish"],
 	    			"es": ["Neon","Tetra"]
 	    		},
-	    		"type": "5e8cdd3b8296523464c7462a",
+	    		"type": "60416e0b83a985b52213d892",
 	    		"family": "5e8cdd3b8296523464c7462c",
 	    		"group": "5e8cdd3b8296523464c7462c",
 	    		"parameters": {
@@ -116,8 +121,8 @@
 			    "varietyOf": null,
 			    "depth": "5e8cdd3b8296523464c7462b",
 			    "behavior": [
-					"5e8cdd3b8296523464c7462a",
-					"5e8cdd3b8296523464c7463d"
+					"5e8cdd3b8296523464c74641",
+					"5e8cdd3b8296523464c74642"
 				]
 			}
 		]

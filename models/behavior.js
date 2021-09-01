@@ -12,7 +12,12 @@ const behaviorSchema = new mongoose.Schema({
         	type: String,
             default: null
         },
-    }
+    },
+    icon: String,
+    warning: {
+        type: Boolean,
+        default: false
+    }, 
 });
 
 const behavior = mongoose.model('behavior', behaviorSchema);

@@ -6,91 +6,123 @@
 				"name": {
 					"en": "schooling",
 					"es": "cardumen"
-				}
+				},
+				"icon": "table-of-contents"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462b",
 				"name": {
 					"en": "territorial",
 					"es": "territorial"
-				}
+				},
+				"icon": "sign-caution",
+				"warning": true
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462c",
 				"name": {
 					"en": "aggressive",
 					"es": "agresivo"
-				}
+				},
+				"icon": "arm-flex",
+				"warning": true
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462d",
 				"name": {
 					"en": "jumper",
 					"es": "saltador"
-				}
+				},
+				"icon": "jump-rope"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462e",
 				"name": {
 					"en": "algae eater",
 					"es": "come algas"
-				}
+				},
+				"icon": "barley"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462f",
 				"name": {
 					"en": "predator",
 					"es": "predador"
-				}
+				},
+				"icon": "target",
+				"warning": true
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7463a",
 				"name": {
 					"en": "quiet",
 					"es": "tranquilo"
-				}
+				},
+				"icon": "vanish"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7463b",
 				"name": {
 					"en": "sand digger",
 					"es": "excavador"
-				}
+				},
+				"icon": "shovel" 
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7463c",
 				"name": {
 					"en": "snail eater",
 					"es": "come caracoles"
-				}
+				},
+				"icon": "lady-bug"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7463d",
 				"name": {
 					"en": "clumsy",
 					"es": "torpe"
-				}
+				},
+				"icon": "bandage"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7463e",
 				"name": {
 					"en": "lively",
 					"es": "enérgico"
-				}
+				},
+				"icon": "flash"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7463f",
 				"name": {
 					"en": "nocturnal",
 					"es": "nocturno"
-				}
+				},
+				"icon": "moon-waning-crescent"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c74641",
 				"name": {
 					"en": "peaceful",
 					"es": "manso"
-				}
+				},
+				"icon": "peace"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74642",
+				"name": {
+					"en": "shy",
+					"es": "tímido"
+				},
+				"icon": "visibility-off"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74643",
+				"name": {
+					"en": "gregarious",
+					"es": "gregario"
+				},
+				"icon": "arrow-collapse-all"
 			}
 		]
 	}
