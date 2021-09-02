@@ -230,7 +230,7 @@ exports.addSpecies = async (req, res, next) => {
 
 		tank.species.forEach(function(tankSp) {
 			// console.log(tankSp.species._id.equals(newSp.species))
-    	if (tankSp.species._id.equals(newSp.species)) found = true;
+    		if (tankSp.species._id.equals(newSp.species)) found = true;
 		});
 
 		if(!found){

@@ -171,6 +171,10 @@ getTankCompatibility = async (data) => {
 		throw new ErrorHandler(404, 'tank.mainSpeciesNotFound');
 	}
 
+	if(tank.species.length === 1){ // if tank has only one species (the main species), the compatibility can be calculated
+		return {};
+	}
+
 	tankCompatibility['species'] = await getSpeciesCompatibility(species);
 
 	// Parameters compatibility: compare parameters with main species
