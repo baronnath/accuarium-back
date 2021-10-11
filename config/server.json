@@ -5,7 +5,10 @@
     "username": "root",
     "password": "efervescente",
     "imagesFolder": "public/images/",
-    "uploadsFolder": "public/uploads/"
+    "uploadsFolder": "public/uploads/",
+    "front": {
+      "url": "http://localhost:19006"
+    }
   },
   "development": {
     "connectionString": "mongodb+srv://root:efervescente@cluster0-a9uwd.gcp.mongodb.net/accuarium-dev?retryWrites=true&w=majority",
@@ -15,8 +18,12 @@
     "allowOrigins": [
       "http://localhost:19006",
       "http://localhost:19000",
+      "http://localhost:19002",
       "http://192.168.0.19:19006",
-      "http://192.168.0.19:19000"      
+      "http://192.168.0.19:19000",
+      "http://192.168.0.16:19002",
+      "http://192.168.0.16:19000",
+      "http://192.168.0.12:19000"
     ],
     "front": {
       "url": "http://localhost:19006"

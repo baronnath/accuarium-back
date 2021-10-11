@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
+    "jest": "^27.2.4",
     "mongoose-seed": "^0.6.0",
     "nodemon": "^2.0.4"
   }

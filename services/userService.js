@@ -53,6 +53,10 @@ exports.create = async (req, res, next) => {
 	const confToken = await this.confirmationToken();
     const hashedPassword = await hashPassword(password);
 
+	user = await User.findOne({email: email});
+	if(user)
+		throw new ErrorHandler(400, 'This email is already registered');
+
 	// // Access control assigned permissions
 	// if(role != 'player'){
 	// 	let perm = ac.can(req.user.role.name).createAny('user');
@@ -63,11 +67,11 @@ exports.create = async (req, res, next) => {
 	// }
 
 	if(!req.role)
-		role = 'player';
+		role = 'user';
 
-	role = await Role.findOne({name:role});
-	// if(!role)
-	// 	throw new ErrorHandler(403, 'The role ' + req.body.role + ' doesn\'t exist');
+	role = await Role.findOne({'name.en':role});
+	if(!role)
+		throw new ErrorHandler(400, 'The role doesn\'t exist');
 
 	user = new User({
 		email: email,
