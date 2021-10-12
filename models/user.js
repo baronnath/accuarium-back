@@ -52,6 +52,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.plugin(mongooseAutopopulate);
 
+// Middleware before saving
 userSchema.pre('save', function(next) {
 
     next();
