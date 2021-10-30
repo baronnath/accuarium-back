@@ -40,8 +40,8 @@ module.exports = function(app){
         userController.isLoggedIn,
         userController.isAllowedTo('createAny', 'species'),
         upload.single('file'),
-        speciesValidator.uploadFileRules(),
-        validate,
+        // speciesValidator.uploadFileRules(),
+        // validate,
         speciesController.uploadFile
     );
 

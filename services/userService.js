@@ -59,7 +59,7 @@ exports.create = async (req, res, next) => {
 
 	// // Access control assigned permissions
 	// if(role != 'player'){
-	// 	let perm = ac.can(req.user.role.name).createAny('user');
+	// 	let perm = ac.can(req.user.role.name.en).createAny('user');
 
 	// 	// Check if user has permission to modify the role
 	// 	if(perm.attributes.includes('!role'))
@@ -108,7 +108,8 @@ exports.update = async (req, res, next) => {
 
 	// Check if the user is trying to update his own user or anyone else
 	if((userId && userId != req.user._id) || (email && email != req.user.email)){
-		let perm = ac.can(req.user.role.name).updateAny('user');
+		console.log(req.user.role);
+		let perm = ac.can(req.user.role.name.en).updateAny('user');
 
 		// Check if user has permission to modify the role
 		if(!perm.granted)
@@ -129,7 +130,7 @@ exports.update = async (req, res, next) => {
 
 	// Access control assigned permissions
 	if(role){
-		let perm = ac.can(req.user.role.name).updateOwn('user');
+		let perm = ac.can(req.user.role.name.en).updateOwn('user');
 
 		// Check if user has permission to modify the role
 		if(perm.attributes.includes('!role'))
@@ -155,7 +156,7 @@ exports.delete = async (req) => {
 
 	// Check if the user is trying to delete his own user or anyone else
 	if((userId && userId != req.user._id) || (email && email != req.user.email)){
-		let perm = ac.can(req.user.role.name).deleteAny('user');
+		let perm = ac.can(req.user.role.name.en).deleteAny('user');
 
 		// Check if user has permission to modify the role
 		if(!perm.granted)
@@ -328,8 +329,10 @@ exports.sendInvitation = async (user, req, res, next) => {
 		preheader: req.i18n.t('user.invitation.preheader')
 	}
 
+	console.log(user.locale);
+
 	let email = new mailer.Email(
-		req.i18n.languages[0] || 'en',
+		user.locale || 'en',
 		user.email,
 		'registration-confirmation',
 		data,

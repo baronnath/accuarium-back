@@ -4,44 +4,51 @@
 			{
 				"_id": "5e8cdd3b8296523464c7461a",
 				"name": "Admin",
-				"email": "admin@diology.io",
-				"password": "$2b$10$p5oW7LFWOhZvFwbj79zvJuri4hCeLD9KnFlZW0ypgfrzrpsR7scHO",
+				"email": "admin@accuarium.io",
+				"password": "$2b$10$zuAFTMdPzKQEQyyTuiv8SuBBLhGB7f9sY6x34Njv4SSDvDYzghe9a",
 				"role": "5e8cdd3b8296523464c7460e"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7461d",
-				"name": "Player 1",
-				"email": "player1@diology.io",
-				"password": "$2b$10$p5oW7LFWOhZvFwbj79zvJuri4hCeLD9KnFlZW0ypgfrzrpsR7scHO",
+				"name": "User 1",
+				"email": "user1@accuarium.io",
+				"password": "$2b$10$zuAFTMdPzKQEQyyTuiv8SuBBLhGB7f9sY6x34Njv4SSDvDYzghe9a",
 				"role": "5e8cdd3b8296523464c7460b"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7461c",
-				"name": "Player 2",
-				"email": "player2@diology.io",
-				"password": "$2b$10$p5oW7LFWOhZvFwbj79zvJuri4hCeLD9KnFlZW0ypgfrzrpsR7scHO",
+				"name": "User 2",
+				"email": "user2@accuarium.io",
+				"password": "$2b$10$zuAFTMdPzKQEQyyTuiv8SuBBLhGB7f9sY6x34Njv4SSDvDYzghe9a",
 				"role": "5e8cdd3b8296523464c7460b"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7461f",
 				"name": "Not verified",
-				"email": "notverified@diology.io",
-				"password": "$2b$10$p5oW7LFWOhZvFwbj79zvJuri4hCeLD9KnFlZW0ypgfrzrpsR7scHO",
+				"email": "notverified@accuarium.io",
+				"password": "$2b$10$zuAFTMdPzKQEQyyTuiv8SuBBLhGB7f9sY6x34Njv4SSDvDYzghe9a",
 				"role": "5e8cdd3b8296523464c7460b",
 				"confirmationToken": "abcdefghijklmn"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7461b",
 				"name": "Moderator",
-				"email": "moderator@diology.io",
-				"password": "$2b$10$p5oW7LFWOhZvFwbj79zvJuri4hCeLD9KnFlZW0ypgfrzrpsR7scHO",
+				"email": "moderator@accuarium.io",
+				"password": "$2b$10$zuAFTMdPzKQEQyyTuiv8SuBBLhGB7f9sY6x34Njv4SSDvDYzghe9a",
 				"role": "5e8cdd3b8296523464c7460d"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74611",
+				"name": "Premium",
+				"email": "premium@accuarium.io",
+				"password": "$2b$10$zuAFTMdPzKQEQyyTuiv8SuBBLhGB7f9sY6x34Njv4SSDvDYzghe9a",
+				"role": "5e8cdd3b8296523464c7460c"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7461e",
 				"name": "Natan",
 				"email": "natan.morote@gmail.com",
-				"password": "$2b$10$p5oW7LFWOhZvFwbj79zvJuri4hCeLD9KnFlZW0ypgfrzrpsR7scHO",
+				"password": "$2b$10$zuAFTMdPzKQEQyyTuiv8SuBBLhGB7f9sY6x34Njv4SSDvDYzghe9a",
 				"role": "5e8cdd3b8296523464c7460e"
 			}
 		]
