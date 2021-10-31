@@ -63,7 +63,7 @@ userSchema.methods.toJSON = function() {
     var obj = this.toObject();
     delete obj.password;
     delete obj.confirmationToken;
-    delete obj.accessToken;
+    // delete obj.accessToken;
     return obj;
 }
 

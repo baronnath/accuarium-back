@@ -1,0 +1,21 @@
+{
+    "model": "locale",
+    "documents": [
+        {
+            "_id": "5e8cdd3b8296523464c7462a",
+            "lang": "en",
+            "name": {
+                "en": "english",
+				"es": "inglés"
+            }
+        },
+        {
+            "_id": "5e8cdd3b8296523464c7462b",
+            "lang": "es",
+            "name": {
+                "en": "spanish",
+				"es": "español"
+            }
+        }
+    ]
+}

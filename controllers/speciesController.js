@@ -55,7 +55,6 @@ exports.get = async (req, res, next) => {
 		}
 
 	}else{
-		console.log('this.getAll')
 		exports.getAll(req, res, next);
 	}
 

@@ -84,6 +84,13 @@
 					"en": "compatibility",
 					"es": "compatibilidad"
 				}
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74626",
+				"name": {
+					"en": "locale",
+					"es": "localización"
+				}
 			}
 		]
 	}

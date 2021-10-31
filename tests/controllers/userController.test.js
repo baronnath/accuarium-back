@@ -258,7 +258,7 @@ describe('get', () => {
   });
 });
 
-// UpdateT
+// Update
 describe('update', () => {
   test('Update user when user id is provided', async () => {
     const req = await mockRequest(

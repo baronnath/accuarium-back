@@ -103,17 +103,20 @@ exports.get = async (req, res, next) => {
 }
 
 exports.update = async (req, res, next) => {
-	const { userId, email, password, name} = req.body;
+	const { userId, email, password, name, locale} = req.body;
 	let { role } = req.body;
 
-	// Check if the user is trying to update his own user or anyone else
+	// Check if the user is trying to update anyone else user
 	if((userId && userId != req.user._id) || (email && email != req.user.email)){
-		console.log(req.user.role);
+
 		let perm = ac.can(req.user.role.name.en).updateAny('user');
 
 		// Check if user has permission to modify the role
 		if(!perm.granted)
 			throw new ErrorHandler(403, '');
+	}else{
+		// If modifying its own user reassign previous token to stay logged in
+		user.accessToken = req.user.accessToken;
 	}
 
 	if(userId){
@@ -143,6 +146,7 @@ exports.update = async (req, res, next) => {
 	}
 
 	user.name = name;
+	user.locale = locale;
 
 	if(password){
 		user.password = await hashPassword(password);
