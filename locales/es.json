@@ -16,7 +16,7 @@
 			"success": "Hasta pronto, {{user.name}}"
 		},
 		"verify": {
-			"success": "Bienvenido, {{user.name}}, gracias por verificar tu cuenta"
+			"success": "Bienvenido, {{user.name}}! Gracias por verificar tu cuenta"
 		},
 		"resend": {
 			"success": "Hemos vuelto a enviar el código a tu correo electrónico, revisa la carpeta de correo no deseado"

@@ -28,8 +28,12 @@ exports.isLoggedIn = async (req) => {
  		user = auth.user;
  		exp = auth.exp;
   	} catch {
-  		throw new ErrorHandler(401, 'validation.token.notExists');
+  		user = null;
   	}
+	
+	if(!user) {
+		throw new ErrorHandler(401, 'validation.token.notExists');
+	}
 
 
   	// Check if token has expired

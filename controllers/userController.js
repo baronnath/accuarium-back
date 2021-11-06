@@ -12,7 +12,7 @@ exports.isLoggedIn = async (req, res, next) => {
 	try {
 		req.user = await userService.isLoggedIn(req, res, next);
  	} catch (err) {
-		return next(err)
+		next(err)
 	}
 	next()
 }
