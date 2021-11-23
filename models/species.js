@@ -69,7 +69,17 @@ const speciesSchema = new mongoose.Schema({
                 default: null
             }  
         },
-        dh: {
+        gh: {
+            min: {
+                type: Number,
+                default: null
+            },
+            max: {
+                type: Number,
+                default: null
+            } 
+        },
+        kh: {
             min: {
                 type: Number,
                 default: null

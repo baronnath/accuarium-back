@@ -288,8 +288,10 @@ exports.uploadFile = async (req, res, next) => {
 		'maxLength',
 		'minPh',
 		'maxPh',
-		'minDh',
-		'maxDh',
+		'minGh',
+		'maxGh',
+		'minKh',
+		'maxKh',
 	];
 
 	// Retrieve all from type, family, groups, feed, behaviors and colors
@@ -345,9 +347,13 @@ exports.uploadFile = async (req, res, next) => {
 					min: species.minPh,
 					max: species.maxPh
 				},
-				dh: {
-					min: species.minDh,
-					max: species.maxDh
+				gh: {
+					min: species.minGh,
+					max: species.maxGh
+				},
+				kh: {
+					min: species.minKh,
+					max: species.maxKh
 				}
 			},
 			length: {
