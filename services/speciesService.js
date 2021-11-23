@@ -32,8 +32,10 @@ exports.create = async (req, res, next) => {
 		maxTemperature,
 		minPh,
 		maxPh,
-		minDh,
-		maxDh,
+		minGh,
+		maxGh,
+		minKh,
+		maxKh,
 		literSpecimen,
 		minLength,
 		maxLength,
@@ -62,9 +64,13 @@ exports.create = async (req, res, next) => {
 				min: minPh,
 				max: maxPh
 			},
-			dh: {
-				min: minDh,
-				max: maxDh
+			gh: {
+				min: minGh,
+				max: maxGh
+			},
+			kh: {
+				min: minKh,
+				max: maxKh
 			}
 		},
 		literSpecimen: literSpecimen,
