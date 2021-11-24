@@ -1,11 +1,12 @@
 // helpers/unitConverter.js
 
 const {	ErrorHandler } = require('./errorHandler');
+const {	round } = require('./string');
 
 const properties = {
     hardness: {
         units: ['ppm', 'mg', 'µS',  'gh'],
-        factor: [1, 1, .5, 17.86 ]
+        factor: [1, 1, .641025641025641, 17.86]
     },
     volume: {
         units: ['liter', 'm3', 'gallon', 'ounce'],
@@ -55,6 +56,6 @@ module.exports = (measure, from, to, value) => {
         if(measure == 'temperature')
             value = value - properties[measure].increment[toIndex];
 
-        resolve(value);
+        resolve(round.round(value, 2));
     });
 }
