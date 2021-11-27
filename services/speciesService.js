@@ -13,7 +13,8 @@ const {	ErrorHandler, handleError } = require('../helpers/errorHandler');
 const {	logger }	= require('../helpers/logger');
 const config		= require('../config/preferences'); 
 const urlGenerator	= require('../helpers/urlGenerator');
-const stringHelper	= require('../helpers/string');
+const helpers		= require('../helpers/helpers');
+const unitConverter	= require('../helpers/unitConverter');
 const defaultLocale	= require('../config/translator')['fallbackLng']['default'][0]
 const excel			= require('../helpers/excel');
 
@@ -292,10 +293,14 @@ exports.uploadFile = async (req, res, next) => {
 		'otherNamesEs',
 		'minLength',
 		'maxLength',
+		'minTemp',
+		'maxTemp',
 		'minPh',
 		'maxPh',
+		'GhUnits',
 		'minGh',
 		'maxGh',
+		'KhUnits',
 		'minKh',
 		'maxKh',
 	];
@@ -309,7 +314,7 @@ exports.uploadFile = async (req, res, next) => {
 	const colors 	= await Color.find();
 	const depths 	= await Depth.find();
 
-	speciesList.forEach(function(species, index) {
+	await Promise.all(speciesList.map(async function(species, index) {
 
 		type = types.find(type => type.name[defaultLocale] === species.type);
 		family = families.find(family => family.name[defaultLocale] === species.family);
@@ -318,7 +323,7 @@ exports.uploadFile = async (req, res, next) => {
 		depth = depths.find(depth => depth.name[defaultLocale] === species.depth);
 
 		let behaviorList = [];
-		if(species.behavior){
+		if(species.behavior) {
 			beh = species.behavior.split(',');
 
 			beh.forEach(function(b, index) {
@@ -327,44 +332,60 @@ exports.uploadFile = async (req, res, next) => {
 		}
 		
 		let colorList = [];
-		if(species.color){
+		if(species.color) {
 			col = species.color.split(',');
 			col.forEach(function(c, index) {
 				this[index] = colors.find(color => color.name[defaultLocale] === c);
 			}, colorList);
 		}
 
+		if(species.GhUnits) {
+			// Convert hardness to base unit (ppm)
+			if(species.minGh)
+				species.minGh = await unitConverter(species.minGh, 'hardness', species.GhUnits);
+			if(species.maxGh)
+				species.maxGh = await unitConverter(species.maxGh, 'hardness', species.GhUnits);
+		}
+		if(species.KhUnits) {
+			// Convert hardness to base unit (ppm)
+			if(species.minKh)
+				species.minKh = await unitConverter(species.minKh, 'hardness', species.KhUnits);
+			if(species.maxKh)
+				species.maxKh = await unitConverter(species.maxKh, 'hardness', species.KhUnits);
+		}
+
 		this[index] = {
 			...this[index],
 			name: {
-				en: species.nameEn,
-				es: species.nameEs,
+				en: species.nameEn || null,
+				es: species.nameEs || null,
 			},
 			otherNames: {
 				en: species.otherNamesEn ? species.otherNamesEn.split(',') : [],
 				es: species.otherNamesEs ? species.otherNamesEs.split(',') : [],
 			},
-			parameters: {
+			// params: params, // This typo is not a mistake. Params cannot be inserted at the same time beacuse of the schema structure (subdocuments)
+			params: {
 				temperature: {
-					min: species.minTemp,
-					max: species.maxTemp
+					min: species.minTemp || null,
+					max: species.maxTemp || null
 				},
 				ph: {
-					min: species.minPh,
-					max: species.maxPh
+					min: species.minPh || null,
+					max: species.maxPh || null
 				},
 				gh: {
-					min: species.minGh,
-					max: species.maxGh
+					min: species.minGh || null,
+					max: species.maxGh || null
 				},
 				kh: {
-					min: species.minKh,
-					max: species.maxKh
+					min: species.minKh || null,
+					max: species.maxKh || null
 				}
 			},
 			length: {
-				min: species.minLength,
-				max: species.maxLength
+				min: species.minLength || null,
+				max: species.maxLength || null
 			},
 			type: type ? type._id : null,
 			family: family ? family._id : null,
@@ -376,16 +397,25 @@ exports.uploadFile = async (req, res, next) => {
 		};
 		
 		// Delete props in the excel list that don't match the species model (species list is not duplicated for memory optimization)
-		stringHelper.deleteProps(this[index], deleteProps);
+		helpers.deleteProps(this[index], deleteProps);
 
-	}, speciesList);
+	}, speciesList));
+	
 
-	return await Species.bulkWrite(speciesList.map(species => ({
-		updateOne: {
-			filter: {scientificName: species.scientificName},
-			update: species,
-			upsert: true,
+	return await Species.bulkWrite(speciesList.flatMap(species => ([
+		{
+			updateOne: {
+				filter: {scientificName: species.scientificName},
+				update: species,
+				upsert: true,
+			}
+		},
+		{
+			updateOne: {
+				filter: {scientificName: species.scientificName},
+				update: { $set: {parameters: species.params} },
+			}
 		}
-	})))
+	])))
 	
 }

@@ -30,7 +30,7 @@
       "url": "http://localhost:19006"
     },
     "imagesFolder": "public/images/",
-    "uploadsFolder": "public/uploads/",
+    "uploadsFolder": "private/uploads/",
     "uploadMaxSize": "50MB"
   },
   "production": {
@@ -45,7 +45,7 @@
       "url": "http://localhost:19006"
     },
     "imagesFolder": "public/images/",
-    "uploadsFolder": "public/uploads/",
+    "uploadsFolder": "private/uploads/",
     "uploadMaxSize": "15MB"
   }
 

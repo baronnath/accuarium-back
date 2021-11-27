@@ -12,10 +12,12 @@ const speciesSchema = new mongoose.Schema({
     name: {
         en: {
             type: String,
+            trim: true,
             default: null
         },
         es: {
             type: String,
+            trim: true,
             default: null
         },
     },
@@ -160,7 +162,8 @@ const speciesSchema = new mongoose.Schema({
     ]
 },
 { 
-    timestamps: true
+    timestamps: true,
+    minimize: false,
 });
 
 speciesSchema.plugin(mongooseAutopopulate);

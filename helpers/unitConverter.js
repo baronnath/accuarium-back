@@ -1,7 +1,7 @@
 // helpers/unitConverter.js
 
 const {	ErrorHandler } = require('./errorHandler');
-const {	round } = require('./string');
+const {	round } = require('./helpers');
 
 const properties = {
     hardness: {
@@ -23,7 +23,7 @@ const properties = {
     },
 }
 
-module.exports = (measure, from, to, value) => {
+module.exports = (value, measure, from, to) => {
 
     return new Promise(function (resolve, reject) {
 
@@ -31,9 +31,13 @@ module.exports = (measure, from, to, value) => {
         if(!properties.hasOwnProperty(measure))
             reject(new ErrorHandler(400, 'measure.notFound'));
         
-        // Check that "to" unit is valid
-        if(properties[measure].units.indexOf(from) < 0 || properties[measure].units.indexOf(to) < 0)
+        // Check that "from" unit is valid
+        if(properties[measure].units.indexOf(from) < 0)
             reject(new ErrorHandler(400, 'unit.notFound'));
+
+        // Set default target unit if not provided
+        if(!to)
+            to = properties[measure].units[0];
 
         // Determine the conversion factor
         let fromIndex = properties[measure].units.indexOf(from);
