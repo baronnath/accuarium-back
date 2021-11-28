@@ -41,6 +41,24 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: 'en'
     },
+    units: {
+        temperature: {
+            type: String,
+            default: 'celsius'
+        },
+        hardness: {
+            type: String,
+            default: 'ppm'
+        },
+        length: {
+            type: String,
+            default: 'cm'
+        },
+        volume: {
+            type: String,
+            default: 'liter'
+        }
+    },
     synchronizedAt: {
         type: Date,
         default: Date.now

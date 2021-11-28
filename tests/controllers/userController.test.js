@@ -22,7 +22,7 @@ let invalidAccessToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzk3OTY0NTYsImV4cCI6MTU3OTg4Mjg1Nn0.6EDOt1JR985EMK-AM3rDdqLfxEYVc84y6iS00sQCc3Q";
 
 beforeAll(async () => {
-  mongoose.connect(config["connectionString"], mongooseConfig);
+  await mongoose.connect(config["connectionString"], mongooseConfig);
 
   accessControl.init();
 
@@ -34,7 +34,7 @@ beforeAll(async () => {
 
 // Close the connection
 afterAll(async () => {
-  mongoose.connection.close();
+  await mongoose.connection.close();
 });
 
 // Login

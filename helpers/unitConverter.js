@@ -5,7 +5,7 @@ const {	round } = require('./helpers');
 
 const properties = {
     hardness: {
-        units: ['ppm', 'mg', 'µS',  'gh'],
+        units: ['ppm', 'mg', 'µS',  'gH'],
         factor: [1, 1, .641025641025641, 17.86]
     },
     volume: {

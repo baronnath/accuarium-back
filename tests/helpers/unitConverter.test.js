@@ -16,12 +16,12 @@ describe("unitConverter", () => {
       await expect(unitConverter(1, 'hardness', 'ppm', 'ppm')).resolves.toEqual(1);
       await expect(unitConverter(1, 'hardness', 'ppm', 'mg')).resolves.toEqual(1);
       await expect(unitConverter(1, 'hardness', 'ppm', 'µS')).resolves.toEqual(1.56);
-      await expect(unitConverter(1, 'hardness', 'ppm', 'gh')).resolves.toEqual(0.06);
+      await expect(unitConverter(1, 'hardness', 'ppm', 'gH')).resolves.toEqual(0.06);
 
       // Secondary units conversion
-      await expect(unitConverter(1, 'hardness', 'gh', 'mg')).resolves.toEqual(17.86);
-      await expect(unitConverter(1, 'hardness', 'mg', 'gh')).resolves.toEqual(0.06);
-      await expect(unitConverter(1, 'hardness', 'gh', 'µS')).resolves.toEqual(27.86);
+      await expect(unitConverter(1, 'hardness', 'gH', 'mg')).resolves.toEqual(17.86);
+      await expect(unitConverter(1, 'hardness', 'mg', 'gH')).resolves.toEqual(0.06);
+      await expect(unitConverter(1, 'hardness', 'gH', 'µS')).resolves.toEqual(27.86);
     });
 
     test("Test volume conversion", async () => {

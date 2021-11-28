@@ -107,7 +107,7 @@ exports.get = async (req, res, next) => {
 }
 
 exports.update = async (req, res, next) => {
-	const { userId, email, password, name, locale} = req.body;
+	const { userId, email, password, name, locale, units} = req.body;
 	let { role } = req.body;
 
 	// Check if the user is trying to update anyone else user
@@ -151,6 +151,10 @@ exports.update = async (req, res, next) => {
 
 	user.name = name;
 	user.locale = locale;
+
+	if(units){
+		user.units = units;
+	}
 
 	if(password){
 		user.password = await hashPassword(password);

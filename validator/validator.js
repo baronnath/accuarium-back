@@ -2,7 +2,7 @@
 
 const { body, validationResult } = require('express-validator');
 const {  ErrorHandler } = require('../helpers/errorHandler');
-const { isPureObject } = require('../helpers/string');
+const { isPureObject } = require('../helpers/helpers');
 
 // Make the real validation and return errors
 const validate = (req, res, next) => {
