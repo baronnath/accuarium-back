@@ -187,13 +187,17 @@ getTankCompatibility = async (data) => {
 			// pH
 			phCompatibility = isParameterCompatible(mainSpecies.parameters.ph, species.parameters.ph);
 
-			// dH
-			dhCompatibility = isParameterCompatible(mainSpecies.parameters.dh, species.parameters.dh);
+			// gH
+			ghCompatibility = isParameterCompatible(mainSpecies.parameters.gh, species.parameters.gh);
+
+			// kH
+			khCompatibility = isParameterCompatible(mainSpecies.parameters.kh, species.parameters.kh);
 
 			tankCompatibility['parameters'][species._id] = {
 				temperature: temperatureCompatibility,
 				ph: phCompatibility,
-				dh: dhCompatibility
+				gh: ghCompatibility,
+				kh: khCompatibility
 			}
 		// }
 	});
