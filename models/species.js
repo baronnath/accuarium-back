@@ -92,10 +92,10 @@ const speciesSchema = new mongoose.Schema({
             } 
         }
     },
-    litersSpecimen: {
+    volumeSpecimen: {
         type: Number
     },
-    minTankLiters: {
+    minTankVolume: {
         type: Number
     },
     specimenNumber: {

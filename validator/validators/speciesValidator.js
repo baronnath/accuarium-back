@@ -88,7 +88,7 @@ exports.createRules = () => {
     body('lenght')
         .optional()
         .isNumeric().withMessage('validation.notNumber'),
-    body('litersSpecimen')
+    body('volumeSpecimen')
         .optional()
         .isNumeric().withMessage('validation.notNumber'),
   ]
