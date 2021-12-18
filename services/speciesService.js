@@ -214,10 +214,32 @@ exports.update = async (req, res, next) => {
 
 exports.search = async (req, res, next) => {
 	const locale = req.user.locale || defaultLocale;
-	const keyword = req.query.keyword;
-	let field = req.query.sort;
-	let direction = req.query.direction;
-	let page = req.query.page;
+	let {
+		keyword,
+		field,
+		direction,
+		page,
+		minTemp,
+		maxTemp,
+		minPh,
+		maxPh,
+		maxGh,
+		minGh,
+		minKh,
+		maxKh,
+		type,
+		family,
+		group,
+		depth,
+		color,
+		minLength,
+		maxLength,
+		minMinTank,
+		maxMinTank,
+		cleaning,
+		wild,
+		salt
+	} = req.query;
 	const perPage = config.pagination;
 	let criteria = {};
 
@@ -236,16 +258,93 @@ exports.search = async (req, res, next) => {
 		let regex = new RegExp(keyword, 'i');
 		let nameField = 'name.'+locale;
 		let otherNamesField= 'otherNames.'+locale;
-		criteria = {
-			$or: [ { [nameField] : { $regex: regex }}, { [otherNamesField]: { $regex: regex } } ]
+		criteria.$or = [ { [nameField] : { $regex: regex }}, { [otherNamesField]: { $regex: regex } } ];
+	}
+
+	if(minTemp){
+		criteria['parameters.temperature.max'] = { $gte: minTemp };
+	}
+	if(maxTemp){
+		criteria['parameters.temperature.min'] = { $lte: maxTemp };
+	}
+
+	if(minPh){
+		criteria['parameters.ph.max'] = { $gte: minPh };
+	}
+	if(maxPh){
+		criteria['parameters.ph.min'] = { $lte: maxPh };
+	}
+
+	if(minGh){
+		criteria['parameters.gh.max'] = { $gte: minGh };
+	}
+	if(maxGh){
+		criteria['parameters.gh.min'] = { $lte: maxGh };
+	}
+
+	if(minKh){
+		criteria['parameters.kh.max'] = { $gte: minKh };
+	}
+	if(maxKh){
+		criteria['parameters.kh.min'] = { $lte: maxKh };
+	}
+
+	if(type){
+		criteria.type = type;
+	}
+
+	if(family){
+		criteria.family = family;
+	}
+
+	if(group){
+		criteria.group = group;
+	}
+
+	if(depth){
+		criteria.depth = depth;
+	}
+
+	if(color){
+		criteria.color = { $in: color } // Matchs any of the colors ($in is like OR and $all like AND)
+	}
+
+	if(minLength){
+		criteria['length.max'] = { $gte: minLength };
+	}
+	if(maxLength){
+		criteria['length.min'] = { $lte: maxLength };
+	}
+
+	if(minMinTank || maxMinTank){
+		criteria['minTankVolume'] = {};
+		if(minMinTank){
+			criteria['minTankVolume'].$gte = minMinTank;
+		}
+		if(maxMinTank){
+			criteria['minTankVolume'].$lte = maxMinTank;
 		}
 	}
+
+	if(cleaning){
+		criteria.cleaning = cleaning;
+	}
+
+	if(wild){
+		criteria.wild = wild;
+	}
+
+	if(salt){
+		criteria.salt = salt;
+	}
+
+	console.log(criteria);
 
 	species = await Species
 		.find(criteria)
 		.sort({[field]: direction})
 		.skip(perPage * page)
-  	.limit(perPage);
+  		.limit(perPage);
 
  	total = await Species
 		.find(criteria)
