@@ -231,10 +231,10 @@
 			"role": "5e8cdd3b8296523464c7460b",
 			"endPoint": "5e8cdd3b8296523464c7462e",
 			"grants": {
-				"createOwn": true,
+				"createOwn": false,
 			    "readOwn": true,
-			    "updateOwn": true,
-			    "deleteOwn": true,
+			    "updateOwn": false,
+			    "deleteOwn": false,
 			    "createAny": false,
 			    "readAny": true,
 			    "updateAny": false,
@@ -306,14 +306,14 @@
 			"role": "5e8cdd3b8296523464c7460b",
 			"endPoint": "5e8cdd3b8296523464c7462f",
 			"grants": {
-				"createOwn": true,
-			    "readOwn": true,
-			    "updateOwn": true,
-			    "deleteOwn": true,
-			    "createAny": false,
-			    "readAny": true,
-			    "updateAny": false,
-			    "deleteAny": false
+				"createOwn": false,
+        "readOwn": true,
+        "updateOwn": false,
+        "deleteOwn": false,
+        "createAny": false,
+        "readAny": true,
+        "updateAny": false,
+        "deleteAny": false
 			},
 			"excludes": {
 				"createOwn": null,
@@ -357,13 +357,13 @@
 			"endPoint": "5e8cdd3b8296523464c7462f",
 			"grants": {
 				"createOwn": true,
-			    "readOwn": true,
-			    "updateOwn": true,
-			    "deleteOwn": true,
-			    "createAny": true,
-			    "readAny": true,
-			    "updateAny": true,
-			    "deleteAny": true
+        "readOwn": true,
+        "updateOwn": true,
+        "deleteOwn": true,
+        "createAny": true,
+        "readAny": true,
+        "updateAny": true,
+        "deleteAny": true
 			},
 			"excludes": {
 				"createOwn": null,
@@ -381,14 +381,14 @@
 			"role": "5e8cdd3b8296523464c7460b",
 			"endPoint": "5e8cdd3b8296523464c74621",
 			"grants": {
-				"createOwn": true,
-			    "readOwn": true,
-			    "updateOwn": true,
-			    "deleteOwn": true,
-			    "createAny": false,
-			    "readAny": true,
-			    "updateAny": false,
-			    "deleteAny": false
+				"createOwn": false,
+        "readOwn": true,
+        "updateOwn": false,
+        "deleteOwn": false,
+        "createAny": false,
+        "readAny": true,
+        "updateAny": false,
+        "deleteAny": false
 			},
 			"excludes": {
 				"createOwn": null,
@@ -607,13 +607,38 @@
 			"endPoint": "5e8cdd3b8296523464c74656",
 			"grants": {
 				"createOwn": true,
-			    "readOwn": true,
-			    "updateOwn": true,
-			    "deleteOwn": true,
-			    "createAny": true,
-			    "readAny": true,
-			    "updateAny": true,
-			    "deleteAny": true
+        "readOwn": true,
+        "updateOwn": true,
+        "deleteOwn": true,
+        "createAny": true,
+        "readAny": true,
+        "updateAny": true,
+        "deleteAny": true
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+    {
+			"_id": "5e8cdd3b8296523464c7467d",
+			"role": "5e8cdd3b8296523464c7460b",
+			"endPoint": "5e8cdd3b8296523464c74656",
+			"grants": {
+				"createOwn": false,
+        "readOwn": true,
+        "updateOwn": false,
+        "deleteOwn": false,
+        "createAny": false,
+        "readAny": true,
+        "updateAny": false,
+        "deleteAny": false
 			},
 			"excludes": {
 				"createOwn": null,
