@@ -92,5 +92,13 @@
 					"es": "localización"
 				}
 			}
+      ,
+			{
+				"_id": "5e8cdd3b8296523464c74627",
+				"name": {
+					"en": "color",
+					"es": "color"
+				}
+			}
 		]
 	}

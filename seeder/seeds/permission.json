@@ -875,6 +875,81 @@
 				"updateAny": null,
 				"deleteAny": null
 			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c7482d",
+			"role": "5e8cdd3b8296523464c7460b",
+			"endPoint": "5e8cdd3b8296523464c74627",
+			"grants": {
+				"createOwn": false,
+        "readOwn": true,
+        "updateOwn": false,
+        "deleteOwn": false,
+        "createAny": false,
+        "readAny": true,
+        "updateAny": false,
+        "deleteAny": false
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c7482e",
+			"role": "5e8cdd3b8296523464c7460c",
+			"endPoint": "5e8cdd3b8296523464c74627",
+			"grants": {
+				"createOwn": false,
+			    "readOwn": true,
+			    "updateOwn": false,
+			    "deleteOwn": false,
+			    "createAny": false,
+			    "readAny": true,
+			    "updateAny": false,
+			    "deleteAny": false
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd3b8296523464c7482f",
+			"role": "5e8cdd3b8296523464c7460e",
+			"endPoint": "5e8cdd3b8296523464c74627",
+			"grants": {
+				"createOwn": true,
+			    "readOwn": true,
+			    "updateOwn": true,
+			    "deleteOwn": true,
+			    "createAny": true,
+			    "readAny": true,
+			    "updateAny": true,
+			    "deleteAny": true
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
 		}
 	]
 }
