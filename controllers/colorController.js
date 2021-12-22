@@ -1,7 +1,7 @@
 // controllers/colorController.js
 
 const Color 			= require('../models/color');
-const colorService	= require('../services/behaviorService');
+const colorService	= require('../services/colorService');
 const {	ErrorHandler }	= require('../helpers/errorHandler');
 
 let user;
