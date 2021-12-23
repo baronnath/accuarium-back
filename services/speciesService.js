@@ -2,6 +2,7 @@
 
 const fs			= require('fs');
 const Species		= require('../models/species');
+const Tank		= require('../models/tank');
 const Type			= require('../models/type');
 const Family		= require('../models/family');
 const Group			= require('../models/group');
@@ -219,6 +220,7 @@ exports.search = async (req, res, next) => {
 		field,
 		direction,
 		page,
+    tank,
 		minTemp,
 		maxTemp,
 		minPh,
@@ -238,7 +240,8 @@ exports.search = async (req, res, next) => {
 		maxMinTank,
 		cleaning,
 		wild,
-		salt
+		salt,
+    behavior
 	} = req.query;
 	const perPage = config.pagination;
 	let criteria = {};
@@ -261,33 +264,51 @@ exports.search = async (req, res, next) => {
 		criteria.$or = [ { [nameField] : { $regex: regex }}, { [otherNamesField]: { $regex: regex } } ];
 	}
 
-	if(minTemp){
-		criteria['parameters.temperature.max'] = { $gte: minTemp };
-	}
-	if(maxTemp){
-		criteria['parameters.temperature.min'] = { $lte: maxTemp };
-	}
+  if(tank){ // Use tank params
+    // Look for the main species
+    tank = await Tank
+			.findById(tank);
+    let { species }  = this.findMainSpecies(tank.species);
+    
+    // Overwrite params with main species' params
+    const params = species.parameters;
+    params.temperature.min ? minTemp = params.temperature.min : null;
+    params.temperature.min ? maxTemp = params.temperature.max : null;
+    params.ph.min ? minPh = params.ph.min : null;
+    params.ph.min ? maxPh = params.ph.max : null;
+		params.gh.min ? minGh = params.gh.min : null;
+    params.gh.min ? maxGh = params.gh.max : null;
+		params.kh.min ? minKh = params.kh.min : null;
+    params.kh.min ? maxKh = params.kh.max : null;
+  }
 
-	if(minPh){
-		criteria['parameters.ph.max'] = { $gte: minPh };
-	}
-	if(maxPh){
-		criteria['parameters.ph.min'] = { $lte: maxPh };
-	}
+  if(minTemp){
+    criteria['parameters.temperature.max'] = { $gte: minTemp };
+  }
+  if(maxTemp){
+    criteria['parameters.temperature.min'] = { $lte: maxTemp };
+  }
 
-	if(minGh){
-		criteria['parameters.gh.max'] = { $gte: minGh };
-	}
-	if(maxGh){
-		criteria['parameters.gh.min'] = { $lte: maxGh };
-	}
+  if(minPh){
+    criteria['parameters.ph.max'] = { $gte: minPh };
+  }
+  if(maxPh){
+    criteria['parameters.ph.min'] = { $lte: maxPh };
+  }
 
-	if(minKh){
-		criteria['parameters.kh.max'] = { $gte: minKh };
-	}
-	if(maxKh){
-		criteria['parameters.kh.min'] = { $lte: maxKh };
-	}
+  if(minGh){
+    criteria['parameters.gh.max'] = { $gte: minGh };
+  }
+  if(maxGh){
+    criteria['parameters.gh.min'] = { $lte: maxGh };
+  }
+
+  if(minKh){
+    criteria['parameters.kh.max'] = { $gte: minKh };
+  }
+  if(maxKh){
+    criteria['parameters.kh.min'] = { $lte: maxKh };
+  }
 
 	if(type){
 		criteria.type = type;
@@ -305,7 +326,11 @@ exports.search = async (req, res, next) => {
 		criteria.depth = depth;
 	}
 
-	if(color){
+	if(behavior){
+		criteria.behavior = { $in: behavior } // Matchs any of the colors ($in is like OR and $all like AND)
+	}
+
+  if(color){
 		criteria.color = { $in: color } // Matchs any of the colors ($in is like OR and $all like AND)
 	}
 
@@ -517,4 +542,12 @@ exports.uploadFile = async (req, res, next) => {
 		}
 	])))
 	
+}
+
+exports.findMainSpecies = (species) => {
+  const main = species.find(sp => sp.main);
+  if(main)
+    return main;
+  else
+    return null;
 }
