@@ -23,7 +23,7 @@
 					"en": "silver",
 					"es": "plateado"
 				},
-				"hex": "c0c0c0"
+				"hex": "b2bec3"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462d",
@@ -31,7 +31,7 @@
 					"en": "golden",
 					"es": "dorado"
 				},
-				"hex": "d4af37"
+				"hex": "fdcb6e"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462e",
@@ -39,7 +39,7 @@
 					"en": "red",
 					"es": "rojo"
 				},
-				"hex": "ff0000"
+				"hex": "ee5353"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462f",
@@ -47,7 +47,7 @@
 					"en": "brown",
 					"es": "marrón"
 				},
-				"hex": "654321"
+				"hex": "926740"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c74621",
@@ -55,7 +55,7 @@
 					"en": "yellow",
 					"es": "amarillo"
 				},
-				"hex": "ffff00"
+				"hex": "ffeaa7"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c74622",
@@ -63,7 +63,7 @@
 					"en": "green",
 					"es": "verde"
 				},
-				"hex": "00ff00"
+				"hex": "00b894"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c74623",
@@ -71,7 +71,7 @@
 					"en": "blue",
 					"es": "azul"
 				},
-				"hex": "0000ff"
+				"hex": "2e86de"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c74624",
@@ -79,7 +79,7 @@
 					"en": "pink",
 					"es": "rosa"
 				},
-				"hex": "ff00ff"
+				"hex": "fd79a8"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c74625",
@@ -87,7 +87,7 @@
 					"en": "purple",
 					"es": "morado"
 				},
-				"hex": "800080"
+				"hex": "6c5ce7"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c74626",
@@ -95,7 +95,7 @@
 					"en": "orange",
 					"es": "naranja"
 				},
-				"hex": "ff8000"
+				"hex": "ff9f43"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c74628",
@@ -103,7 +103,7 @@
 					"en": "gray",
 					"es": "gris"
 				},
-				"hex": "#666666"
+				"hex": "636e72"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c74627",
@@ -111,7 +111,7 @@
 					"en": "multicolor",
 					"es": "multicolor"
 				},
-				"hex": ""
+				"hex": "-1"
 			}
 		]
 	}
