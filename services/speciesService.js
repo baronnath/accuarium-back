@@ -427,6 +427,12 @@ exports.uploadFile = async (req, res, next) => {
 		'KhUnits',
 		'minKh',
 		'maxKh',
+    'indivCoexistence',
+    'coupleCoexistence',
+    'onlyMascCoexistence',
+    'onlyFemCoexistence',
+    'haremCoexistence',
+    'inverseHaremCoexistence',
 	];
 
 	// Retrieve all from type, family, groups, feed, behaviors and colors
@@ -507,6 +513,14 @@ exports.uploadFile = async (req, res, next) => {
 					max: species.maxKh || null
 				}
 			},
+      coexistence: {
+        indiv : !!species.indivCoexistence,
+        couple : !!species.coupleCoexistence,
+        onlyMasc : !!species.onlyMascCoexistence,
+        onlyFem : !!species.onlyFemCoexistence,
+        harem : !!species.haremCoexistence,
+        inverseHarem : !!species.inverseHaremCoexistence,
+      },
 			length: {
 				min: species.minLength || null,
 				max: species.maxLength || null

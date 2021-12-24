@@ -28,8 +28,8 @@ describe("uploadFile", () => {
     const res = mockResponse();
     const next = mockNext();
     let update = await speciesService.uploadFile(req, res, next);
-    console.log(update);
-    expect(update).toHaveProperty('nMatched',12);
+    // console.log(update);
+    expect(update).toHaveProperty('nMatched',6);
     expect(update).toHaveProperty('nModified',6);
     expect(update).toHaveProperty('ok',1);
   });

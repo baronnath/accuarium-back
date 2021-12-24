@@ -33,6 +33,14 @@
 			            "max": 0.3
 			        }
 			    },
+          "coexistence": {
+            "indiv": true,
+            "couple": true,
+            "onlyMasc": true,
+            "onlyFem": true,
+            "harem": true,
+            "inverseHarem": true
+          },
 			    "volumeSpecimen": 10,
 			    "minTankVolume": 30,
 			    "length": {
@@ -88,6 +96,14 @@
 			            "max": 0.3
 			        }
 			    },
+          "coexistence": {
+            "indiv": false,
+            "couple": false,
+            "onlyMasc": false,
+            "onlyFem": false,
+            "harem": false,
+            "inverseHarem": false
+          },
 			    "volumeSpecimen": 10,
 			    "minTankVolume": 100,
 			    "length": {
@@ -139,6 +155,14 @@
 			            "max": 0.3
 			        }
 			    },
+          "coexistence": {
+            "indiv": true,
+            "couple": false,
+            "onlyMasc": true,
+            "onlyFem": false,
+            "harem": true,
+            "inverseHarem": false
+          },
 			    "volumeSpecimen": 10,
 			    "minTankVolume": 50,
 			    "length": {

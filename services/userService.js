@@ -20,26 +20,27 @@ exports.isLoggedIn = async (req) => {
 	let exp;
 
 	if(!req.headers.authorization || req.headers.authorization.indexOf('Bearer ') === -1){
-	   	throw new ErrorHandler(401, 'user.login.notLoggedIn');
-  	}
+    throw new ErrorHandler(401, 'user.login.notLoggedIn');
+  }
 
-  	try{
- 		const auth = await jwt.verify(req.headers.authorization.split(' ')[1], jwtSecret);
+  try{
+    const auth = await jwt.verify(req.headers.authorization.split(' ')[1], jwtSecret);
  		user = auth.user;
  		exp = auth.exp;
-  	} catch {
-  		user = null;
-  	}
+  } catch {
+    user = null;
+  }
+
+
 	
 	if(!user) {
 		throw new ErrorHandler(401, 'validation.token.notExists');
 	}
 
-
-  	// Check if token has expired
-  	if (exp < Date.now().valueOf() / 1000) { 
-	   throw new ErrorHandler(401, 'user.login.sessionExpired');
-  	}
+  // Check if token has expired
+  if (exp < Date.now().valueOf() / 1000) { 
+    throw new ErrorHandler(401, 'user.login.sessionExpired');
+  }
 
 	const userObj = await User.findById(user._id);
 
@@ -341,8 +342,6 @@ exports.sendInvitation = async (user, req, res, next) => {
 		preheader: req.i18n.t('user.invitation.preheader')
 	}
 
-	console.log(user.locale);
-
 	let email = new mailer.Email(
 		user.locale || 'en',
 		user.email,
@@ -395,7 +394,6 @@ exports.search = async (req, res, next) => {
 		.find(criteria)
 		.countDocuments();
 
-		console.log(users);
 
 	return {
 		users,

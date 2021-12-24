@@ -92,6 +92,26 @@ const speciesSchema = new mongoose.Schema({
             } 
         }
     },
+    coexistence: {
+        indiv: {
+            type: Boolean,
+        },
+        couple: {
+            type: Boolean,
+        },
+        onlyMasc: {
+            type: Boolean,
+        },
+        onlyFem: {
+            type: Boolean,
+        },
+        harem: {
+            type: Boolean,
+        },
+        inverseHarem: {
+            type: Boolean,
+        }
+    },
     volumeSpecimen: {
         type: Number
     },

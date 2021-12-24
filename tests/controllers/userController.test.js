@@ -53,17 +53,21 @@ describe("isLoggedIn", () => {
     expect(req).toHaveProperty("user");
   });
   test("Expired token is rejected", async () => {
-    const req = mockRequest(
-      {},
+    const req = await mockRequest(
       {
-        accessToken: expiredAccessToken,
-      }
+        authorization: `Bearer ${expiredAccessToken}`,
+      },
+      {}
     );
     const res = mockResponse();
-    await userController.isLoggedIn(req, res, (err) => {
-      expect(err).toBeDefined();
-      expect(err.name).toBe("TypeError");
-    });
+    const next = mockNext();
+    try{
+      await userController.isLoggedIn(req, res, next);
+    } catch (err) {
+      expect(next).toBeDefined();
+      expect(next.name).toBe("Error");
+    }
+    
   });
   test("Not matching or invalid token is rejected", async () => {
     const req = await mockRequest(
@@ -73,10 +77,13 @@ describe("isLoggedIn", () => {
       }
     );
     const res = mockResponse();
-    await userController.isLoggedIn(req, res, (err) => {
-      expect(err).toBeTruthy();
-      expect(err.name).toBe("TypeError");
-    });
+    const next = mockNext();
+    try{
+      await userController.isLoggedIn(req, res, next);
+    } catch (err) {
+      expect(next).toBeDefined();
+      expect(next.name).toBe("Error");
+    }
   });
 });
 
@@ -280,15 +287,8 @@ describe('update', () => {
         "user": expect.objectContaining({
           "__v": expect.anything(),
           "_id": expect.anything(),
-          "createdAt": expect.any(Date),
           "email": "user1@accuarium.io",
-          "image": expect.anything(),
-          "locale": expect.anything(),
           "name": "User to update",
-          "notification": true,
-          "role": expect.any(Object),
-          "synchronizedAt": expect.any(Date),
-          "updatedAt": expect.any(Date),
         })
       })
     );
