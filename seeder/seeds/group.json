@@ -6,252 +6,328 @@
 			"name": {
 				"en": "gouramis",
 				"es": "gouramis"
-			}
+			},
+      "icon": "gourami"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c7462c",
 			"name": {
 				"en": "eels",
 				"es": "anguilas"
-			}
+			},
+      "icon": "eel"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c7462d",
 			"name": {
 				"en": "rainbow",
 				"es": "arcoiris"
-			}
+			},
+      "icon": "rainbow"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c7462e",
 			"name": {
 				"en": "arowanas",
 				"es": "arowanas"
-			}
+			},
+      "icon": "arowana"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c7462f",
 			"name": {
 				"en": "bettas",
 				"es": "bettas"
-			}
+			},
+      "icon": "betta"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74621",
 			"name": {
 				"en": "botias",
 				"es": "botias"
-			}
+			},
+      "icon": "botia"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74622",
 			"name": {
 				"en": "corydoras",
 				"es": "corydoras"
-			}
+			},
+      "icon": "corydora"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74623",
 			"name": {
 				"en": "danios",
 				"es": "danios"
-			}
+			},
+      "icon": "danio"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74624",
 			"name": {
 				"en": "discus",
 				"es": "discos"
-			}
+			},
+      "icon": "discus"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74625",
 			"name": {
 				"en": "scalars",
 				"es": "escalares"
-			}
+			},
+      "icon": "scalar"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74626",
 			"name": {
 				"en": "guppies",
 				"es": "guppies"
-			}
+			},
+      "icon": "guppy"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74627",
 			"name": {
 				"en": "killis",
 				"es": "killis"
-			}
+			},
+      "icon": "killi"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74628",
 			"name": {
 				"en": "labeos",
 				"es": "labeos"
-			}
+			},
+      "icon": "labeo"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74629",
 			"name": {
 				"en": "mollies",
-				"es": "mollies"
-			}
+				"es": "mollis"
+			},
+      "icon": "molly"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c7463a",
 			"name": {
 				"en": "oscar",
 				"es": "óscar"
-			}
+			},
+      "icon": "oscar"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c7463b",
 			"name": {
-				"en": "crocodilefishes",
+				"en": "crocodile fishes",
 				"es": "peces cocodrillo"
-			}
+			},
+      "icon": "crocodile-fish"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c7463c",
 			"name": {
-				"en": "knifefishes",
+				"en": "knife fishes",
 				"es": "peces cuchillo"
-			}
+			},
+      "icon": "knife-fish"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c7463d",
 			"name": {
-				"en": "blowfishes",
+				"en": "blow fishes",
 				"es": "peces globo"
-			}
+			},
+      "icon": "blow-fish"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c7463e",
 			"name": {
-				"en": "sawfishes",
+				"en": "saw fishes",
 				"es": "peces sierra"
-			}
+			},
+      "icon": "saw-fish"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c7463f",
 			"name": {
 				"en": "piranhas",
 				"es": "pirañas"
-			}
+			},
+      "icon": "piranha"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74631",
 			"name": {
-				"en": "platies",
-				"es": "platies"
-			}
+				"en": "xiphos",
+				"es": "xifos"
+			},
+      "icon": "xipho"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74632",
 			"name": {
 				"en": "rams",
 				"es": "ramirezis"
-			}
+			},
+      "icon": "ramirezi"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74633",
 			"name": {
 				"en": "rasboras",
 				"es": "rasboras"
-			}
+			},
+      "icon": "rasbora"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74634",
 			"name": {
 				"en": "stingrays",
 				"es": "rayas"
-			}
+			},
+      "icon": "stingray"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74635",
 			"name": {
 				"en": "tetras",
 				"es": "tetras"
-			}
-		},
-		{
-			"_id": "5e8cdd3b8296523464c74636",
-			"name": {
-				"en": "xiphos",
-				"es": "xiphos"
-			}
+			},
+      "icon": "tetra"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74637",
 			"name": {
 				"en": "barbs",
 				"es": "barbos"
-			}
+			},
+      "icon": "barb"
 		},
     {
 			"_id": "5e8cdd3b8296523464c74659",
 			"name": {
 				"en": "asian cichlids",
 				"es": "cíclidos asiáticos"
-			}
+			},
+      "icon": "asian-cichlid"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74638",
 			"name": {
 				"en": "south american cichlids",
 				"es": "cíclidos sudamericanos"
-			}
+			},
+      "icon": "south-american-cichlid"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74639",
 			"name": {
 				"en": "central american cichlids",
 				"es": "cíclidos centroamericanos"
-			}
+			},
+      "icon": "central-american-cichlid"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74616",
 			"name": {
 				"en": "north american cichlids",
 				"es": "cíclidos norteamericanos"
-			}
+			},
+      "icon": "north-american-cichlid"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74640",
 			"name": {
 				"en": "african rives cichlids",
 				"es": "cíclidos africanos fluviales"
-			}
+			},
+      "icon": "south-american-cichlid"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74641",
 			"name": {
 				"en": "victoria cichlids",
 				"es": "cíclidos victoria"
-			}
+			},
+      "icon": "victoria-cichlid"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74642",
 			"name": {
 				"en": "malawi cichlids",
 				"es": "cíclidos malawi"
-			}
+			},
+      "icon": "malawi-cichlid"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74643",
 			"name": {
 				"en": "tanganika cichlids",
 				"es": "cíclidos tanganika"
-			}
+			},
+      "icon": "tanganika-cichlid"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74645",
 			"name": {
 				"en": "catfishes",
 				"es": "siluros"
-			}
+			},
+      "icon": "cat-fish"
+		},
+		{
+			"_id": "5e8cdd3b8296523464c74646",
+			"name": {
+				"en": "worms",
+				"es": "gusanos"
+			},
+      "icon": "worm"
+		},
+		{
+			"_id": "5e8cdd3b8296523464c74647",
+			"name": {
+				"en": "crabs",
+				"es": "cangrejos"
+			},
+      "icon": "crab"
+		},
+		{
+			"_id": "5e8cdd3b8296523464c74648",
+			"name": {
+				"en": "lobters",
+				"es": "siluros"
+			},
+      "icon": "langosta"
+		},
+		{
+			"_id": "5e8cdd3b8296523464c74649",
+			"name": {
+				"en": "shrimps",
+				"es": "gambas"
+			},
+      "icon": "shrimp"
+		},
+		{
+			"_id": "5e8cdd3b8296523464c74650",
+			"name": {
+				"en": "jelly fishes",
+				"es": "medusas"
+			},
+      "icon": "jelly-fish"
+		},
+		{
+			"_id": "5e8cdd3b8296523464c74651",
+			"name": {
+				"en": "snails",
+				"es": "caracoles"
+			},
+      "icon": "snail"
 		}
 	]
 }

@@ -77,7 +77,7 @@
 	    		},
 	    		"type": "60416e13bf576133e50d8dab",
 	    		"family": "5e8cdd3b8296523464c7462c",
-	    		"group": "5e8cdd3b8296523464c7462b",
+	    		"group": "5e8cdd3b8296523464c74624",
 	    		"parameters": {
 	    			"temperature": {
 		            	"min": 23,
@@ -136,7 +136,7 @@
 	    		},
 	    		"type": "60416e13bf576133e50d8dab",
 	    		"family": "5e8cdd3b8296523464c7462d",
-	    		"group": "5e8cdd3b8296523464c7462c",
+	    		"group": "5e8cdd3b8296523464c7463a",
 	    		"parameters": {
 	    			"temperature": {
 		            	"min": 19,
