@@ -8,49 +8,49 @@
 					"en": "species one",
 					"es": "especie uno"
 				},
-	    		"otherNames": {
-	    			"en": ["Barbus","Barbies"],
-	    			"es": ["Barba","Barbarie"]
-	    		},
-	    		"type": "60416e13bf576133e50d8dab",
-	    		"family": "5e8cdd3b8296523464c7462c",
-	    		"group": "5e8cdd3b8296523464c7462b",
-	    		"parameters": {
-	    			"temperature": {
-		            	"min": 21,
-			            "max": 25
-			        },
-	        		"ph": {
-		            	"min": 4,
-			            "max": 6
-			        },
-			        "gh": {
-		            	"min": 0.1,
-			            "max": 0.3
-			        },
-			        "kh": {
-		            	"min": 0.1,
-			            "max": 0.3
-			        }
-			    },
-          "coexistence": {
-            "indiv": true,
-            "couple": true,
-            "onlyMasc": true,
-            "onlyFem": true,
-            "harem": true,
-            "inverseHarem": true
+        "otherNames": {
+          "en": ["Barbus","Barbies"],
+          "es": ["Barba","Barbarie"]
+        },
+        "type": "60416e13bf576133e50d8dab",
+        "family": "5e8cdd3b8296523464c7462c",
+        "group": "5e8cdd3b8296523464c7462b",
+        "parameters": {
+          "temperature": {
+              "min": 21,
+              "max": 25
           },
-			    "volumeSpecimen": 10,
-			    "minTankVolume": 30,
-			    "length": {
-	            	"min": 15,
-		            "max": 20
-		        },
-			    "feed": "5e8cdd3b8296523464c7462b",
-			    "varietyOf": null,
-			    "depth": "5e8cdd3b8296523464c7462b",
-			    "behavior": [
+          "ph": {
+              "min": 4,
+              "max": 6
+          },
+          "gh": {
+              "min": 0.1,
+              "max": 0.3
+          },
+          "kh": {
+              "min": 0.1,
+              "max": 0.3
+          }
+        },
+        "coexistence": {
+          "indiv": true,
+          "couple": true,
+          "onlyMasc": true,
+          "onlyFem": true,
+          "harem": true,
+          "inverseHarem": true
+        },
+        "volumeSpecimen": 10,
+        "minTankVolume": 30,
+        "length": {
+            "min": 15,
+            "max": 20
+        },
+        "feed": "5e8cdd3b8296523464c7462b",
+        "varietyOf": null,
+        "depth": "5e8cdd3b8296523464c7462b",
+        "behavior": [
 					"5e8cdd3b8296523464c7462a",
 					"5e8cdd3b8296523464c7462b",
 					"5e8cdd3b8296523464c7462c",
@@ -71,49 +71,49 @@
 					"en": "species two",
 					"es": "especie dos"
 				},
-	    		"otherNames": {
-	    			"en": ["Thai fighter","Betta"],
-	    			"es": ["Betita","Luchador de Xian"]
-	    		},
-	    		"type": "60416e13bf576133e50d8dab",
-	    		"family": "5e8cdd3b8296523464c7462c",
-	    		"group": "5e8cdd3b8296523464c74624",
-	    		"parameters": {
-	    			"temperature": {
-		            	"min": 23,
-			            "max": 28
-			        },
-	        		"ph": {
-		            	"min": 5,
-			            "max": 6
-			        },
-			        "gh": {
-		            	"min": 0.1,
-			            "max": 0.3
-			        },
-			        "kh": {
-		            	"min": 0.1,
-			            "max": 0.3
-			        }
-			    },
-          "coexistence": {
-            "indiv": false,
-            "couple": false,
-            "onlyMasc": false,
-            "onlyFem": false,
-            "harem": false,
-            "inverseHarem": false
+        "otherNames": {
+          "en": ["Thai fighter","Betta"],
+          "es": ["Betita","Luchador de Xian"]
+        },
+        "type": "60416e13bf576133e50d8dab",
+        "family": "5e8cdd3b8296523464c7462c",
+        "group": "5e8cdd3b8296523464c74624",
+        "parameters": {
+          "temperature": {
+                "min": 23,
+                "max": 28
           },
-			    "volumeSpecimen": 10,
-			    "minTankVolume": 100,
-			    "length": {
-	            	"min": 15,
-		            "max": 20
-		        },
-			    "feed": "5e8cdd3b8296523464c7462b",
-			    "varietyOf": null,
-			    "depth": "5e8cdd3b8296523464c7462b",
-			    "behavior": [
+          "ph": {
+              "min": 5,
+              "max": 6
+          },
+          "gh": {
+              "min": 0.1,
+              "max": 0.3
+          },
+          "kh": {
+              "min": 0.1,
+              "max": 0.3
+          }
+        },
+        "coexistence": {
+          "indiv": false,
+          "couple": false,
+          "onlyMasc": false,
+          "onlyFem": false,
+          "harem": false,
+          "inverseHarem": false
+        },
+        "volumeSpecimen": 10,
+        "minTankVolume": 100,
+        "length": {
+              "min": 15,
+              "max": 20
+          },
+        "feed": "5e8cdd3b8296523464c7462b",
+        "varietyOf": null,
+        "depth": "5e8cdd3b8296523464c7462b",
+        "behavior": [
 					"5e8cdd3b8296523464c7462a",
 					"5e8cdd3b8296523464c7463e"
 				],
@@ -130,49 +130,49 @@
 					"en": "species three",
 					"es": "especie tres"
 				},
-	    		"otherNames": {
-	    			"en": ["Neonius", "Fluorescent fish"],
-	    			"es": ["Neon","Tetra"]
-	    		},
-	    		"type": "60416e13bf576133e50d8dab",
-	    		"family": "5e8cdd3b8296523464c7462d",
-	    		"group": "5e8cdd3b8296523464c7463a",
-	    		"parameters": {
-	    			"temperature": {
-		            	"min": 19,
-			            "max": 20
-			        },
-	        		"ph": {
-		            	"min": 6,
-			            "max": 8
-			        },
-			        "gh": {
-		            	"min": 0.1,
-			            "max": 0.3
-			        },
-			        "kh": {
-		            	"min": 0.1,
-			            "max": 0.3
-			        }
-			    },
-          "coexistence": {
-            "indiv": true,
-            "couple": false,
-            "onlyMasc": true,
-            "onlyFem": false,
-            "harem": true,
-            "inverseHarem": false
+        "otherNames": {
+          "en": ["Neonius", "Fluorescent fish"],
+          "es": ["Neon","Tetra"]
+        },
+        "type": "60416e13bf576133e50d8dab",
+        "family": "5e8cdd3b8296523464c7462d",
+        "group": "5e8cdd3b8296523464c7463a",
+        "parameters": {
+          "temperature": {
+              "min": 19,
+              "max": 20
           },
-			    "volumeSpecimen": 10,
-			    "minTankVolume": 50,
-			    "length": {
-	            	"min": 15,
-		            "max": 20
-		        },
-			    "feed": "5e8cdd3b8296523464c7462b",
-			    "varietyOf": null,
-			    "depth": "5e8cdd3b8296523464c7462b",
-			    "behavior": [
+          "ph": {
+              "min": 6,
+              "max": 8
+          },
+          "gh": {
+              "min": 0.1,
+              "max": 0.3
+          },
+          "kh": {
+              "min": 0.1,
+              "max": 0.3
+          }
+        },
+        "coexistence": {
+          "indiv": true,
+          "couple": false,
+          "onlyMasc": true,
+          "onlyFem": false,
+          "harem": true,
+          "inverseHarem": false
+        },
+        "volumeSpecimen": 10,
+        "minTankVolume": 50,
+        "length": {
+              "min": 15,
+              "max": 20
+          },
+        "feed": "5e8cdd3b8296523464c7462b",
+        "varietyOf": null,
+        "depth": "5e8cdd3b8296523464c7462b",
+        "behavior": [
 					"5e8cdd3b8296523464c74641",
 					"5e8cdd3b8296523464c74642"
 				],

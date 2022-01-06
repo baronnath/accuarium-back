@@ -6,17 +6,22 @@ exports.isObject = (input) => {
   return Object.getPrototypeOf(input).isPrototypeOf(Object);
 }
 
-// Capitalize first string letter 
-exports.ucFirst = (string) =>  {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
 // Check if string
 exports.isString = (string) => {
 	if(typeof string === 'string')
 	  return true;
 	else
 	  return false;
+}
+
+// Check if array
+exports.isArray = (input) => {
+  return !!input && input.constructor === Array;
+}
+
+// Capitalize first string letter 
+exports.ucFirst = (string) =>  {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 // Delete object properties
