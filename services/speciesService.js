@@ -135,7 +135,7 @@ exports.update = async (req, res, next) => {
 		minPh,
 		maxPh,
 		literSpecimen,
-		lenght,
+		length,
 		feedId,
 		varietyOfId,
 		depthId,
@@ -171,8 +171,8 @@ exports.update = async (req, res, next) => {
 	if(literSpecimen){
 		species.literSpecimen = literSpecimen;
 	}
-	if(lenght){
-		species.lenght = lenght;
+	if(length){
+		species.length = length;
 	}
 
 	if(familyId){
@@ -446,11 +446,11 @@ exports.uploadFile = async (req, res, next) => {
 
 	await Promise.all(speciesList.map(async function(species, index) {
 
-		type = types.find(type => type.name[defaultLocale] === species.type);
-		family = families.find(family => family.name[defaultLocale] === species.family);
-		group = groups.find(group => group.name[defaultLocale] === species.group);
-		feed = feeds.find(feed => feed.name[defaultLocale] === species.feed);
-		depth = depths.find(depth => depth.name[defaultLocale] === species.depth);
+		let type = types.find(type => type.name[defaultLocale] === species.type);
+		let family = families.find(family => family.name[defaultLocale] === species.family);
+		let group = groups.find(group => group.name[defaultLocale] === species.group);
+		let feed = feeds.find(feed => feed.name[defaultLocale] === species.feed);
+		let depth = depths.find(depth => depth.name[defaultLocale] === species.depth);
 
 		let behaviorList = [];
 		if(species.behavior) {
@@ -487,8 +487,8 @@ exports.uploadFile = async (req, res, next) => {
 		this[index] = {
 			...this[index],
 			name: {
-				en: species.nameEn || null,
-				es: species.nameEs || null,
+				en: species.nameEn || '',
+				es: species.nameEs || '',
 			},
 			otherNames: {
 				en: species.otherNamesEn ? species.otherNamesEn.split(',') : [],
@@ -522,8 +522,8 @@ exports.uploadFile = async (req, res, next) => {
         inverseHarem : !!species.inverseHaremCoexistence,
       },
 			length: {
-				min: species.minLength || null,
-				max: species.maxLength || null
+				min: species.minLength || 0,
+				max: species.maxLength || 0
 			},
 			type: type ? type._id : null,
 			family: family ? family._id : null,
@@ -538,7 +538,12 @@ exports.uploadFile = async (req, res, next) => {
 		helpers.deleteProps(this[index], deleteProps);
 
 	}, speciesList));
-	
+
+  // // Debug array of species to be insert in database (create file before executing)
+  // var file = fs.createWriteStream('private/debug.txt');
+  // file.on('error', function(err) { console.log('AUCH',err) });
+  // speciesList.forEach(value => file.write(JSON.stringify(value)+'\n'));
+  // file.end();
 
 	return await Species.bulkWrite(speciesList.flatMap(species => ([
 		{
