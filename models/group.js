@@ -13,6 +13,11 @@ const groupSchema = new mongoose.Schema({
           default: null
         },
     },
+    type: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'type',
+      default: '60416e13bf576133e50d8dab'
+    },
     icon: {
       type: String,
       default: null

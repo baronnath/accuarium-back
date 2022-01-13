@@ -244,10 +244,10 @@
 		{
 			"_id": "5e8cdd3b8296523464c74640",
 			"name": {
-				"en": "african rives cichlids",
+				"en": "african cichlids",
 				"es": "cíclidos africanos fluviales"
 			},
-      "icon": "south-american-cichlid"
+      "icon": "african-cichlid"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74641",
@@ -287,7 +287,8 @@
 				"en": "worms",
 				"es": "gusanos"
 			},
-      "icon": "worm"
+      "icon": "worm",
+      "type": "60416e13bf576133e50d8daa"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74647",
@@ -295,7 +296,8 @@
 				"en": "crabs",
 				"es": "cangrejos"
 			},
-      "icon": "crab"
+      "icon": "crab",
+      "type": "60416e13bf576133e50d8daa"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74648",
@@ -303,7 +305,8 @@
 				"en": "lobters",
 				"es": "siluros"
 			},
-      "icon": "langosta"
+      "icon": "langosta",
+      "type": "60416e13bf576133e50d8daa"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74649",
@@ -311,7 +314,8 @@
 				"en": "shrimps",
 				"es": "gambas"
 			},
-      "icon": "shrimp"
+      "icon": "shrimp",
+      "type": "60416e13bf576133e50d8daa"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74650",
@@ -319,7 +323,8 @@
 				"en": "jelly fishes",
 				"es": "medusas"
 			},
-      "icon": "jelly-fish"
+      "icon": "jelly-fish",
+      "type": "60416e13bf576133e50d8daa"
 		},
 		{
 			"_id": "5e8cdd3b8296523464c74651",
@@ -327,7 +332,50 @@
 				"en": "snails",
 				"es": "caracoles"
 			},
-      "icon": "snail"
+      "icon": "snail",
+      "type": "60416e13bf576133e50d8daa"
+		},
+    {
+			"_id": "5e8cdd3b8296523464c74652",
+			"name": {
+				"en": "goldfishes",
+				"es": "peces dorados"
+			},
+      "icon": "goldfish"
+		},
+    {
+			"_id": "5e8cdd3b8296523464c74653",
+			"name": {
+				"en": "sturgeons",
+				"es": "esturiones"
+			},
+      "icon": "sturgeon"
+		},
+    {
+			"_id": "5e8cdd3b8296523464c74654",
+			"name": {
+				"en": "koi",
+				"es": "koi"
+			},
+      "icon": "koi"
+		},
+    {
+			"_id": "5e8cdd3b8296523464c74655",
+			"name": {
+				"en": "frogs",
+				"es": "ranas"
+			},
+      "icon": "frog",
+      "type": "60416e1c182065bbf6b03e3c"
+		},
+    {
+			"_id": "5e8cdd3b8296523464c74656",
+			"name": {
+				"en": "newts",
+				"es": "tritones"
+			},
+      "icon": "newt",
+      "type": "60416e1c182065bbf6b03e3c"
 		}
 	]
 }

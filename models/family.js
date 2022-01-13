@@ -16,7 +16,7 @@ const familySchema = new mongoose.Schema({
     type: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'type',
-        default: '60416e0b83a985b52213d892'
+        default: '60416e13bf576133e50d8dab'
     }
 });
 
