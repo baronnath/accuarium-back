@@ -247,7 +247,7 @@ exports.search = async (req, res, next) => {
 	let criteria = {};
 
 	if(!field){
-		field = 'name';
+		field = 'scientificName'; // by name return same species in several pages (because name is nullable)
 	}
 	if(!direction){
 		direction = 'ascending';
@@ -363,13 +363,13 @@ exports.search = async (req, res, next) => {
 		criteria.salt = salt;
 	}
 
-	console.log(criteria);
+	// console.log(criteria);
 
 	species = await Species
 		.find(criteria)
 		.sort({[field]: direction})
 		.skip(perPage * page)
-  		.limit(perPage);
+  	.limit(perPage);
 
  	total = await Species
 		.find(criteria)
