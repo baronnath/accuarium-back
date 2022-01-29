@@ -2,6 +2,8 @@
 
 const mongoose  = require('mongoose');
 const mongooseAutopopulate = require('mongoose-autopopulate');
+const fs = require('fs');
+const urlGenerator = require('../helpers/urlGenerator');
 
 const speciesSchema = new mongoose.Schema({
     scientificName: {
@@ -184,6 +186,30 @@ const speciesSchema = new mongoose.Schema({
 { 
     timestamps: true,
     minimize: false,
+    toJSON: {
+      virtuals: true 
+    },
+});
+
+// Create virtual property to store images
+speciesSchema.virtual('images')
+  .get(function() { return this._images; })
+  .set(function(value) { this._images = value; });
+
+// Retrieve all images with species scientific name
+speciesSchema.post(['find', 'findOne'], function(docs) {
+  if (!Array.isArray(docs)) {
+    docs = [docs];
+  }
+  
+  for (const species of docs) {
+    const path = urlGenerator.getImagesPath('species') + '/' + species.scientificName.replace(' ', '-');
+    const exists = fs.existsSync(path);
+    if(exists){
+      images = fs.readdirSync(path);
+      species.images = images;
+    }
+  }
 });
 
 speciesSchema.plugin(mongooseAutopopulate);

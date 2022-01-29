@@ -1,6 +1,6 @@
 // services/tankService.js
 
-const fs			= require('fs');
+const fs			  = require('fs');
 const Tank			= require('../models/tank');
 const Species		= require('../models/species');
 const Type			= require('../models/type');
