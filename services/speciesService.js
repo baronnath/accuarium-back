@@ -435,6 +435,17 @@ exports.uploadFile = async (req, res, next) => {
     'inverseHaremCoexistence',
 	];
 
+	function assignProp(array, prop){
+		let found = undefined;
+		if(prop != undefined){
+			let needle = prop.trim();
+			found = array.find(obj => obj.name[defaultLocale] === needle);
+			if(found == undefined)
+				logger.warn(`Property not found: ${prop}`);
+		}
+		return found;
+	}
+
 	// Retrieve all from type, family, groups, feed, behaviors and colors
 	const types 	= await Type.find();
 	const families 	= await Family.find();
@@ -446,18 +457,18 @@ exports.uploadFile = async (req, res, next) => {
 
 	await Promise.all(speciesList.map(async function(species, index) {
 
-		let type = types.find(type => type.name[defaultLocale] === species.type);
-		let family = families.find(family => family.name[defaultLocale] === species.family);
-		let group = groups.find(group => group.name[defaultLocale] === species.group);
-		let feed = feeds.find(feed => feed.name[defaultLocale] === species.feed);
-		let depth = depths.find(depth => depth.name[defaultLocale] === species.depth);
+		let type = assignProp(types, species.type);
+		let family = assignProp(families, species.family);
+		let group = assignProp(groups, species.group);
+		let feed = assignProp(feeds, species.feed);
+		let depth = assignProp(depths, species.depth);
 
 		let behaviorList = [];
 		if(species.behavior) {
 			beh = species.behavior.split(',');
 
 			beh.forEach(function(b, index) {
-				this[index] = behaviors.find(behavior => behavior.name[defaultLocale] === b);
+				this[index] = assignProp(behaviors, b);
 			}, behaviorList);
 		}
 		
@@ -465,7 +476,7 @@ exports.uploadFile = async (req, res, next) => {
 		if(species.color) {
 			col = species.color.split(',');
 			col.forEach(function(c, index) {
-				this[index] = colors.find(color => color.name[defaultLocale] === c);
+				this[index] = assignProp(colors, c);
 			}, colorList);
 		}
 
@@ -486,6 +497,7 @@ exports.uploadFile = async (req, res, next) => {
 
 		this[index] = {
 			...this[index],
+			scientificNameSynonyms: species.scientificNameSynonyms ? species.scientificNameSynonyms.split(',') : [],
 			name: {
 				en: species.nameEn || '',
 				es: species.nameEs || '',
