@@ -9,7 +9,6 @@ const speciesSchema = new mongoose.Schema({
     scientificName: {
         type: String,
         trim: true,
-        default: null
     },
     name: {
         en: {
@@ -23,6 +22,13 @@ const speciesSchema = new mongoose.Schema({
             default: null
         },
     },
+    scientificNameSynonyms: [
+        {
+            type: String,
+            trim: true,
+            default: null
+        }
+    ],
     otherNames: {
         en: [
             {

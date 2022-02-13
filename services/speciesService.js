@@ -436,9 +436,13 @@ exports.uploadFile = async (req, res, next) => {
 	];
 
 	function assignProp(array, prop){
-		let found = array.find(obj => obj.name[defaultLocale] === prop);
-		if(found == undefined && prop != undefined)
-			logger.warn(`Property not found: ${prop}`);
+		let found = undefined;
+		if(prop != undefined){
+			let needle = prop.trim();
+			found = array.find(obj => obj.name[defaultLocale] === needle);
+			if(found == undefined)
+				logger.warn(`Property not found: ${prop}`);
+		}
 		return found;
 	}
 
@@ -493,6 +497,7 @@ exports.uploadFile = async (req, res, next) => {
 
 		this[index] = {
 			...this[index],
+			scientificNameSynonyms: species.scientificNameSynonyms ? species.scientificNameSynonyms.split(',') : [],
 			name: {
 				en: species.nameEn || '',
 				es: species.nameEs || '',
