@@ -29,11 +29,11 @@ module.exports = (value, measure, from, to) => {
 
         // Check that "measure" is valid
         if(!properties.hasOwnProperty(measure))
-            reject(new ErrorHandler(400, 'measure.notFound'));
+            reject(new ErrorHandler(400, 'measure.notFound', measure));
         
         // Check that "from" unit is valid
         if(properties[measure].units.indexOf(from) < 0)
-            reject(new ErrorHandler(400, 'unit.notFound'));
+            reject(new ErrorHandler(400, 'unit.notFound', from));
 
         // Set default target unit if not provided
         if(!to)
