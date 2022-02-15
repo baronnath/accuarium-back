@@ -10,7 +10,7 @@ exports.getImagesUrl = (relativePath = '') =>  {
 }
 
 exports.getImagesPath = (relativePath = '') =>  {
-	return __dirname + '/../' + config.imagesFolder + relativePath ? addFinalSlash(relativePath) : '';
+	return __dirname + '/../' + config.imagesFolder + addFinalSlash(relativePath);
 }
 
 exports.getUploadsUrl = (relativePath = '') =>  {
