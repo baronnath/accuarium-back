@@ -273,12 +273,14 @@ exports.search = async (req, res, next) => {
 
   if(tank){ // Use tank params
     // Look for the main species
-    tank = await Tank
-			.findById(tank);
-    let { species }  = this.findMainSpecies(tank.species);
+    tank = await Tank.findById(tank);
+    let { species: mainSpecies } = this.findMainSpecies(tank.species);
+
+    if(!mainSpecies)
+    	throw new ErrorHandler(404, 'tank.noMainSpecies');
     
     // Overwrite params with main species' params
-    const params = species.parameters;
+    const params = mainSpecies.parameters;
     params.temperature.min ? minTemp = params.temperature.min : null;
     params.temperature.min ? maxTemp = params.temperature.max : null;
     params.ph.min ? minPh = params.ph.min : null;
@@ -591,7 +593,11 @@ exports.uploadFile = async (req, res, next) => {
 }
 
 exports.findMainSpecies = (species) => {
-  const main = species.find(sp => sp.main);
+	if(!species.length)
+		throw new ErrorHandler(404, 'tank.noSpecies');
+
+  const main = species.find(sp => sp.main == true);
+
   if(main)
     return main;
   else
