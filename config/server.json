@@ -8,7 +8,8 @@
     "uploadsFolder": "public/uploads/",
     "front": {
       "url": "http://localhost:19006"
-    }
+    },
+    "beta": true
   },
   "development": {
     "connectionString": "mongodb+srv://root:efervescente@cluster0-a9uwd.gcp.mongodb.net/accuarium-dev?retryWrites=true&w=majority",
@@ -32,7 +33,8 @@
     },
     "imagesFolder": "public/images/",
     "uploadsFolder": "private/uploads/",
-    "uploadMaxSize": "50MB"
+    "uploadMaxSize": "50MB",
+    "beta": true
   },
   "production": {
     "connectionString": "mongodb+srv://root:efervescente@cluster0-a9uwd.gcp.mongodb.net/accuarium-prod?retryWrites=true&w=majority",
@@ -47,7 +49,8 @@
     },
     "imagesFolder": "public/images/",
     "uploadsFolder": "private/uploads/",
-    "uploadMaxSize": "15MB"
+    "uploadMaxSize": "15MB",
+    "beta": false
   }
 
 }

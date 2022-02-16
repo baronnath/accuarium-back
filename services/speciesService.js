@@ -12,7 +12,9 @@ const Depth			= require('../models/depth');
 const Behavior		= require('../models/behavior');
 const {	ErrorHandler, handleError } = require('../helpers/errorHandler');
 const {	logger }	= require('../helpers/logger');
-const config		= require('../config/preferences'); 
+const env						= process.env.NODE_ENV || 'development';
+const serverConfig		= require('../config/server')[env]; 
+const preferencesConfig		= require('../config/preferences'); 
 const urlGenerator	= require('../helpers/urlGenerator');
 const helpers		= require('../helpers/helpers');
 const unitConverter	= require('../helpers/unitConverter');
@@ -243,7 +245,7 @@ exports.search = async (req, res, next) => {
 		salt,
     behavior
 	} = req.query;
-	const perPage = config.pagination;
+	const perPage = preferencesConfig.pagination;
 	let criteria = {};
 
 	if(!field){
@@ -438,9 +440,18 @@ exports.uploadFile = async (req, res, next) => {
     'onlyFemCoexistence',
     'haremCoexistence',
     'inverseHaremCoexistence',
+    'beta',	
 	];
 
-	function assignProp(array, prop){
+	function isBeta(species) {
+		let beta = species.beta || 0; // prevent empty values
+		if(serverConfig.beta && !beta){
+			return false;
+		}
+		return true;
+	}
+
+	function assignProp(array, prop) {
 		let found = undefined;
 		if(prop != undefined){
 			let needle = prop.trim();
@@ -460,7 +471,7 @@ exports.uploadFile = async (req, res, next) => {
 	const colors 	= await Color.find();
 	const depths 	= await Depth.find();
 
-	await Promise.all(speciesList.map(async function(species, index) {
+	speciesArray = await Promise.all(speciesList.filter(isBeta).map(async function(species, index, speciesArray) {
 
 		let type = assignProp(types, species.type);
 		let family = assignProp(families, species.family);
@@ -500,8 +511,8 @@ exports.uploadFile = async (req, res, next) => {
 				species.maxKh = await unitConverter(species.maxKh, 'hardness', species.KhUnits);
 		}
 
-		this[index] = {
-			...this[index],
+		species = {
+			...species,
 			scientificNameSynonyms: species.scientificNameSynonyms ? species.scientificNameSynonyms.split(',') : [],
 			name: {
 				en: species.nameEn || '',
@@ -550,19 +561,18 @@ exports.uploadFile = async (req, res, next) => {
 			color: colorList,
 			behavior: behaviorList,
 		};
-		
-		// Delete props in the excel list that don't match the species model (species list is not duplicated for memory optimization)
-		helpers.deleteProps(this[index], deleteProps);
 
-	}, speciesList));
+		// Delete props in the excel list that don't match the species model (species list is not duplicated for memory optimization)
+		helpers.deleteProps(species, deleteProps);
+
+		return species;
+
+	}));
 
   // // Debug array of species to be insert in database (create file before executing)
-  // var file = fs.createWriteStream('private/debug.txt');
-  // file.on('error', function(err) { console.log('AUCH',err) });
-  // speciesList.forEach(value => file.write(JSON.stringify(value)+'\n'));
-  // file.end();
+  // helpers.debug(speciesArray, true);
 
-	return await Species.bulkWrite(speciesList.flatMap(species => ([
+	return await Species.bulkWrite(speciesArray.flatMap(species => ([
 		{
 			updateOne: {
 				filter: {scientificName: species.scientificName},
