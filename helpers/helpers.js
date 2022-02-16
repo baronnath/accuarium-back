@@ -1,4 +1,7 @@
 // helpers/helpers.js
+const fs = require('fs');
+const { ErrorHandler } = require('./errorHandler');
+const urlGenerator = require('./urlGenerator');
 
 // Check if object
 exports.isObject = (input) => {
@@ -80,3 +83,19 @@ exports.round = (function() {
       }
   };
 })();
+
+// debug var into file
+exports.debug = (input, array = false) => {
+
+  let path = urlGenerator.getPrivatePath() + 'debug.txt';
+  let file = fs.createWriteStream(path);
+
+  file.on('error', function(err) { throw new ErrorHandler(400, err) });
+
+  if(array)
+    input.forEach(value => file.write(JSON.stringify(value)+'\n'));
+  else
+    fs.write(path, JSON.stringify(input));
+
+  file.end();
+}

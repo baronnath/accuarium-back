@@ -21,6 +21,10 @@ exports.getUploadsPath = (relativePath = '') =>  {
 	return __dirname + '/../' + config.uploadsFolder;
 }
 
+exports.getPrivatePath = () => {
+	return __dirname + '/../private/';
+}
+
 addFinalSlash = (path) => {
 	return path + '/';
 } 
