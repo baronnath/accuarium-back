@@ -18,7 +18,7 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-// Login
+// Upload species excel file
 describe("uploadFile", () => {
   test("File is uploaded", async () => {
     let req = await mockRequest();
@@ -33,6 +33,5 @@ describe("uploadFile", () => {
     expect(update).toHaveProperty('nModified',6);
     expect(update).toHaveProperty('ok',1);
   });
-
 });
 

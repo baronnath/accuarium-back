@@ -97,25 +97,24 @@ exports.update = async (req, res, next) => {
 	return await compatibility.save();
 }
 
+// getSpeciesCompatibility = async (tankId) => {	
 
-getSpeciesCompatibility = async (tankId) => {	
+// 	compatibility = await Compatibility
+// 		.find({
+// 		      $or: [
+// 		          { $and: [
+// 		          	{speciesA: speciesAId},
+// 		          	{speciesB: speciesBId}
+// 		          ]},
+// 		          { $and: [
+// 		          	{speciesA: speciesBId},
+// 		          	{speciesB: speciesAId}
+// 		          ]},
+// 		      ]
+// 	  	});
 
-	compatibility = await Compatibility
-		.find({
-		      $or: [
-		          { $and: [
-		          	{speciesA: speciesAId},
-		          	{speciesB: speciesBId}
-		          ]},
-		          { $and: [
-		          	{speciesA: speciesBId},
-		          	{speciesB: speciesAId}
-		          ]},
-		      ]
-	  	});
-
-	return compatibility;
-}
+// 	return compatibility;
+// }
 
 // CHECK COMPATIBILTY
 /**
@@ -175,6 +174,7 @@ getTankCompatibility = async (data) => {
 		return {};
 	}
 
+  // Intraspecies compatibility: analize the species compatibility table
 	tankCompatibility['species'] = await getSpeciesCompatibility(species);
 
 	// Parameters compatibility: compare parameters with main species
@@ -253,8 +253,16 @@ splitCompatibilitiesBySpecies = (species, compatibilities) => {
 // Formula: c = (b1-a1)*(b1-a2) where a1 is the smaller value  -> if c <= 0 means superposition
 isParameterCompatible = (rangeA, rangeB) => {
 
+  // Set undefined values to zero
+  removedUndefinedValues(rangeA);
+  removedUndefinedValues(rangeB);
+  function removedUndefinedValues (range) { 
+    if(range.min == undefined) range.min = 0;
+    if(range.max == undefined) range.max = 0;
+  }
+
 	// Look for the smaller range of parameters
-	if(rangeA.min <= rangeB){
+	if(rangeA.min <= rangeB.min){
 		a = rangeA;
 		b = rangeB;
 	}else{
@@ -262,14 +270,14 @@ isParameterCompatible = (rangeA, rangeB) => {
 		b = rangeA;
 	}
 
-	// Check values are set
-	if(!a.min || !a.max || !b.min){
-		return null;
-	}
+	// // Check values are set
+	// if(a.min == undefined || a.max  == undefined || b.min == undefined){
+	// 	return null;
+	// }
 
 	intersection = (b.min - a.min)*(b.min - a.max);
 
-	// Intersecion <= 0 means that values are share
+	// Intersecion <= 0 means that values are shared
 	return intersection <= 0;
 
 }
@@ -334,4 +342,11 @@ exports.uploadFile = async (req, res, next) => {
 		}
 	})));
 	
+}
+
+exports.forTesting = {
+  getTankCompatibility,
+  getSpeciesCompatibility,
+  splitCompatibilitiesBySpecies,
+  isParameterCompatible,
 }
