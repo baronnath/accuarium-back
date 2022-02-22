@@ -251,15 +251,24 @@ splitCompatibilitiesBySpecies = (species, compatibilities) => {
 }
 
 // Formula: c = (b1-a1)*(b1-a2) where a1 is the smaller value  -> if c <= 0 means superposition
+// Return true if two param. ranges share any values. Return null if range is undefined or both values are zero.
 isParameterCompatible = (rangeA, rangeB) => {
 
   // Set undefined values to zero
-  removedUndefinedValues(rangeA);
-  removedUndefinedValues(rangeB);
+  rangeA = removedUndefinedValues(rangeA);
+  rangeB = removedUndefinedValues(rangeB);
+
   function removedUndefinedValues (range) { 
     if(range.min == undefined) range.min = 0;
     if(range.max == undefined) range.max = 0;
+
+    // Return null if both are undefined or zero
+    if(!range.min && !range.max) return null;
+    return range;
   }
+
+  if(!rangeA || !rangeB)
+    return null;
 
 	// Look for the smaller range of parameters
 	if(rangeA.min <= rangeB.min){

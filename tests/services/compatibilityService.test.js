@@ -50,7 +50,27 @@ describe("parameters compatibility", () => {
 
   test("Not defined parameters", () => {
     rangeA, rangeB = {};
-    
+
+    let res = forTesting.isParameterCompatible(rangeA, rangeB);
+    expect(res).toBe(null);
+  });
+
+  test("Range parameters are zero", () => {
+    rangeA, rangeB = {
+      min: 0,
+      max: 0
+    };
+
+    let res = forTesting.isParameterCompatible(rangeA, rangeB);
+    expect(res).toBe(null);
+  });
+
+  test("Min. range is zero", () => {
+    rangeA, rangeB = {
+      min: 0,
+      max: 15
+    };
+
     let res = forTesting.isParameterCompatible(rangeA, rangeB);
     expect(res).toBe(true);
   });
