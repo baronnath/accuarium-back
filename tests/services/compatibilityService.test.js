@@ -18,8 +18,9 @@ afterAll(async () => {
 });
 
 let rangeA, rangeB = {};
+let speciesA, speciesB = null;
 
-describe("parameters compatibility", () => {
+describe("isParameterCompatible", () => {
   test("Compatible parameters", () => {
     rangeA = {
       min: 0,
@@ -73,6 +74,65 @@ describe("parameters compatibility", () => {
 
     let res = forTesting.isParameterCompatible(rangeA, rangeB);
     expect(res).toBe(true);
+  });
+
+});
+
+
+describe("getInterpeciesCompatibility", () => {
+  speciesA = '5e8cdd3b8296523464c7462a';
+  speciesB = '5e8cdd3b8296523464c7462b';
+
+  test("No compatibility", async() => {
+    expect(await forTesting.getInterpeciesCompatibility([speciesA, speciesB]))
+      .toMatchObject({
+        "5e8cdd3b8296523464c7462a": {
+          "5e8cdd3b8296523464c7462b": {
+            "compatibility": 0, "warnings": expect.anything()
+          }
+        },
+        "5e8cdd3b8296523464c7462b": {
+          "5e8cdd3b8296523464c7462a": {
+            "compatibility": 0, "warnings": expect.anything()
+          }
+        }
+      });
+  });
+
+  test("Regular compatibility", async() => {
+    speciesA = '5e8cdd3b8296523464c7462a';
+    speciesB = '5e8cdd3b8296523464c7462c';
+    expect(await forTesting.getInterpeciesCompatibility([speciesA, speciesB]))
+      .toMatchObject({
+        "5e8cdd3b8296523464c7462a": {
+          "5e8cdd3b8296523464c7462c": {
+            "compatibility": 1, "warnings": expect.anything()
+          }
+        },
+        "5e8cdd3b8296523464c7462c": {
+          "5e8cdd3b8296523464c7462a": {
+            "compatibility": 1, "warnings": expect.anything()
+          }
+        }
+      });
+  });
+
+  test("Good compatibility", async() => {
+    speciesA = '5e8cdd3b8296523464c7462b';
+    speciesB = '5e8cdd3b8296523464c7462c';
+    expect(await forTesting.getInterpeciesCompatibility([speciesA, speciesB]))
+      .toMatchObject({
+        "5e8cdd3b8296523464c7462b": {
+          "5e8cdd3b8296523464c7462c": {
+            "compatibility": 2, "warnings": expect.anything()
+          }
+        },
+        "5e8cdd3b8296523464c7462c": {
+          "5e8cdd3b8296523464c7462b": {
+            "compatibility": 2, "warnings": expect.anything()
+          }
+        }
+      });
   });
 
 });

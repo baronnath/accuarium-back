@@ -14,6 +14,7 @@ const {	logger }		= require('../helpers/logger');
 const config			= require('../config/preferences'); 
 const urlGenerator		= require('../helpers/urlGenerator');
 const excel				= require('../helpers/excel');
+const helpers				= require('../helpers/helpers');
 
 const imagePath = urlGenerator.getImagesPath('compatibility');
 
@@ -56,8 +57,7 @@ exports.get = async (req, res, next) => {
 
 	}
 	else{
-
-		compatibility = await getSpeciesCompatibility(speciesAId,speciesBId);
+		compatibility = await getInterpeciesCompatibility([speciesAId,speciesBId]);
 	}
 
 	if(!compatibility) {
@@ -97,7 +97,7 @@ exports.update = async (req, res, next) => {
 	return await compatibility.save();
 }
 
-// getSpeciesCompatibility = async (tankId) => {	
+// getInterpeciesCompatibility = async (tankId) => {	
 
 // 	compatibility = await Compatibility
 // 		.find({
@@ -175,7 +175,7 @@ getTankCompatibility = async (data) => {
 	}
 
   // Intraspecies compatibility: analize the species compatibility table
-	tankCompatibility['species'] = await getSpeciesCompatibility(species);
+	tankCompatibility['species'] = await getInterpeciesCompatibility(species);
 
 	// Parameters compatibility: compare parameters with main species
 	species.forEach(function(species) {
@@ -206,17 +206,20 @@ getTankCompatibility = async (data) => {
 }
 
 
-getSpeciesCompatibility = async (species) => {
+getInterpeciesCompatibility = async (species) => {
 
 	let query = [];
 
+	// Extract id if species object is provided
+	extractSpeciesIds(species);
+
 	species.forEach(function(speciesA) {
 		species.forEach(function(speciesB) {
-			if(speciesA._id != speciesB._id){
+			if(String(speciesA) != String(speciesB)){
 				query.push(
 					{ $and: [
-			          	{speciesA: speciesA._id},
-			          	{speciesB: speciesB._id}
+			          	{speciesA: speciesA},
+			          	{speciesB: speciesB}
 			        ]}
 			    );
 			}
@@ -229,12 +232,21 @@ getSpeciesCompatibility = async (species) => {
 	return splitCompatibilitiesBySpecies(species,compatibility);
 }
 
+extractSpeciesIds = (species) => {
+	species.forEach(function(sp, i) {
+		if(helpers.isObject(sp)) this[i] = sp._id;
+  }, species);
+}
+
 splitCompatibilitiesBySpecies = (species, compatibilities) => {
+
+	// Extract id if species object is provided
+	extractSpeciesIds(species);
 	
 	// Declare objects
 	splittedCompatibilities = {};
 	species.forEach(function(species) {
-		splittedCompatibilities[species._id] = {} 
+		splittedCompatibilities[species] = {} 
 	});
 
 	compatibilities.forEach(function(compatibility) {
@@ -355,7 +367,7 @@ exports.uploadFile = async (req, res, next) => {
 
 exports.forTesting = {
   getTankCompatibility,
-  getSpeciesCompatibility,
+  getInterpeciesCompatibility,
   splitCompatibilitiesBySpecies,
   isParameterCompatible,
 }
