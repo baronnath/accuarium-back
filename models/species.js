@@ -143,9 +143,8 @@ const speciesSchema = new mongoose.Schema({
             default: null
         } 
     },
-    salt: {
-        type: Boolean,
-        default: false
+    salt: { // 0: Freshwater, 1: Salt, 2: Brackish
+        type: Number,
     },
     cleaning: {
         type: Boolean,

@@ -123,6 +123,14 @@
 					"es": "gregario"
 				},
 				"icon": "arrow-collapse-all"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74644",
+				"name": {
+					"en": "lover",
+					"es": "amante"
+				},
+				"icon": "cards-heart-outline"
 			}
 		]
 	}
