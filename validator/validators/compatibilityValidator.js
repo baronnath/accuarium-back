@@ -41,7 +41,29 @@ exports.createRules = () => {
 }
 
 exports.getRules = () => {
-  return []
+  return [
+    oneOf([
+        query('compatibilityId').exists(),
+        query('tankId').exists(),
+        [query('speciesAId').exists(),query('speciesBId').exists()]
+    ],
+    'validation.requestData.required'),
+    query('compatibilityId')
+        .if(query('tankId').not().exists())
+        .if(query('speciesAId').not().exists())
+        .isHexadecimal().withMessage('validation.id.format'),
+    query('tankId')
+        .if(query('compatibilityId').not().exists())
+        .if(query('speciesAId').not().exists())
+        .isHexadecimal().withMessage('validation.id.format'),
+    query('speciesAId')
+        .if(query('compatibilityId').not().exists())
+        .if(query('tankId').not().exists())
+        .isHexadecimal().withMessage('validation.id.format'),
+    query('speciesBId')
+        .if(query('speciesAId').exists())
+        .isHexadecimal().withMessage('validation.id.format'),
+  ]
 }
 
 exports.deleteRules = this.getRules;

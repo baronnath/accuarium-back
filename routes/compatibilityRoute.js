@@ -22,8 +22,8 @@ module.exports = function(app){
 	app.get('/compatibility',
         userController.isLoggedIn,
         userController.isAllowedTo('readAny', 'compatibility'),
-        // compatibilityValidator.getRules(),
-        // validate,
+        compatibilityValidator.getRules(),
+        validate,
         compatibilityController.get
     );
 

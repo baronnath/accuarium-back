@@ -57,7 +57,7 @@ exports.getRules = () => {
                 }
             })
         })
-    ]
+  ]
 }
 
 exports.updateRules = () => {
