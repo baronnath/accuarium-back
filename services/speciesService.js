@@ -442,6 +442,7 @@ exports.uploadFile = async (req, res, next) => {
     'onlyFemCoexistence',
     'haremCoexistence',
     'inverseHaremCoexistence',
+    'mixedGroupCoexistence',
     'beta',	
 	];
 
@@ -550,6 +551,7 @@ exports.uploadFile = async (req, res, next) => {
         onlyFem : !!species.onlyFemCoexistence,
         harem : !!species.haremCoexistence,
         inverseHarem : !!species.inverseHaremCoexistence,
+        mixedGroup : !!species.mixedGroupCoexistence,
       },
 			length: {
 				min: species.minLength || 0,
