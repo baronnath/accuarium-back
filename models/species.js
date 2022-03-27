@@ -198,7 +198,7 @@ speciesSchema.virtual('images')
   .get(function() { return this._images; })
   .set(function(value) { this._images = value; });
 
-// Retrieve all images with species scientific name
+// Retrieve all images within the folder named as the species scientific name, no matter file name or extension
 speciesSchema.post(['find', 'findOne'], function(docs) {
   if (!Array.isArray(docs)) {
     docs = [docs];
