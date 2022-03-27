@@ -118,23 +118,20 @@ const speciesSchema = new mongoose.Schema({
         },
         inverseHarem: {
             type: Boolean,
+        },
+        mixedGroup: {
+          type: Boolean,
         }
+    },
+    minGroupNumber: {
+        type: Number,
+        default: null
     },
     volumeSpecimen: {
         type: Number
     },
     minTankVolume: {
         type: Number
-    },
-    specimenNumber: {
-        min: {
-            type: Number,
-            default: null
-        },
-        max: {
-            type: Number,
-            default: null
-        } 
     },
     length: {
         min: {

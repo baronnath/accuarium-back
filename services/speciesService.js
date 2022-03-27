@@ -442,6 +442,7 @@ exports.uploadFile = async (req, res, next) => {
     'onlyFemCoexistence',
     'haremCoexistence',
     'inverseHaremCoexistence',
+    'mixedGroupCoexistence',
     'beta',	
 	];
 
