@@ -131,6 +131,15 @@
 					"es": "amante"
 				},
 				"icon": "cards-heart-outline"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74645",
+				"name": {
+					"en": "plant eater",
+					"es": "come plantas"
+				},
+				"icon": "leaf-off",
+				"warning": true
 			}
 		]
 	}
