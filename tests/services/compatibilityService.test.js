@@ -3,7 +3,7 @@
 const mongoose = require("mongoose");
 const { update } = require("../../models/species");
 const mongooseConfig = require(__dirname + "/../../config/mongoose");
-const { forTesting } = require(__dirname + "/../../services/compatibilityService");
+const { functionsToTest: compatibilityService } = require(__dirname + "/../../services/compatibilityService");
 const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../../config/server")[env];
 const { mockRequest, mockResponse, mockNext } = require(__dirname + "/../mocks.js");
@@ -31,7 +31,7 @@ describe("isParameterCompatible", () => {
       max: 18
     };
 
-    let res = forTesting.isParameterCompatible(rangeA, rangeB);
+    let res = compatibilityService.isParameterCompatible(rangeA, rangeB);
     expect(res).toBe(true);
   });
 
@@ -45,34 +45,49 @@ describe("isParameterCompatible", () => {
       max: 18
     };
 
-    let res = forTesting.isParameterCompatible(rangeA, rangeB);
+    let res = compatibilityService.isParameterCompatible(rangeA, rangeB);
     expect(res).toBe(false);
   });
 
   test("Not defined parameters", () => {
     rangeA, rangeB = {};
 
-    let res = forTesting.isParameterCompatible(rangeA, rangeB);
+    let res = compatibilityService.isParameterCompatible(rangeA, rangeB);
     expect(res).toBe(null);
   });
 
   test("Range parameters are zero", () => {
-    rangeA, rangeB = {
+    rangeA = rangeB = {
       min: 0,
       max: 0
     };
 
-    let res = forTesting.isParameterCompatible(rangeA, rangeB);
+    let res = compatibilityService.isParameterCompatible(rangeA, rangeB);
+    expect(res).toBe(null);
+  });
+
+  test("Range parameters for speciesA is zero", () => {
+    rangeA = {
+      min: 0,
+      max: 0
+    };
+
+    rangeB = {
+      min: 9,
+      max: 18
+    };
+
+    let res = compatibilityService.isParameterCompatible(rangeA, rangeB);
     expect(res).toBe(null);
   });
 
   test("Min. range is zero", () => {
-    rangeA, rangeB = {
+    rangeA = rangeB = {
       min: 0,
       max: 15
     };
 
-    let res = forTesting.isParameterCompatible(rangeA, rangeB);
+    let res = compatibilityService.isParameterCompatible(rangeA, rangeB);
     expect(res).toBe(true);
   });
 
@@ -84,7 +99,7 @@ describe("getInterpeciesCompatibility", () => {
   speciesB = '5e8cdd3b8296523464c7462b';
 
   test("No compatibility", async() => {
-    expect(await forTesting.getInterpeciesCompatibility([speciesA, speciesB]))
+    expect(await compatibilityService.getInterpeciesCompatibility([speciesA, speciesB]))
       .toMatchObject({
         "5e8cdd3b8296523464c7462a": {
           "5e8cdd3b8296523464c7462b": {
@@ -102,7 +117,7 @@ describe("getInterpeciesCompatibility", () => {
   test("Regular compatibility", async() => {
     speciesA = '5e8cdd3b8296523464c7462a';
     speciesB = '5e8cdd3b8296523464c7462c';
-    expect(await forTesting.getInterpeciesCompatibility([speciesA, speciesB]))
+    expect(await compatibilityService.getInterpeciesCompatibility([speciesA, speciesB]))
       .toMatchObject({
         "5e8cdd3b8296523464c7462a": {
           "5e8cdd3b8296523464c7462c": {
@@ -120,7 +135,7 @@ describe("getInterpeciesCompatibility", () => {
   test("Good compatibility", async() => {
     speciesA = '5e8cdd3b8296523464c7462b';
     speciesB = '5e8cdd3b8296523464c7462c';
-    expect(await forTesting.getInterpeciesCompatibility([speciesA, speciesB]))
+    expect(await compatibilityService.getInterpeciesCompatibility([speciesA, speciesB]))
       .toMatchObject({
         "5e8cdd3b8296523464c7462b": {
           "5e8cdd3b8296523464c7462c": {

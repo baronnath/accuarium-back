@@ -365,7 +365,7 @@ exports.uploadFile = async (req, res, next) => {
 	
 }
 
-exports.forTesting = {
+exports.functionsToTest = {
   getTankCompatibility,
   getInterpeciesCompatibility,
   splitCompatibilitiesBySpecies,
