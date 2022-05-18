@@ -436,6 +436,8 @@ exports.uploadFile = async (req, res, next) => {
 		'KhUnits',
 		'minKh',
 		'maxKh',
+    'minTds',
+		'maxTds',
     'indivCoexistence',
     'coupleCoexistence',
     'onlyMascCoexistence',
@@ -514,6 +516,14 @@ exports.uploadFile = async (req, res, next) => {
 				species.maxKh = await unitConverter(species.maxKh, 'hardness', species.KhUnits);
 		}
 
+    if(species.TdsUnits) {
+			// Convert hardness to base unit (ppm)
+			if(species.minTds)
+				species.minTds = await unitConverter(species.minTds, 'hardness', species.TdsUnits);
+			if(species.maxTds)
+				species.maxTds = await unitConverter(species.maxTds, 'hardness', species.TdsUnits);
+		}
+
 		species = {
 			...species,
 			scientificNameSynonyms: species.scientificNameSynonyms ? species.scientificNameSynonyms.split(',') : [],
@@ -542,6 +552,10 @@ exports.uploadFile = async (req, res, next) => {
 				kh: {
 					min: species.minKh || null,
 					max: species.maxKh || null
+				},
+        tds: {
+					min: species.minTds || null,
+					max: species.maxTds || null
 				}
 			},
       coexistence: {
