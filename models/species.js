@@ -5,6 +5,17 @@ const mongooseAutopopulate = require('mongoose-autopopulate');
 const fs = require('fs');
 const urlGenerator = require('../helpers/urlGenerator');
 
+const parameter = {
+    min: {
+        type: Number,
+        default: null
+    },
+    max: {
+        type: Number,
+        default: null
+    }
+};
+
 const speciesSchema = new mongoose.Schema({
     scientificName: {
         type: String,
@@ -59,46 +70,11 @@ const speciesSchema = new mongoose.Schema({
         autopopulate: true
     },
     parameters: {
-        temperature: {
-            min: {
-                type: Number,
-                default: null
-            },
-            max: {
-                type: Number,
-                default: null
-            }
-        },
-        ph: {
-            min: {
-                type: Number,
-                default: null
-            },
-            max: {
-                type: Number,
-                default: null
-            }  
-        },
-        gh: {
-            min: {
-                type: Number,
-                default: null
-            },
-            max: {
-                type: Number,
-                default: null
-            } 
-        },
-        kh: {
-            min: {
-                type: Number,
-                default: null
-            },
-            max: {
-                type: Number,
-                default: null
-            } 
-        }
+        temperature: parameter,
+        ph: parameter,
+        gh: parameter,
+        kh: parameter,
+        tds: parameter
     },
     coexistence: {
         indiv: {
@@ -120,7 +96,7 @@ const speciesSchema = new mongoose.Schema({
             type: Boolean,
         },
         mixedGroup: {
-          type: Boolean,
+            type: Boolean,
         }
     },
     minGroupNumber: {
@@ -133,16 +109,7 @@ const speciesSchema = new mongoose.Schema({
     minTankVolume: {
         type: Number
     },
-    length: {
-        min: {
-            type: Number,
-            default: null
-        },
-        max: {
-            type: Number,
-            default: null
-        } 
-    },
+    length: parameter,
     salt: { // 0: Freshwater, 1: Salt, 2: Brackish
         type: Number,
     },

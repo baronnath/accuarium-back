@@ -1,138 +1,381 @@
 	{
 		"model": "family",
 		"documents": [
-			{
-				"_id": "5e8cdd3b8296523464c7462a",
+      {
+				"_id": "5e8cdd3b8296523464c5678a",
 				"name": {
-					"en": "osphromenids",
-					"es": "osfroménidos"
-				}
+					"en": "ambassids",
+					"es": "ambásidos"
+				},
+        "type": "60416e13bf576133e50d8dab"
 			},
-			{
-				"_id": "5e8cdd3b8296523464c7462b",
-				"name": {
-					"en": "balitorids",
-					"es": "balitóridos"
-				}
-			},
-			{
-				"_id": "5e8cdd3b8296523464c7462c",
-				"name": {
-					"en": "cobitids",
-					"es": "cobítidos"
-				}
-			},
-			{
-				"_id": "5e8cdd3b8296523464c7462d",
-				"name": {
-					"en": "catostomids",
-					"es": "catostómidos"
-				}
-			},
-			{
-				"_id": "5e8cdd3b8296523464c7462e",
-				"name": {
-					"en": "cyprinids",
-					"es": "ciprínidos"
-				}
-			},
-			{
-				"_id": "5e8cdd3b8296523464c7462f",
-				"name": {
-					"en": "characids",
-					"es": "carácidos"
-				}
-			},
-			{
-				"_id": "5e8cdd3b8296523464c74621",
-				"name": {
-					"en": "gyrinocheilids",
-					"es": "girinoqueílidos"
-				}
-			},
-			{
-				"_id": "5e8cdd3b8296523464c74622",
-				"name": {
-					"en": "loricarids",
-					"es": "laricáridos"
-				}
-			},
-			{
+      {
 				"_id": "5e8cdd3b8296523464c74623",
 				"name": {
 					"en": "amphilids",
 					"es": "anfílidos"
-				}
-			},
-			{
-				"_id": "5e8cdd3b8296523464c74624",
-				"name": {
-					"en": "cichlids",
-					"es": "cíclidos"
-				}
-			},
-			{
-				"_id": "5e8cdd3b8296523464c74625",
-				"name": {
-					"en": "polycentrids",
-					"es": "policéntridos"
-				}
-			},
-			{
-				"_id": "5e8cdd3b8296523464c74626",
-				"name": {
-					"en": "melanotaenids",
-					"es": "melanotaénidos"
-				}
-			},
-			{
-				"_id": "5e8cdd3b8296523464c74627",
-				"name": {
-					"en": "osteoglosides",
-					"es": "osteoglósidos"
-				}
-			},
-			{
-				"_id": "5e8cdd3b8296523464c74628",
-				"name": {
-					"en": "poecylids",
-					"es": "poecílidos"
-				}
-			},
-			{
-				"_id": "5e8cdd3b8296523464c74629",
-				"name": {
-					"en": "silurids",
-					"es": "silúridos"
-				}
-			},
-			{
-				"_id": "5e8cdd3b8296523464c7463a",
-				"name": {
-					"en": "tetraodontids",
-					"es": "tetraodóntidos"
-				}
+				},
+        "type": "60416e13bf576133e50d8dab"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7463b",
 				"name": {
 					"en": "anablepids",
 					"es": "anablépidos"
-				}
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+      {
+				"_id": "5e8cdd3b8296523464c5678c",
+				"name": {
+					"en": "aplocheilids",
+					"es": "aploquílidos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},   
+      {
+				"_id": "5e8cdd3b8296523464c5678d",
+				"name": {
+					"en": "aterinids",
+					"es": "aterínidos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+      {
+				"_id": "5e8cdd3b8296523464c5678e",
+				"name": {
+					"en": "atyids",
+					"es": "atíidos"
+				},
+        "type": "60416e13bf576133e50d8daa"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462b",
+				"name": {
+					"en": "balitorids",
+					"es": "balitóridos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			}, 
+      {
+				"_id": "5e8cdd3b8296523464c5678f",
+				"name": {
+					"en": "callichthyids",
+					"es": "calíctidos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+      {
+				"_id": "5e8cdd3b8296523464c56781",
+				"name": {
+					"en": "cambarids",
+					"es": "cambáridos"
+				},
+        "type": "60416e13bf576133e50d8daa"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462d",
+				"name": {
+					"en": "catostomids",
+					"es": "catostómidos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462f",
+				"name": {
+					"en": "characids",
+					"es": "carácidos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74624",
+				"name": {
+					"en": "cichlids",
+					"es": "cíclidos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462c",
+				"name": {
+					"en": "cobitids",
+					"es": "cobítidos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462e",
+				"name": {
+					"en": "cyprinids",
+					"es": "ciprínidos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			}, 
+      {
+				"_id": "5e8cdd3b8296523464c56782",
+				"name": {
+					"en": "cyprinodontids",
+					"es": "ciprinodóntidos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			}, 
+      {
+				"_id": "5e8cdd3b8296523464c56783",
+				"name": {
+					"en": "erythrinids",
+					"es": "eritrínidos"
+				},
+        "type": "60416e13bf576133e50d8dab"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7463c",
 				"name": {
 					"en": "fundulids",
 					"es": "fundúlidos"
-				}
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+      {
+				"_id": "5e8cdd3b8296523464c56784",
+				"name": {
+					"en": "gasteropelecids",
+					"es": "gasteropelécidos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+      {
+				"_id": "5e8cdd3b8296523464c56785",
+				"name": {
+					"en": "gecarcinucids",
+					"es": "gecarcínucidos"
+				},
+        "type": "60416e13bf576133e50d8daa"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74621",
+				"name": {
+					"en": "gyrinocheilids",
+					"es": "girinoquílidos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+      {
+				"_id": "5e8cdd3b8296523464c56786",
+				"name": {
+					"en": "hymenosomatids",
+					"es": "himenosomátidos"
+				},
+        "type": "60416e13bf576133e50d8daa"
+			},
+      {
+				"_id": "5e8cdd3b8296523464c56787",
+				"name": {
+					"en": "lebiasinids",
+					"es": "lebiasínidos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74622",
+				"name": {
+					"en": "loricarids",
+					"es": "laricáridos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+      {
+				"_id": "5e8cdd3b8296523464c56788",
+				"name": {
+					"en": "melanotaenids",
+					"es": "melanotaénidos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+      {
+				"_id": "5e8cdd3b8296523464c56789",
+				"name": {
+					"en": "mochocids",
+					"es": "mochócidos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+      {
+				"_id": "5e8cdd3b8296523464c56790",
+				"name": {
+					"en": "monodactylids",
+					"es": "monodactílidos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+      {
+				"_id": "5e8cdd3b8296523464c56791",
+				"name": {
+					"en": "mormyrids",
+					"es": "mormíridos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+      {
+				"_id": "5e8cdd3b8296523464c56792",
+				"name": {
+					"en": "neritids",
+					"es": "nerítidos"
+				},
+        "type": "60416e13bf576133e50d8daa"
+			},
+      {
+				"_id": "5e8cdd3b8296523464c56793",
+				"name": {
+					"en": "nothobranchids",
+					"es": "notobránquidos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+      {
+				"_id": "5e8cdd3b8296523464c56794",
+				"name": {
+					"en": "notopterids",
+					"es": "notoptéridos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+      {
+				"_id": "5e8cdd3b8296523464c56794",
+				"name": {
+					"en": "ocypodids",
+					"es": "ocipódidos"
+				},
+        "type": "60416e13bf576133e50d8daa"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7462a",
+				"name": {
+					"en": "osphromenids",
+					"es": "osfroménidos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74627",
+				"name": {
+					"en": "osteoglosides",
+					"es": "osteoglósidos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+      {
+				"_id": "5e8cdd3b8296523464c56795",
+				"name": {
+					"en": "palemonids",
+					"es": "palemónidos"
+				},
+        "type": "60416e13bf576133e50d8daa"
+			},
+      {
+				"_id": "5e8cdd3b8296523464c56796",
+				"name": {
+					"en": "pantodontids",
+					"es": "pantodóntidos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+      {
+				"_id": "5e8cdd3b8296523464c56797",
+				"name": {
+					"en": "parastacids",
+					"es": "parastácidos"
+				},
+        "type": "60416e13bf576133e50d8daa"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74628",
+				"name": {
+					"en": "poecylids",
+					"es": "poecílidos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+      {
+				"_id": "5e8cdd3b8296523464c56798",
+				"name": {
+					"en": "polycentrids",
+					"es": "polycéntridos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+      {
+				"_id": "5e8cdd3b8296523464c56799",
+				"name": {
+					"en": "polypterids",
+					"es": "poliptéridos"
+				},
+        "type": "60416e13bf576133e50d8dab"
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7463d",
 				"name": {
-					"en": "profundulus",
-					"es": "profundulus"
-				}
+					"en": "profundulids",
+					"es": "profundúlidos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+      {
+				"_id": "5e8cdd3b8296523464c56800",
+				"name": {
+					"en": "scatophagids",
+					"es": "escatófagos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+      {
+				"_id": "5e8cdd3b8296523464c56801",
+				"name": {
+					"en": "sesarmids",
+					"es": "sesármidos"
+				},
+        "type": "60416e13bf576133e50d8daa"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c74629",
+				"name": {
+					"en": "silurids",
+					"es": "silúridos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c7463a",
+				"name": {
+					"en": "tetraodontids",
+					"es": "tetraodóntidos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+      {
+				"_id": "5e8cdd3b8296523464c56802",
+				"name": {
+					"en": "thiarids",
+					"es": "tiáridos"
+				},
+        "type": "60416e13bf576133e50d8daa"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c56803",
+				"name": {
+					"en": "toxotids",
+					"es": "toxótidos"
+				},
+        "type": "60416e13bf576133e50d8dab"
+			},
+			{
+				"_id": "5e8cdd3b8296523464c56803",
+				"name": {
+					"en": "xanthids",
+					"es": "xántidos"
+				},
+        "type": "60416e13bf576133e50d8daa"
 			}
 		]
 	}
