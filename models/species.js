@@ -172,7 +172,7 @@ speciesSchema.post(['find', 'findOne'], function(docs) {
   }
   
   for (const species of docs) {
-    const path = urlGenerator.getImagesPath('species') + '/' + species.scientificName.replace(' ', '-');
+    const path = urlGenerator.getImagesPath('species') + '/' + species.scientificName.replace(' ', '-').toLowerCase();
     const exists = fs.existsSync(path);
     if(exists){
       images = fs.readdirSync(path);
