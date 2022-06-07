@@ -377,5 +377,13 @@
       "icon": "newt",
       "type": "60416e1c182065bbf6b03e3c"
 		}
+    {
+			"_id": "5e8cdd3b8296523464c74657",
+			"name": {
+				"en": "gobies",
+				"es": "gobios"
+			},
+      "icon": "goby"
+		}
 	]
 }
