@@ -82,6 +82,26 @@
 		},
 		"token": {
 			"notExists": "El código no corresponde a ningún usuario registrado"
+		},
+    "lead": {
+      "notExists": "Lead does not exist"
+    }
+	},
+  "lead": {
+    "confirmation": {
+      "title": "Gracias por suscribirte",
+      "preheader": "Muy pronto tendrás acceso a la versión beta",
+      "subject": "Confirmación de suscripción"
+    },
+    "create": {
+			"success": "La suscripción ha sido creada correctamente"
+		},
+		"update": {
+			"success": "El lead ha sido actualizado correctamente"
+		},
+		"delete": {
+			"success": "La suscripción ha sido eliminada correctamente",
+			"error": "La suscripción no ha podido ser borrada"
 		}
-	}
+  }
 }

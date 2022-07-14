@@ -60,7 +60,7 @@ exports.create = async (req, res, next) => {
 
 	user = await User.findOne({email: email});
 	if(user)
-		throw new ErrorHandler(400, 'This email is already registered');
+    throw new ErrorHandler(400, 'validation.email.exists');
 
 	// // Access control assigned permissions
 	// if(role != 'player'){

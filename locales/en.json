@@ -85,6 +85,26 @@
 		},
 		"token": {
 			"notExists": "JWT token doesn't belong to any existing user"
+		},
+    "lead": {
+      "notExists": "Lead does not exist"
+    }
+	},
+  "lead": {
+    "confirmation": {
+      "title": "Thank you for signing up",
+      "preheader": "You will be able to access very soon",
+      "subject": "Sign up confirmation"
+    },
+    "create": {
+			"success": "Signed up successfully. Please check your email to confirm your subscription"
+		},
+		"update": {
+			"success": "The lead has been updated successfully"
+		},
+		"delete": {
+			"success": "The subscription has been deleted successfully",
+			"error": "The subscription could not be deleted"
 		}
-	}
+  }
 }
