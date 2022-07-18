@@ -44,16 +44,8 @@ exports.create = async (req, res, next) => {
     liters: liters,
 	});
 
-
-	// Figure out image extension and store
 	if(image){
-		let match = /\.(\w+)$/.exec(image.uri);
-		let fileType = match ? `${match[1]}` : `jpg`;
-		console.log(imagePath);
-		fs.writeFile(`${imagePath}${tank._id}.${fileType}`, image.base64, 'base64', function(err) {
-		  if(err)
-		  	throw new ErrorHandler(500, 'image.notSaved');
-		});
+		saveImage(image)
 	}
 
 	return await tank.save();
@@ -113,7 +105,9 @@ exports.update = async (req, res, next) => {
 	tank.measures.height = height;
 	tank.liters = liters;
 
-	// TO FIX: update image
+	if(image){
+		saveImage(image);
+	}
 
 	await tank.save();
   return await Tank.findById(tankId);
@@ -243,4 +237,15 @@ exports.addSpecies = async (req, res, next) => {
   await tank.save();
   return await Tank.findById(tankId);
 
+}
+	
+function saveImage(image) {
+	console.log(image.uri)
+	let match = /\.(\w+)$/.exec(image.uri);
+	let fileType = match ? `${match[1]}` : `jpg`; // Figure out image extension and store
+	console.log(imagePath);
+	fs.writeFile(`${imagePath}${tank._id}.${fileType}`, image.base64, 'base64', function(err) {
+	  if(err)
+	  	throw new ErrorHandler(500, 'image.notSaved');
+	});
 }
