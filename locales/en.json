@@ -88,6 +88,9 @@
 		},
     "lead": {
       "notExists": "Lead does not exist"
+    },
+    "locale": {
+      "required": "The language is required"
     }
 	},
   "lead": {

@@ -17,7 +17,7 @@ exports.createRules = () => {
 			})
 	  	}),
     body('locale')
-        .not().isEmpty().withMessage('validation.name.required'),
+        .not().isEmpty().withMessage('validation.locale.required'),
   ]
 }
 
