@@ -5,7 +5,7 @@ const i18next       = require("i18next");
 const translatorConfig  = require(__dirname + "/../config/translator");
 
 // Create a fake request
-exports.mockRequest = async (headers, body, user,sessionData = {}) => ({
+exports.mockRequest = async (headers, body, user, sessionData = {}) => ({
   headers,
   session: { data: sessionData },
   body,

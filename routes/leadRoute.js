@@ -46,8 +46,6 @@ module.exports = function(app){
      *      }
      */
     app.post('/lead',
-        // leadController.isLoggedIn,
-        // leadController.isAllowedTo('createAny', 'lead'),
         leadValidator.createRules(),
         validate,
         leadController.create

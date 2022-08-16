@@ -1,0 +1,15 @@
+{
+  "model": "lead",
+  "documents": [
+    {
+      "_id": "5e8cdd3b8296523464c7460b",
+      "email": "lead1@accuarium.app",
+      "locale": "en"
+    },
+    {
+      "_id": "5e8cdd3b8296523464c7460c",
+      "email": "lead2@accuarium.app",
+      "locale": "es"
+    }
+  ]
+}
