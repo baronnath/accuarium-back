@@ -5,9 +5,11 @@ const Tank			= require('../models/tank');
 const Species		= require('../models/species');
 const Type			= require('../models/type');
 const Family		= require('../models/family');
+const Group		  = require('../models/group');
 const Feed			= require('../models/feed');
 const Depth			= require('../models/depth');
-const Behavior		= require('../models/behavior');
+const Behavior	= require('../models/behavior');
+const Color		  = require('../models/color');
 const {	ErrorHandler, handleError } = require('../helpers/errorHandler');
 const {	logger }	= require('../helpers/logger');
 const config		= require('../config/preferences'); 
@@ -20,28 +22,23 @@ exports.create = async (req, res, next) => {
 		name,
 		userId,
 		image,
-		speciesIds,
-		mainSpeciesId,
-		quantity,
 		length,
 		width,
 		height,
 		liters,
+    species,
 	} = req.body;
-
 
 	tank = new Tank({
 		name: name,
 		user: userId,
-		species: speciesIds,
-		mainSpecies: mainSpeciesId,
-	  quantity: quantity,
 		measures: {
       height: height,
       width: width,
       length: length
     },
     liters: liters,
+    species: species,
 	});
 
 	if(image){
@@ -52,10 +49,10 @@ exports.create = async (req, res, next) => {
 }
 
 exports.get = async (req, res, next) => {
-	const { tankId, userId, compatibility } = req.query;
+	const { tankId, userId, compatibility } = req.body;
 
 	if(tankId){
-		tanks = await Tank.findById(tankId);
+    tanks = await Tank.findById(tankId);
 	}
 	else if(userId){
 		tanks = await Tank
@@ -98,12 +95,12 @@ exports.update = async (req, res, next) => {
 	if(!tank)
 		throw new ErrorHandler(404, 'tank.notFound');
 
-	tank.name = name;
-	tank.species = species;
-	tank.measures.length = length;
-	tank.measures.width = width;
-	tank.measures.height = height;
-	tank.liters = liters;
+	if(name) tank.name = name;
+	if(species) tank.species = species;
+	if(length) tank.measures.length = length;
+	if(width) tank.measures.width = width;
+	if(height) tank.measures.height = height;
+	if(liters) tank.liters = liters;
 
 	if(image){
 		saveImage(image);
@@ -197,7 +194,7 @@ exports.search = async (req, res, next) => {
 }
 
 exports.delete = async (req, res, next) => {
-	const { tankId, userId } = req.query;
+	const { tankId, userId } = req.body;
 
 	if(tankId){
 		tanks = await Tank.findByIdAndDelete(tankId);
@@ -224,7 +221,8 @@ exports.addSpecies = async (req, res, next) => {
 
 		tank.species.forEach(function(tankSp) {
 			// console.log(tankSp.species._id.equals(newSp.species))
-    		if (tankSp.species._id.equals(newSp.species)) found = true;
+      if (tankSp.species._id.equals(newSp.species))
+        found = true;
 		});
 
 		if(!found){
@@ -240,10 +238,10 @@ exports.addSpecies = async (req, res, next) => {
 }
 	
 function saveImage(image) {
-	console.log(image.uri)
+	// console.log(image.uri)
 	let match = /\.(\w+)$/.exec(image.uri);
 	let fileType = match ? `${match[1]}` : `jpg`; // Figure out image extension and store
-	console.log(imagePath);
+	// console.log(imagePath);
 	fs.writeFile(`${imagePath}${tank._id}.${fileType}`, image.base64, 'base64', function(err) {
 	  if(err)
 	  	throw new ErrorHandler(500, 'image.notSaved');
