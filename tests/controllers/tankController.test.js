@@ -438,76 +438,76 @@ describe('addSpecies', () => {
   });
 });
 
-// // Delete
-// describe('delete', () => {
-//   test('Reject when no id is provided', async () => {
-//     const req = await mockRequest({}, {});
-//     const res = mockResponse();
+// Delete
+describe('delete', () => {
+  test('Reject when no id is provided', async () => {
+    const req = await mockRequest({}, {});
+    const res = mockResponse();
 
-//     try{
-//       await tankController.delete(req, res);
-//     } catch (err) {
-//       expect(err).toBeTruthy();
-//       expect(err.name).toBe('TypeError');
-//     }
-//   });
+    try{
+      await tankController.delete(req, res);
+    } catch (err) {
+      expect(err).toBeTruthy();
+      expect(err.name).toBe('TypeError');
+    }
+  });
 
-//   test('Tank does not exist', async () => {
-//     const req = await mockRequest(
-//       {},
-//       {
-//         tankId: 'nonExistingTank',
-//       }
-//     );
-//     const res = mockResponse();
+  test('Tank does not exist', async () => {
+    const req = await mockRequest(
+      {},
+      {
+        tankId: 'nonExistingTank',
+      }
+    );
+    const res = mockResponse();
 
-//     try{
-//       await tankController.delete(req, res);
-//     } catch (err) {
-//       expect(err).toBeTruthy();
-//       expect(err.name).toBe('TypeError');
-//     }
-//   });
+    try{
+      await tankController.delete(req, res);
+    } catch (err) {
+      expect(err).toBeTruthy();
+      expect(err.name).toBe('TypeError');
+    }
+  });
 
-//   test('User does not exist', async () => {
-//     const req = mockRequest({}, {
-//       userId: 'nonExistingUser'
-//     });
-//     const res = mockResponse();
-//     const next = mockNext();
-//     try{
-//       await tankController.delete(req, res);
-//     } catch (err) {
-//       expect(err).toBeTruthy();
-//       expect(err.name).toBe('TypeError');
-//     }
-//   });
+  test('User does not exist', async () => {
+    const req = mockRequest({}, {
+      userId: 'nonExistingUser'
+    });
+    const res = mockResponse();
+    const next = mockNext();
+    try{
+      await tankController.delete(req, res);
+    } catch (err) {
+      expect(err).toBeTruthy();
+      expect(err.name).toBe('TypeError');
+    }
+  });
 
-//   test('Delete by tankId', async () => {
-//     const req = await mockRequest(
-//       {},
-//       {
-//         tankId: adminTankId
-//       },
-//     );
-//     const res = mockResponse();
-//     const next = mockNext();
+  test('Delete by tankId', async () => {
+    const req = await mockRequest(
+      {},
+      {
+        tankId: adminTankId
+      },
+    );
+    const res = mockResponse();
+    const next = mockNext();
 
-//     await tankController.delete(req, res, next);
-//     expect(res.status).toHaveBeenCalledWith(200);
-//   });
+    await tankController.delete(req, res, next);
+    expect(res.status).toHaveBeenCalledWith(200);
+  });
 
-//   test('Delete all userId tanks', async () => {
-//     const req = await mockRequest(
-//       {},
-//       {
-//         userId: user._id
-//       },
-//     );
-//     const res = mockResponse();
-//     const next = mockNext();
+  test('Delete all userId tanks', async () => {
+    const req = await mockRequest(
+      {},
+      {
+        userId: user._id
+      },
+    );
+    const res = mockResponse();
+    const next = mockNext();
 
-//     await tankController.delete(req, res, next);
-//     expect(res.status).toHaveBeenCalledWith(200);
-//   });
-// });
+    await tankController.delete(req, res, next);
+    expect(res.status).toHaveBeenCalledWith(200);
+  });
+});
