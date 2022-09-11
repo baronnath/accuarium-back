@@ -511,3 +511,11 @@ describe('delete', () => {
     expect(res.status).toHaveBeenCalledWith(200);
   });
 });
+
+// Search
+// TO BE FIXED
+describe('search', () => {
+  test('TO BE FIXED', async () => {
+    expect(true).toBe(true);
+  });
+});
