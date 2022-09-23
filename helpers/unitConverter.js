@@ -60,6 +60,11 @@ module.exports = (value, measure, from, to) => {
         if(measure == 'temperature')
             value = value - properties[measure].increment[toIndex];
 
-        resolve(round.round(value, 2));
+        // Round
+        if(measure == 'hardness'){
+            resolve(round.nearest5(value));
+        }
+
+        resolve(round.round(value, 1));
     });
 }
