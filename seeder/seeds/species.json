@@ -62,7 +62,8 @@
 					"5e8cdd3b8296523464c7462a",
 					"5e8cdd3b8296523464c7462b"
 				],
-				"cleaning": true
+				"cleaning": true,
+        "salt": 0
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462b",
@@ -121,7 +122,8 @@
 					"5e8cdd3b8296523464c7462a",
 					"5e8cdd3b8296523464c7462e"
 				],
-				"cleaning": false
+				"cleaning": false,
+        "salt": 1
 			},
 			{
 				"_id": "5e8cdd3b8296523464c7462c",
@@ -176,7 +178,8 @@
 					"5e8cdd3b8296523464c74641",
 					"5e8cdd3b8296523464c74642"
 				],
-				"cleaning": true
+				"cleaning": true,
+        "salt": 2
 			}
 		]
 	}

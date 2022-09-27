@@ -49,6 +49,35 @@
             "main": true
           }
         ]
+      },
+      {
+        "_id": "621021ce6599f2ed825133a7",
+        "name": "No main species tank",
+        "user": "5e8cdd3b8296523464c7461d",
+        "liters": 300,
+        "species": [
+          {
+            "species": "5e8cdd3b8296523464c7462a",
+            "quantity": "1",
+            "main": false
+          },{
+            "species": "5e8cdd3b8296523464c7462b",
+            "quantity": "1",
+            "main": false
+          },
+          {
+            "species": "5e8cdd3b8296523464c7462c",
+            "quantity": "1",
+            "main": false
+          }
+        ]
+      },
+      {
+        "_id": "621021ce6599f2ed825133a8",
+        "name": "No species tank",
+        "user": "5e8cdd3b8296523464c7461d",
+        "liters": 250,
+        "species": []
       }
     ]
 	}
