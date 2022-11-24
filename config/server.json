@@ -30,7 +30,7 @@
       "http://192.168.45.185:19000"
     ],
     "front": {
-      "url": "http://localhost:19006"
+      "url": "http://localhost:19000"
     },
     "imagesFolder": "public/images/",
     "uploadsFolder": "private/uploads/",
