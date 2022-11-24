@@ -80,6 +80,10 @@ exports.round = (function() {
       // Format using fixed-point notation
       toFixed: function(num, decimalPlaces) {
           return decimalAdjust('round', num, decimalPlaces).toFixed(decimalPlaces);
+      },
+      // Up or down to the nearest 5 multiple
+      nearest5: function(num) {
+          return Math.round(num / 5) * 5;
       }
   };
 })();

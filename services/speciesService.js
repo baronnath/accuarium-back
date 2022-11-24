@@ -216,7 +216,7 @@ exports.update = async (req, res, next) => {
 }
 
 exports.search = async (req, res, next) => {
-	const locale = req.user.locale || defaultLocale;
+	const locale = req.user && req.user.locale || defaultLocale;
 	let {
 		keyword,
 		field,
@@ -244,7 +244,7 @@ exports.search = async (req, res, next) => {
 		wild,
 		salt,
     behavior
-	} = req.query;
+	} = req.body;
 	const perPage = preferencesConfig.pagination;
 	let criteria = {};
 
@@ -271,15 +271,19 @@ exports.search = async (req, res, next) => {
 		];
 	}
 
+
   if(tank){ // Use tank params
     // Look for the main species
-    tank = await Tank.findById(tank);
-    let { species: mainSpecies } = this.findMainSpecies(tank.species);
+		tank = await Tank.findById(tank);
+		if(!tank){
+    	throw new ErrorHandler(404, 'tank.notExists');
+		}
 
+    let { species: mainSpecies } = this.findMainSpecies(tank.species);
     if(!mainSpecies)
     	throw new ErrorHandler(404, 'tank.noMainSpecies');
     
-    // Overwrite params with main species' params
+    // Overwrite params with the tank main species' params
     const params = mainSpecies.parameters;
     params.temperature.min ? minTemp = params.temperature.min : null;
     params.temperature.min ? maxTemp = params.temperature.max : null;
@@ -372,8 +376,6 @@ exports.search = async (req, res, next) => {
 		criteria.salt = salt;
 	}
 
-	// console.log(criteria);
-
 	species = await Species
 		.find(criteria)
 		.sort({[field]: direction})
@@ -386,7 +388,10 @@ exports.search = async (req, res, next) => {
 
 	return {
 		species,
-		total
+		total,
+    page,
+    field,
+    direction
 	}
 
 	 // db.collection.aggregate([

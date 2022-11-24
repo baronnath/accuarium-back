@@ -75,7 +75,7 @@
 				"_id": "5e8cdd3b8296523464c74624",
 				"name": {
 					"en": "tank",
-					"es": "acuario"
+					"es": "tanque"
 				}
 			},
 			{
@@ -91,13 +91,20 @@
 					"en": "locale",
 					"es": "localización"
 				}
-			}
-      ,
+			},
 			{
 				"_id": "5e8cdd3b8296523464c74627",
 				"name": {
 					"en": "color",
 					"es": "color"
+				}
+			}
+      ,
+			{
+				"_id": "5e8cdd3b8296523464c74628",
+				"name": {
+					"en": "lead",
+					"es": "cliente potencial"
 				}
 			}
 		]

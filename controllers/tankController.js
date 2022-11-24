@@ -37,8 +37,7 @@ exports.update = async (req, res, next) => {
 }
 
 exports.get = async (req, res, next) => {
-
-	const { tankId, userId } = req.query;
+	const { tankId, userId } = req.body || {};
 
 	if(tankId || userId){
 
@@ -54,7 +53,7 @@ exports.get = async (req, res, next) => {
 		}
 
 	}else{
-		exports.getAll(req, res, next);
+		return this.getAll(req, res, next);
 	}
 }
 
@@ -64,7 +63,7 @@ exports.getAll = async (req, res, next) => {
 	try {
 		const tanks = await tankService.getAll(req, res, next);
 
-		return res.status(200).json({
+    return res.status(200).json({
 			tanks
 		})
 

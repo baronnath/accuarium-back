@@ -57,6 +57,9 @@ const tankSchema = new mongoose.Schema({
         type: Number,
         default: null
     },
+},
+{ 
+    timestamps: true
 });
 
 tankSchema.plugin(mongooseAutopopulate);

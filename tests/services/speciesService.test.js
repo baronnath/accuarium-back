@@ -4,13 +4,20 @@ const mongoose = require("mongoose");
 const { update } = require("../../models/species");
 const mongooseConfig = require(__dirname + "/../../config/mongoose");
 const speciesService = require(__dirname + "/../../services/speciesService");
+const User = require(__dirname + '/../../models/user');
+const Tank = require(__dirname + '/../../models/tank');
+const Species = require(__dirname + '/../../models/species');
+const Role = require(__dirname + '/../../models/Role');
 const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../../config/server")[env];
-const { mockRequest, mockResponse, mockNext } = require(__dirname +
-  "/../mocks.js");
+const { mockRequest, mockResponse, mockNext } = require(__dirname + "/../mocks.js");
 
 beforeAll(async () => {
   await mongoose.connect(config["connectionString"], mongooseConfig);
+
+  tank = await Tank.findById('621021ce6599f2ed825133a5');
+  noMainSpeciesTank = await Tank.findById('621021ce6599f2ed825133a7');
+  noSpeciesTank = await Tank.findById('621021ce6599f2ed825133a8');
 });
 
 // Close the connection
@@ -18,20 +25,23 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-// Upload species excel file
-describe("uploadFile", () => {
-  test("File is uploaded", async () => {
-    let req = await mockRequest();
-    req.file = { 
-        path : __dirname + "/../../private/uploads/uploadFileTest.xlsx"
-    };
-    const res = mockResponse();
-    const next = mockNext();
-    let update = await speciesService.uploadFile(req, res, next);
-    // console.log(update);
-    expect(update).toHaveProperty('nMatched',11);
-    expect(update).toHaveProperty('nModified',11);
-    expect(update).toHaveProperty('ok',1);
+// Find main species in tank
+describe("findMainSpecies", () => {
+  test("Main species is found", async () => {
+    let res = await speciesService.findMainSpecies(tank.species);
+
+    expect(res.main).toEqual(true);
+    expect(res.quantity).toEqual(expect.any(Number));
+    expect(res.species).toEqual(expect.any(Species));
+  });
+
+  test("No main species in tank", async () => {
+    let res = await speciesService.findMainSpecies(noMainSpeciesTank.species);
+
+    expect(res).toEqual(null);
+  });
+
+  test("Tank with no species", async () => {
+    expect(() => speciesService.findMainSpecies(noSpeciesTank.species)).toThrowError("tank.noSpecies");;
   });
 });
-

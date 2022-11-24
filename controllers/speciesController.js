@@ -79,11 +79,14 @@ exports.getAll = async (req, res, next) => {
 exports.search = async (req, res, next) => {
 		
 	try {
-		const { species, total } = await speciesService.search(req, res, next);
+		const { species, total, page, field, direction } = await speciesService.search(req, res, next);
 
 		return res.status(200).json({
 			species,
-			total
+			total,
+      page,
+      field,
+      direction
 		})
 
 	} catch (err) {
@@ -94,10 +97,11 @@ exports.search = async (req, res, next) => {
 exports.uploadFile = async (req, res, next) => {
 		
 	try {
-		await speciesService.uploadFile(req, res, next);
+		data = await speciesService.uploadFile(req, res, next);
 
 		return res.status(200).json({
-			message: req.i18n.t('species.upload.success', {species}),
+      data: data,
+			message: 'species.upload.success',
 		})
 
 	} catch (err) {

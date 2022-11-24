@@ -68,19 +68,21 @@ exports.update = async (req, res, next) => {
 
 exports.delete = async (req) => {
 	const { leadId, email } = req.body
+  let params;
 
 	if(leadId){
-		deletedLead = await Lead
-			.findOneAndDelete({ _id:leadId});
+    params = { _id: leadId};
 	}
 	else if(email){
-		deletedLead = await Lead
-			.findOneAndDelete({email: email});
+		params = {email: email};
 	}
 
-    if (!deletedLead) {
-    	throw new ErrorHandler(500, 'lead.delete.error');
-    }
+  deletedLead = await Lead
+			.findOneAndDelete(params);
+
+  if (!deletedLead) {
+    throw new ErrorHandler(500, 'lead.delete.error');
+  }
 
 	return deletedLead;
 }

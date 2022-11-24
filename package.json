@@ -9,7 +9,10 @@
     "seed-test": "cross-env NODE_ENV=test node seeder/seeder.js",
     "see-ports": "sudo lsof -i :8080",
     "kill-process": "kill -9",
-    "test": "cross-env NODE_ENV=test jest --testTimeout=10000"
+    "test": "cross-env NODE_ENV=test jest --testTimeout=30000"
+  },
+  "jest": {
+    "setupFilesAfterEnv": ["./tests/customMatchers.js"]
   },
   "dependencies": {
     "accesscontrol": "^2.2.1",
