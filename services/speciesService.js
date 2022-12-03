@@ -244,7 +244,7 @@ exports.search = async (req, res, next) => {
 		wild,
 		salt,
     behavior
-	} = req.body;
+	} = req.query;
 	const perPage = preferencesConfig.pagination;
 	let criteria = {};
 
