@@ -9,6 +9,11 @@ exports.isObject = (input) => {
   return Object.getPrototypeOf(input).isPrototypeOf(Object);
 }
 
+// Check empty object
+exports.isEmpty = (object) => {
+  return _.isEmpty(object);
+}
+
 // Check if string
 exports.isString = (string) => {
 	if(typeof string === 'string')
