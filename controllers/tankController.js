@@ -37,7 +37,7 @@ exports.update = async (req, res, next) => {
 }
 
 exports.get = async (req, res, next) => {
-	const { tankId, userId } = req.body || {};
+	const { tankId, userId } = req.query || {};
 
 	if(tankId || userId){
 

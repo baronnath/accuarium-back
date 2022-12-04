@@ -49,7 +49,7 @@ exports.create = async (req, res, next) => {
 }
 
 exports.get = async (req, res, next) => {
-	const { tankId, userId, compatibility } = req.body;
+	const { tankId, userId, compatibility } = req.query;
 
 	if(tankId){
     tanks = await Tank.findById(tankId);
