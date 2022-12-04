@@ -91,7 +91,12 @@
     },
     "locale": {
       "required": "The language is required"
-    }
+    },
+    "tank": {
+    	"tankIdOrUserId": {
+    		"required": "Please provide a tank id or user id"
+    	}
+    },
 	},
   "lead": {
     "confirmation": {

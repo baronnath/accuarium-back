@@ -88,7 +88,12 @@
     },
     "locale": {
       "required": "El idioma es necesario"
-    }
+    },
+    "tank": {
+    	"tankIdOrUserId": {
+    		"required": "El id de tanque o el id del usuario es necesario"
+    	}
+    },
 	},
   "lead": {
     "confirmation": {

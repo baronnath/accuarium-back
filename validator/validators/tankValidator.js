@@ -51,7 +51,21 @@ exports.createRules = () => {
 }
 
 exports.getRules = () => {
-  return []
+    return [
+        oneOf(
+            [
+                query('tankId').exists(),
+                query('userId').exists()
+            ],
+            'validation.tankIdOrUserId.required'
+        ),
+        query('tankId')
+            .if(query('userId').not().exists())
+            .isHexadecimal().withMessage('validation.id.format'),
+        query('userId')
+            .if(query('tankId').not().exists())
+            .isHexadecimal().withMessage('validation.id.format'),
+    ]
 }
 
 exports.updateRules = () => {
