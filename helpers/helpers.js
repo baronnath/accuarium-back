@@ -6,7 +6,7 @@ const urlGenerator = require('./urlGenerator');
 // Check if object
 exports.isObject = (input) => {
   if (input === null || input === undefined) return false;
-  return Object.getPrototypeOf(input).isPrototypeOf(Object);
+  return input === Object(input);
 }
 
 // Check empty object
