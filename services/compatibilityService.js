@@ -97,25 +97,6 @@ exports.update = async (req, res, next) => {
 	return await compatibility.save();
 }
 
-// getInterpeciesCompatibility = async (tankId) => {	
-
-// 	compatibility = await Compatibility
-// 		.find({
-// 		      $or: [
-// 		          { $and: [
-// 		          	{speciesA: speciesAId},
-// 		          	{speciesB: speciesBId}
-// 		          ]},
-// 		          { $and: [
-// 		          	{speciesA: speciesBId},
-// 		          	{speciesB: speciesAId}
-// 		          ]},
-// 		      ]
-// 	  	});
-
-// 	return compatibility;
-// }
-
 // CHECK COMPATIBILTY
 /**
  * @api areCompatible
@@ -155,9 +136,11 @@ getTankCompatibility = async (data) => {
 
 		// extract species from tank data
 		tank.species.forEach(function(sp) {
-			species.push(sp.species);
+			speciesObj = sp.species.toObject();
+			speciesObj.numSpecimen = sp.quantity;
+			species.push(speciesObj);
 			if(sp.main)
-				mainSpecies = sp.species;
+				mainSpecies = speciesObj;
 		});
 
 	}
@@ -197,7 +180,13 @@ getTankCompatibility = async (data) => {
 				temperature: temperatureCompatibility,
 				ph: phCompatibility,
 				gh: ghCompatibility,
-				kh: khCompatibility
+				kh: khCompatibility,
+			}
+
+			if(tank){ // The coexistence is related to the number of specimen in tank
+				if(!tankCompatibility['coexistence']) tankCompatibility['coexistence'] = {}
+				tankCompatibility['coexistence'][species._id] = isCoexistenceCompatible(species);
+				// console.log(tank);
 			}
 		// }
 	});
@@ -211,9 +200,9 @@ getInterpeciesCompatibility = async (species) => {
 	let query = [];
 
 	// Extract id if species object is provided
-	extractSpeciesIds(species);
+	speciesIds = extractSpeciesIds(species);
 
-	species.forEach(function(speciesA) {
+	speciesIds.forEach(function(speciesA) {
 		species.forEach(function(speciesB) {
 			if(String(speciesA) != String(speciesB)){
 				query.push(
@@ -233,20 +222,22 @@ getInterpeciesCompatibility = async (species) => {
 }
 
 extractSpeciesIds = (species) => {
+	let speciesIds = [];
 	species.forEach(function(sp, i) {
 		if(helpers.isObject(sp)) this[i] = sp._id;
-  }, species);
+  }, speciesIds);
+  return speciesIds;
 }
 
 splitCompatibilitiesBySpecies = (species, compatibilities) => {
 
 	// Extract id if species object is provided
-	extractSpeciesIds(species);
+	speciesIds = extractSpeciesIds(species);
 	
 	// Declare objects
 	splittedCompatibilities = {};
-	species.forEach(function(species) {
-		splittedCompatibilities[species] = {} 
+	speciesIds.forEach(function(speciesId) {
+		splittedCompatibilities[speciesId] = {} 
 	});
 
 	compatibilities.forEach(function(compatibility) {
@@ -301,6 +292,21 @@ isParameterCompatible = (rangeA, rangeB) => {
 	// Intersecion <= 0 means that values are shared
 	return intersection <= 0;
 
+}
+
+function isCoexistenceCompatible (species) {
+	let isCompatible = false;
+	const coexistence = species.coexistence;
+	const numSpecimen = species.numSpecimen;
+
+	if(coexistence.indiv && numSpecimen == 1) isCompatible = true;
+	if(coexistence.couple && numSpecimen == 2) isCompatible = true;
+	if(numSpecimen >= 1)
+		if(coexistence.onlyMasc || coexistence.onlyFem) isCompatible = true;
+	if(numSpecimen >= 1)
+  	if(coexistence.mixedGroup || coexistence.harem || coexistence.inverseHarem) isCompatible = true;
+
+	return isCompatible;
 }
 
 exports.uploadFile = async (req, res, next) => {
