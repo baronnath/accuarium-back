@@ -2,6 +2,14 @@
 	"model": "group",
 	"documents": [
 		{
+			"_id": "5e8cdd3b8296523464c7462a",
+			"name": {
+				"en": "ungrouped",
+				"es": "sin grupo"
+			},
+      "icon": "danio"
+		},
+		{
 			"_id": "5e8cdd3b8296523464c7462b",
 			"name": {
 				"en": "gouramis",
