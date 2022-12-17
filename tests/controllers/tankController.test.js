@@ -130,15 +130,17 @@ describe('Read', () => {
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
-        'tanks': expect.objectContaining({
-            '__v': expect.anything(),
-            '_id': expect.anything(),
-            'name': 'Admin tank',
-            'liters': 200,
-            'measures': expect.anything(),
-            'species': expect.anything(),
-            'user': expect.anything(),
-        })
+        'tanks': expect.arrayContaining([
+            expect.objectContaining({
+              '__v': expect.anything(),
+              '_id': expect.anything(),
+              'name': 'Admin tank',
+              'liters': 200,
+              'measures': expect.anything(),
+              'species': expect.anything(),
+              'user': expect.anything(),
+          })
+        ])
       })
     );
   });
