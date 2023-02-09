@@ -194,7 +194,8 @@ exports.search = async (req, res, next) => {
 }
 
 exports.delete = async (req, res, next) => {
-	const { tankId, userId } = req.body;
+	const { tankId, userId } = req.query;
+	let tanks;
 
 	if(tankId){
 		tanks = await Tank.findByIdAndDelete(tankId);

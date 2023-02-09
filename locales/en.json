@@ -18,6 +18,9 @@
 		"verify": {
 			"success": "Welcome {{user.name}}, thank you for verifying your account"
 		},
+		"resend": {
+			"success": "The code has been resent to your email, please check your email span folder"
+		},
 		"create": {
 			"success": "{{user.name}}'s user has been created successfully. Please check your email to confirm your account"
 		},
@@ -96,7 +99,7 @@
     	"tankIdOrUserId": {
     		"required": "Please provide a tank id or user id"
     	}
-    },
+    }
 	},
   "lead": {
     "confirmation": {

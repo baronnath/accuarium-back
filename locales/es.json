@@ -43,6 +43,12 @@
 			"denied": "No tienes permisos suficientes para modificar o asignar roles"
 		}
 	},
+	"tank": {
+		"delete": {
+			"success": "El tanque {{tank.name}} ha sido eliminado",
+			"error": "No se pudo borrar el tanque"
+		}
+	},
 	"mailer": {
 		"error": {
 			"notSent": "No se ha podido enviar el email",
@@ -93,7 +99,7 @@
     	"tankIdOrUserId": {
     		"required": "El id de tanque o el id del usuario es necesario"
     	}
-    },
+    }
 	},
   "lead": {
     "confirmation": {
