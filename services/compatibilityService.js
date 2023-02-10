@@ -1,6 +1,8 @@
 // services/compatibilityService.js
 
 const fs				= require('fs');
+const mongoose  = require('mongoose');
+const ObjectId 	= mongoose.Types.ObjectId;
 const Compatibility		= require('../models/compatibility');
 const Species			= require('../models/species');
 const Type				= require('../models/type');
@@ -112,6 +114,7 @@ exports.update = async (req, res, next) => {
 getTankCompatibility = async (data) => {
 
 	let species = [];
+	let speciesIds;
 	let mainSpecies = null;
 	let tankCompatibility = {
 		species: {},
@@ -157,8 +160,11 @@ getTankCompatibility = async (data) => {
 		return {};
 	}
 
+	// Extract id if species object is provided
+	speciesIds = extractSpeciesIds(species);
+
   // Intraspecies compatibility: analize the species compatibility table
-	tankCompatibility['species'] = await getInterpeciesCompatibility(species);
+	tankCompatibility['species'] = await getInterpeciesCompatibility(speciesIds);
 
 	// Parameters compatibility: compare parameters with main species
 	species.forEach(function(species) {
@@ -186,7 +192,6 @@ getTankCompatibility = async (data) => {
 			if(tank){ // The coexistence is related to the number of specimen in tank
 				if(!tankCompatibility['coexistence']) tankCompatibility['coexistence'] = {}
 				tankCompatibility['coexistence'][species._id] = isCoexistenceCompatible(species);
-				// console.log(tank);
 			}
 		// }
 	});
@@ -194,21 +199,20 @@ getTankCompatibility = async (data) => {
 	return tankCompatibility
 }
 
-
-getInterpeciesCompatibility = async (species) => {
+/*
+	Input: speciesIds array
+*/ 
+getInterpeciesCompatibility = async (speciesIds) => {
 
 	let query = [];
 
-	// Extract id if species object is provided
-	speciesIds = extractSpeciesIds(species);
-
 	speciesIds.forEach(function(speciesA) {
-		species.forEach(function(speciesB) {
+		speciesIds.forEach(function(speciesB) {
 			if(String(speciesA) != String(speciesB)){
 				query.push(
 					{ $and: [
-			          	{speciesA: speciesA},
-			          	{speciesB: speciesB}
+			          	{speciesA: ObjectId(speciesA)},
+			          	{speciesB: ObjectId(speciesB)}
 			        ]}
 			    );
 			}
@@ -218,21 +222,21 @@ getInterpeciesCompatibility = async (species) => {
 	compatibility = await Compatibility
 		.find({ $or: query });
 
-	return splitCompatibilitiesBySpecies(species,compatibility);
+	return splitCompatibilitiesBySpecies(speciesIds,compatibility);
 }
 
 extractSpeciesIds = (species) => {
+
 	let speciesIds = [];
+
 	species.forEach(function(sp, i) {
 		if(helpers.isObject(sp)) this[i] = sp._id;
   }, speciesIds);
+
   return speciesIds;
 }
 
-splitCompatibilitiesBySpecies = (species, compatibilities) => {
-
-	// Extract id if species object is provided
-	speciesIds = extractSpeciesIds(species);
+splitCompatibilitiesBySpecies = (speciesIds, compatibilities) => {
 	
 	// Declare objects
 	splittedCompatibilities = {};
@@ -301,10 +305,9 @@ function isCoexistenceCompatible (species) {
 
 	if(coexistence.indiv && numSpecimen == 1) isCompatible = true;
 	if(coexistence.couple && numSpecimen == 2) isCompatible = true;
-	if(numSpecimen >= 1)
-		if(coexistence.onlyMasc || coexistence.onlyFem) isCompatible = true;
-	if(numSpecimen >= 1)
-  	if(coexistence.mixedGroup || coexistence.harem || coexistence.inverseHarem) isCompatible = true;
+	if(numSpecimen > 1)
+		if(!coexistence.indiv || !coexistence.couple)
+			isCompatible = true;
 
 	return isCompatible;
 }
@@ -315,32 +318,41 @@ exports.uploadFile = async (req, res, next) => {
 	const { compatibility: compatibilityList } = excel.toJSON(path);
 	let compatibilities = [];
 	let speciesIncluded = []; // Skip duplicated information about same pair of species
+	const validProps = [0, 1, 2];
 
 	const species = await Species.find();
 
 	compatibilityList.forEach(function(speciesCompatibility, index) {
+		let speciesA = null;
 
 		// Iterate over item properties (as it was an array)
-		Object.keys(speciesCompatibility).forEach(function(prop) {
+		Object.keys(speciesCompatibility).forEach(function(prop) { // prop is the column header
 			let speciesB = null;
 
+			if(prop == '__EMPTY') return; // Beta column
+
 			if(prop == 'scientificName'){
-				speciesA = species.find(sp => sp.scientificName === speciesCompatibility[prop]);
-				if(!speciesA){
-					throw new ErrorHandler(404, 'species.notFound', speciesCompatibility[prop]);
+				speciesA = species.find(sp => sp.scientificName == speciesCompatibility[prop]);
+				if(speciesA == undefined){
+					return;
+					// throw new ErrorHandler(404, 'species.notFound', speciesCompatibility[prop]);
 				}
 				speciesIncluded.push(speciesA.scientificName);
 				return;
 			}
-			
-			if(speciesCompatibility[prop] == 'x') return; // 'x' represents same species compatibility cell
-			
-			speciesB = species.find(sp => sp.scientificName === prop);
-			if(!speciesB){
-				throw new ErrorHandler(404, 'species.notFound', prop);
+
+			speciesB = species.find(sp => sp.scientificName == prop);
+			if(speciesB == undefined){
+				return;
+				// throw new ErrorHandler(404, 'species.notFound', prop);
 			}
 
-			if(speciesIncluded.find(incl => incl == speciesB.scientificName)){ // Skip if compatibility  pair was registered previously
+			// Excludes not valid compat value (0, 1 and 2)
+			if(!validProps.includes(speciesCompatibility[prop]))
+				return; 
+			
+			// Skip if compatibility pair was registered previously
+			if(speciesA && speciesIncluded.findIndex(incl => incl == speciesB.scientificName) < 0){
 				compatibilities.push({
 					speciesA: speciesA._id,
 					speciesB: speciesB._id,
@@ -376,4 +388,5 @@ exports.functionsToTest = {
   getInterpeciesCompatibility,
   splitCompatibilitiesBySpecies,
   isParameterCompatible,
+  isCoexistenceCompatible,
 }

@@ -4,12 +4,19 @@ const mongoose = require("mongoose");
 const { update } = require("../../models/species");
 const mongooseConfig = require(__dirname + "/../../config/mongoose");
 const { functionsToTest: compatibilityService } = require(__dirname + "/../../services/compatibilityService");
+const User = require(__dirname + '/../../models/user');
+const Tank = require(__dirname + '/../../models/tank');
+const Role = require(__dirname + '/../../models/role');
+const Group = require(__dirname + '/../../models/group');
+const Color = require(__dirname + '/../../models/color');
 const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../../config/server")[env];
 const { mockRequest, mockResponse, mockNext } = require(__dirname + "/../mocks.js");
 
 beforeAll(async () => {
   await mongoose.connect(config["connectionString"], mongooseConfig);
+
+  tank = await Tank.findById('621021ce6599f2ed825133a5');
 });
 
 // Close the connection
@@ -149,6 +156,14 @@ describe("getInterpeciesCompatibility", () => {
         }
       });
   });
+
+  // describe("isCoexistenceCompatible", () => {
+  //   test("Compatible coexistence", () => {
+  //     console.log(tank);
+  //     let res = compatibilityService.isCoexistenceCompatible(tank.species);
+  //     expect(res).toBe(true);
+  //   });
+  // });
 
 });
 
