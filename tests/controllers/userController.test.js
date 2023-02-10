@@ -14,7 +14,7 @@ const accessControl = require(__dirname + '/../../helpers/accessControl');
 
 let connection;
 let admin;
-let player;
+let user;
 let validAccessToken;
 let expiredAccessToken =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVlOGNkZDNiODI5NjUyMzQ2NGM3NDYxZSIsImVtYWlsIjoibmF0YW4ubW9yb3RlQGdtYWlsLmNvbSIsIm5hbWUiOiJOYXRhbiIsInJvbGUiOnsiaWQiOiI1ZThjZGQzYjgyOTY1MjM0NjRjNzQ2MGUiLCJuYW1lIjoiYWRtaW4ifX0sImlhdCI6MTU4NjgxNjEyNiwiZXhwIjoxNTg3NDIwOTI2fQ.QqHDlmBRIBnO3Xd7wGQLf-3r9tMqxga3Ik2YKpaZyl4';
@@ -27,7 +27,7 @@ beforeAll(async () => {
   accessControl.init();
 
   admin = await User.findOne({ email: 'admin@accuarium.io' });
-  player = await User.findOne({ email: 'user1@accuarium.io' });
+  user = await User.findOne({ email: 'user1@accuarium.io' });
 
   validAccessToken = await userService.createAccessToken(admin);
 });
@@ -101,7 +101,7 @@ describe('isAllowedTo', () => {
   });
   test('Deny access if user is not allowed to', async () => {
     const req = await mockRequest();
-    req.user = player;
+    req.user = user;
     const res = mockResponse();
     const next = mockNext();
     const isAllowToTester = userController.isAllowedTo('createAny', 'user');
@@ -274,6 +274,7 @@ describe('update', () => {
         userId: '5e8cdd3b8296523464c7461d',
         name: 'User to update',
       },
+      {},
       admin
     );
     const res = mockResponse();
@@ -299,8 +300,9 @@ describe('update', () => {
       {},
       {
         email: 'user1@accuarium.io',
-        name: 'Player updated twice'
+        name: 'User updated twice'
       },
+      {},
       admin
     );
     const res = mockResponse();
@@ -316,7 +318,7 @@ describe('update', () => {
             'createdAt': expect.any(Date),
             'email': 'user1@accuarium.io',
             'image': expect.anything(),
-            'name': 'Player updated twice',
+            'name': 'User updated twice',
             'notification': true,
             'role': expect.any(Object),
             'updatedAt': expect.any(Date),
@@ -359,7 +361,7 @@ describe('update', () => {
 // Delete
 describe('delete', () => {
   test('Reject when nor user email or id is provided', async () => {
-    const req = await mockRequest({}, {}, admin);
+    const req = await mockRequest({}, {}, {}, admin);
     const res = mockResponse();
 
     try{
@@ -373,10 +375,11 @@ describe('delete', () => {
   test('Reject when no permissions', async () => {
     const req = await mockRequest(
       {},
+      {},
       {
         email: 'admin@accuarium.io'
       },
-      player
+      user
      );
     const res = mockResponse();
 
@@ -390,6 +393,7 @@ describe('delete', () => {
 
   test('Delete user when user id is provided', async () => {
     const req = await mockRequest(
+      {},
       {},
       {
         userId: '5e8cdd3b8296523464c7461d'
@@ -405,6 +409,7 @@ describe('delete', () => {
 
   test('Delete user when user email is provided', async () => {
     const req = await mockRequest(
+      {},
       {},
       {
         email: 'user2@accuarium.io'

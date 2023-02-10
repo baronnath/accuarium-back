@@ -30,12 +30,12 @@ exports.init = async () => {
 			let attributes = ['*'];
 			if(permission.excludes[grant]){
 				let exclude = permission.excludes[grant].split(',');
-	  			exclude.forEach(attr => {
-	  				attributes.push('!'+attr);
-	  			});
-	  		}
+  			exclude.forEach(attr => {
+  				attributes.push('!'+attr);
+  			});
+  		}
 
-  			if(permission.grants[grant])
+			if(permission.grants[grant])
 				ac.grant(permission.role.name[defaultLocale])[grant](permission.endPoint.name[defaultLocale], attributes);
 
 		});

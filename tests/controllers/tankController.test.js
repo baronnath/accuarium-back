@@ -1,6 +1,7 @@
 // test/controllers/tankController.test.js
 
 const mongoose = require('mongoose');
+const ObjectId  = mongoose.Types.ObjectId;
 const mongooseConfig = require(__dirname + '/../../config/mongoose');
 const userController = require(__dirname + '/../../controllers/userController');
 const userService = require(__dirname + '/../../services/userService');
@@ -121,7 +122,7 @@ describe('Read', () => {
     const req = await mockRequest(
       {},
       {
-        tankId: adminTankId
+        tankId: ObjectId(adminTankId)
       }
     );
     const res = mockResponse();
@@ -149,7 +150,7 @@ describe('Read', () => {
     const req = await mockRequest(
       {},
       {
-        userId: user._id,
+        userId: ObjectId(user._id)
       }
     );
     const res = mockResponse();
@@ -183,10 +184,7 @@ describe('Read', () => {
   });
 
   test('Get all tanks when no ids are provided', async () => {
-    const req = mockRequest(
-      {},
-      {}
-    );
+    const req = mockRequest();
     const res = mockResponse();
     const next = mockNext();
     await tankController.get(req, res, next);
@@ -200,10 +198,7 @@ describe('Read', () => {
   });
 
   test('Get all tanks', async () => {
-    const req = mockRequest(
-      {},
-      {}
-    );
+    const req = mockRequest();
     const res = mockResponse();
     const next = mockNext();
     await tankController.getAll(req, res, next);
@@ -252,10 +247,11 @@ describe('update', () => {
     const req = await mockRequest(
       {},
       {
-        tankId: adminTankId,
+        tankId: ObjectId(adminTankId),
         liters: 450,
         height: 60
       },
+      {},
       admin
     );
     const res = mockResponse();
@@ -348,7 +344,7 @@ describe('addSpecies', () => {
           'species': expect.arrayContaining([
             expect.objectContaining({
               'species': expect.objectContaining({
-                '_id':  mongoose.Types.ObjectId('5e8cdd3b8296523464c7462c')
+                '_id':  ObjectId('5e8cdd3b8296523464c7462c')
               })
             })
           ])
@@ -387,12 +383,12 @@ describe('addSpecies', () => {
           'species': expect.arrayContaining([
             expect.objectContaining({
               'species': expect.objectContaining({
-                '_id':  mongoose.Types.ObjectId('5e8cdd3b8296523464c7462b')
+                '_id':  ObjectId('5e8cdd3b8296523464c7462b')
               })
             }),
             expect.objectContaining({
               'species': expect.objectContaining({
-                '_id':  mongoose.Types.ObjectId('5e8cdd3b8296523464c7462c')
+                '_id':  ObjectId('5e8cdd3b8296523464c7462c')
               })
             })
           ])
@@ -443,7 +439,7 @@ describe('addSpecies', () => {
 // Delete
 describe('delete', () => {
   test('Reject when no id is provided', async () => {
-    const req = await mockRequest({}, {});
+    const req = await mockRequest();
     const res = mockResponse();
 
     try{
@@ -488,8 +484,9 @@ describe('delete', () => {
   test('Delete by tankId', async () => {
     const req = await mockRequest(
       {},
+      {},
       {
-        tankId: adminTankId
+        tankId: ObjectId(adminTankId)
       },
     );
     const res = mockResponse();
@@ -502,8 +499,9 @@ describe('delete', () => {
   test('Delete all userId tanks', async () => {
     const req = await mockRequest(
       {},
+      {},
       {
-        userId: user._id
+        userId: ObjectId(user._id)
       },
     );
     const res = mockResponse();

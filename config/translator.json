@@ -17,5 +17,5 @@
 	 	"order": ["querystring","header"],
 		"lookupQuerystring": "locale",
 		"lookupHeader": "accept-language"
-  	}	
+  }	
 }

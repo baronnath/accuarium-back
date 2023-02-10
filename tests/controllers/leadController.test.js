@@ -43,7 +43,7 @@ describe('create', () => {
       {},
       {
         email: email,
-		     locale: locale,
+		    locale: locale,
       }
     );
     const res = mockResponse();
@@ -260,6 +260,7 @@ describe('update', () => {
         leadId: lead._id,
         locale: 'es',
       },
+      {},
       admin
     );
     const res = mockResponse();
@@ -287,6 +288,7 @@ describe('update', () => {
         email: lead.email,
         locale: 'en'
       },
+      {},
       admin
     );
     const res = mockResponse();
@@ -341,7 +343,7 @@ describe('update', () => {
 // Delete
 describe('delete', () => {
   test('Reject when nor user email or id is provided', async () => {
-    const req = await mockRequest({}, {}, admin);
+    const req = await mockRequest({}, {}, {}, admin);
     const res = mockResponse();
 
     try{
@@ -358,6 +360,7 @@ describe('delete', () => {
       {
         leadId: lead._id
       },
+      {},
       admin
     );
     const res = mockResponse();
@@ -373,6 +376,7 @@ describe('delete', () => {
       {
         email: email
       },
+      {},
       admin
     );
     const res = mockResponse();

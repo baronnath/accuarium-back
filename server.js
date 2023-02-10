@@ -23,6 +23,7 @@ const mongooseConfig			= require(__dirname + '/config/mongoose');
 const cors						= require('cors');
 
 // MongoDB connection
+mongoose.set("strictQuery", false); // This line is becuase of a DeprecationWarning: Mongoose: the `strictQuery` option will be switched back to `false` by default in Mongoose 7
 mongoose.connect(config['connectionString'], mongooseConfig)
 .catch(err => {
 	logger.api(err.message);
