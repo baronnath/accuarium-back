@@ -183,6 +183,17 @@ speciesSchema.post(['find', 'findOne'], function(docs) {
 
 speciesSchema.plugin(mongooseAutopopulate);
 
+speciesSchema.index(
+  {
+    scientificName: 'text',
+    'name.en': 'text',
+    'name.es': 'text',
+    scientificNameSynonyms: 'text',
+    'otherNames.en': 'text',
+    'otherNames.es': 'text',
+  }
+ )
+
 const species = mongoose.model('species', speciesSchema);
 
 module.exports = species;

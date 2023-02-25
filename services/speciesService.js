@@ -260,15 +260,7 @@ exports.search = async (req, res, next) => {
 	}
 
 	if(keyword){
-		let regex = new RegExp(keyword, 'i');
-		let nameField = 'name.'+locale;
-		let otherNamesField= 'otherNames.'+locale;
-		criteria.$or = [
-			{ ['scientificName'] : { $regex: regex }},
-			{ ['scientificNameSynonyms'] : { $regex: regex }},
-			{ [nameField] : { $regex: regex }},
-			{ [otherNamesField]: { $regex: regex } }
-		];
+		criteria = { $text: { $search: keyword, $caseSensitive: false, $diacriticSensitive: false }};
 	}
 
 
