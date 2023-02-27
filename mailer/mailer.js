@@ -38,7 +38,7 @@ exports.Email = class Email {
 			// service: 'gmail',
 			auth: {
 				user: config.user,
-				pass: config.password 
+				pass: process.env.mailer_password
 			}
 		});
 
