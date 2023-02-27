@@ -1,6 +1,5 @@
 {
   "user": "natan.morote@gmail.com",
-  "password": "notyourbusiness89",
   "imap": {
     "host": "imap.gmail.com",
     "port": 993,
