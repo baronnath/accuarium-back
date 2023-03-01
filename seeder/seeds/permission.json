@@ -102,6 +102,31 @@
 			}
 		},
 		{
+			"_id": "5e8cdd4b8296523464c7461d",
+			"role": "5e8cdd3b8296523464c7460c",
+			"endPoint": "5e8cdd3b8296523464c7462a",
+			"grants": {
+				"createOwn": true,
+			    "readOwn": true,
+			    "updateOwn": true,
+			    "deleteOwn": true,
+			    "createAny": false,
+			    "readAny": true,
+			    "updateAny": false,
+			    "deleteAny": false
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": "role",
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": "role",
+				"deleteAny": null
+			}
+		},
+		{
 			"_id": "5e8cdd3b8296523464c7461e",
 			"role": "5e8cdd3b8296523464c7460b",
 			"endPoint": "5e8cdd3b8296523464c7462b",
@@ -127,8 +152,58 @@
 			}
 		},
 		{
+			"_id": "5e8cdd4b8296523464c7461e",
+			"role": "5e8cdd3b8296523464c7460c",
+			"endPoint": "5e8cdd3b8296523464c7462b",
+			"grants": {
+				"createOwn": false,
+			    "readOwn": true,
+			    "updateOwn": false,
+			    "deleteOwn": false,
+			    "createAny": false,
+			    "readAny": true,
+			    "updateAny": false,
+			    "deleteAny": false
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
 			"_id": "5e8cdd3b8296523464c7461f",
 			"role": "5e8cdd3b8296523464c7460b",
+			"endPoint": "5e8cdd3b8296523464c7462c",
+			"grants": {
+				"createOwn": false,
+			    "readOwn": true,
+			    "updateOwn": false,
+			    "deleteOwn": false,
+			    "createAny": false,
+			    "readAny": false,
+			    "updateAny": false,
+			    "deleteAny": false
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd4b8296523464c7461f",
+			"role": "5e8cdd3b8296523464c7460c",
 			"endPoint": "5e8cdd3b8296523464c7462c",
 			"grants": {
 				"createOwn": false,
@@ -629,6 +704,31 @@
     {
 			"_id": "5e8cdd3b8296523464c7467d",
 			"role": "5e8cdd3b8296523464c7460b",
+			"endPoint": "5e8cdd3b8296523464c74656",
+			"grants": {
+				"createOwn": false,
+        "readOwn": true,
+        "updateOwn": false,
+        "deleteOwn": false,
+        "createAny": false,
+        "readAny": true,
+        "updateAny": false,
+        "deleteAny": false
+			},
+			"excludes": {
+				"createOwn": null,
+				"readOwn": null,
+				"updateOwn": null,
+				"deleteOwn": null,
+				"createAny": null,
+				"readAny": null,
+				"updateAny": null,
+				"deleteAny": null
+			}
+		},
+		{
+			"_id": "5e8cdd4b8296523464c7467d",
+			"role": "5e8cdd3b8296523464c7460c",
 			"endPoint": "5e8cdd3b8296523464c74656",
 			"grants": {
 				"createOwn": false,

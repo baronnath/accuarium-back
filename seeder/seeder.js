@@ -3,24 +3,41 @@
 const seeder 	= require('mongoose-seed');
 const env 		= process.env.NODE_ENV || 'development';
 const config 	= require('../config/server')[env];
+const dotenv					= require('dotenv');
 const fs 		= require('fs');
+const { getArgs, isObject, isEmpty } = require('../helpers/helpers');
 
-fs.readdir('./seeder/seeds', function(err, filenames) {
+dotenv.config();
+
+const seedsPath = './seeder/seeds/';
+const args = getArgs();
+console.log(args);
+
+fs.readdir(seedsPath, function(err, filenames) {
     
-    if (err) {
-      console.log('Error reading files: ' + err)
-      return;
-    }
+  if (err) {
+    console.log('Error reading files: ' + err)
+    return;
+  }
 
-    let models = {
-    	data: [],
-    	names: [],
-    	paths: []
-    }
+  let models = {
+  	data: [],
+  	names: [],
+  	paths: []
+  }
 
-    var promise = new Promise((resolve, reject) => {
-    	filenames.forEach(function(filename, index, array) {
-			let data = require('../seeder/seeds/' + filename);
+  if(isObject(args) && !isEmpty(args) && args.models){
+  	filenames = args.models.split(',');
+  	filenames.forEach(function(filename, index) {
+		  this[index] = `${filename}.json`;
+		}, filenames); // use arr as this
+  }
+
+  console.log(filenames);
+
+  var promise = new Promise((resolve, reject) => {
+  	filenames.forEach(function(filename, index, array) {
+			let data = require(`.${seedsPath}${filename}`);
 			models.data.push(data);
 			models.paths.push('models/' + data['model'] + '.js');
 			models.names.push(data['model']);
@@ -31,7 +48,7 @@ fs.readdir('./seeder/seeds', function(err, filenames) {
 
 	promise.then(() => {
 
-		seeder.connect(config['connectionString'], (err) => {
+		seeder.connect(process.env["database_connection_string_" + env], (err) => {
 
 			if(err){
 				return console.log('Connection failed: ' + err);
@@ -52,8 +69,8 @@ fs.readdir('./seeder/seeds', function(err, filenames) {
 				});
 			});
 
-	    });
     });
+  });
 
 });
 
