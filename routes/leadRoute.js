@@ -1,6 +1,7 @@
 // routes/leadRoute.js
 
 const leadController  = require('../controllers').lead;
+const userController    = require('../controllers').user;
 const { validate } = require('../validator/validator');
 const leadValidator = require('../validator/validators/leadValidator');
 
@@ -52,24 +53,32 @@ module.exports = function(app){
     );
 
     app.get('/lead',
+        userController.isLoggedIn,
+        userController.isAllowedTo('readOwn', 'species'),
         leadValidator.getRules(),
         validate,
         leadController.get
     );
 
     app.get('/leads',
+        userController.isLoggedIn,
+        userController.isAllowedTo('readAny', 'species'),
         // depthValidator.getRules(),
         // validate,
         leadController.getAll
     );
 
     app.put('/lead',
+        userController.isLoggedIn,
+        userController.isAllowedTo('updateOwn', 'species'),
         leadValidator.updateRules(),
         validate,
         leadController.update
     );
 
     app.delete('/lead',
+        userController.isLoggedIn,
+        userController.isAllowedTo('deleteOwn', 'species'),
         leadValidator.deleteRules(),
         validate,
         leadController.delete
