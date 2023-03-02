@@ -2,6 +2,7 @@
 
 const mongoose = require('mongoose');
 const mongooseConfig = require(__dirname + '/../../config/mongoose');
+const dotenv  = require('dotenv');
 const userController = require(__dirname + '/../../controllers/userController');
 const userService = require(__dirname + '/../../services/userService');
 const User = require(__dirname + '/../../models/user');
@@ -22,9 +23,11 @@ let invalidAccessToken =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzk3OTY0NTYsImV4cCI6MTU3OTg4Mjg1Nn0.6EDOt1JR985EMK-AM3rDdqLfxEYVc84y6iS00sQCc3Q';
 
 beforeAll(async () => {
-  await mongoose.connect(config['connectionString'], mongooseConfig);
+  dotenv.config();
 
-  accessControl.init();
+  await mongoose.connect(process.env["database_connection_string_" + env], mongooseConfig);
+
+  await accessControl.init();
 
   admin = await User.findOne({ email: 'admin@accuarium.io' });
   user = await User.findOne({ email: 'user1@accuarium.io' });

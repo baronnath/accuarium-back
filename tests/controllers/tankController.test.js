@@ -1,8 +1,9 @@
 // test/controllers/tankController.test.js
 
 const mongoose = require('mongoose');
-const ObjectId  = mongoose.Types.ObjectId;
 const mongooseConfig = require(__dirname + '/../../config/mongoose');
+const dotenv  = require('dotenv');
+const ObjectId  = mongoose.Types.ObjectId;
 const userController = require(__dirname + '/../../controllers/userController');
 const userService = require(__dirname + '/../../services/userService');
 const tankController = require(__dirname + '/../../controllers/tankController');
@@ -22,9 +23,11 @@ let userTankId = '621021ce6599f2ed825133a6';
 
 
 beforeAll(async () => {
-  await mongoose.connect(config['connectionString'], mongooseConfig);
+  dotenv.config();
 
-  accessControl.init();
+  await mongoose.connect(process.env["database_connection_string_" + env], mongooseConfig);
+
+  await accessControl.init();
 
   admin = await User.findOne({ email: 'admin@accuarium.io' });
   user = await User.findOne({ email: 'user1@accuarium.io' });

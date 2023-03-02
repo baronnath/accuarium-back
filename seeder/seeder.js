@@ -3,7 +3,7 @@
 const seeder 	= require('mongoose-seed');
 const env 		= process.env.NODE_ENV || 'development';
 const config 	= require('../config/server')[env];
-const dotenv					= require('dotenv');
+const dotenv  = require('dotenv');
 const fs 		= require('fs');
 const { getArgs, isObject, isEmpty } = require('../helpers/helpers');
 
@@ -11,7 +11,6 @@ dotenv.config();
 
 const seedsPath = './seeder/seeds/';
 const args = getArgs();
-console.log(args);
 
 fs.readdir(seedsPath, function(err, filenames) {
     

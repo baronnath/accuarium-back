@@ -1,8 +1,9 @@
 // test/services/speciesService.test.js
 
 const mongoose = require("mongoose");
-const { update } = require("../../models/species");
 const mongooseConfig = require(__dirname + "/../../config/mongoose");
+const dotenv  = require('dotenv');
+const { update } = require("../../models/species");
 const speciesService = require(__dirname + "/../../services/speciesService");
 const User = require(__dirname + '/../../models/user');
 const Tank = require(__dirname + '/../../models/tank');
@@ -13,7 +14,9 @@ const config = require(__dirname + "/../../config/server")[env];
 const { mockRequest, mockResponse, mockNext } = require(__dirname + "/../mocks.js");
 
 beforeAll(async () => {
-  await mongoose.connect(config["connectionString"], mongooseConfig);
+  dotenv.config();
+
+  await mongoose.connect(process.env["database_connection_string_" + env], mongooseConfig);
 
   tank = await Tank.findById('621021ce6599f2ed825133a5');
   noMainSpeciesTank = await Tank.findById('621021ce6599f2ed825133a7');
