@@ -76,7 +76,7 @@ exports.create = async (req, res, next) => {
 
 	role = await Role.findOne({'name.en':role});
 	if(!role)
-		throw new ErrorHandler(400, 'The role doesn\'t exist');
+		throw new ErrorHandler(400, 'validation.role.notFound');
 
 	user = new User({
 		email: email,
@@ -199,7 +199,7 @@ exports.login = async (req, res, next) => {
 	user = await User.findOne({email:email}).populate('role');
 
 	if(!user)
-		throw new ErrorHandler(406, 'user.get.notExists');
+		throw new ErrorHandler(406, 'user.notFound');
 
 	if(user.confirmationToken === null){ // Account must be verified if confirmationToken is not null
 
@@ -254,7 +254,7 @@ exports.verify = async (req) =>{
 		});
 
 	if(!user)
-		throw new ErrorHandler(406, 'validation.user.notExists');
+		throw new ErrorHandler(406, 'user.notFound');
 
 	if(user.confirmationToken === null)
 		throw new ErrorHandler(406, 'user.login.alreadyConfirmed');
@@ -281,7 +281,7 @@ exports.resend = async (req) =>{
 		});
 
 	if(!user)
-		throw new ErrorHandler(406, 'validation.user.notExists');
+		throw new ErrorHandler(406, 'user.notFound');
 
 	if(user.confirmationToken === null)
 		throw new ErrorHandler(406, 'user.login.alreadyConfirmed');

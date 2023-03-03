@@ -14,7 +14,7 @@ exports.create = async (req, res, next) => {
 
 		return res.status(201).json({
 			lead: lead,
-			message: req.i18n.t('lead.create.success', {lead}),
+			message: req.i18n.t('lead.create.success'),
 		})
 
 	} catch (err) {

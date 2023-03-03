@@ -2,10 +2,13 @@
 	"user": {
 		"permission": {
 			"denied": "You don't have enough permission to perform this action",
-			"notAny": "You don't have enough permission to modify other users"
+			"notAny": "You don't have enough permission to modify other users",
+			"update": {
+	  		"success": "Permission updated"
+	  	}
 		},
 		"login": {
-			"success": "Hi {{user.name}}, you are now logged in",
+			"success": "Hi {{user.name}}",
 			"notExists": "This email is not registered yet, please register",
 			"notLoggedIn": "Please log in",
 			"sessionExpired": "Your session has expired, please log in",
@@ -36,18 +39,47 @@
 			"subject": "Hi, {{user.name}}! Please confirm your email address",
 			"title": "Registration confirmation",
 			"preheader": "Thank you for registering. Only one more step! Confirm your email address"
-		}
+		},
+		"notFound": "User not found"
 	},
 	"role": {
 		"permission": {
 			"denied": "You don't have enough permission to assign or modify the role"
 		}
 	},
+	"species": {
+		"create": {
+			"success": "Species {{species.scientificName}} created"
+		},
+		"update": {
+			"success": "Species updated"
+		},
+		"update": {
+			"success": "Especies added"
+		},
+		"notFound": "Species not found"
+	},
 	"tank": {
+		"create": {
+			"success": "Tank created"
+		},
+		"update": {
+			"success": "Tank updated"
+		},
 		"delete": {
 			"success": "The tank {{tank.name}} has been deleted successfully",
 			"error": "The tank could not be deleted"
-		}
+		},
+		"addSpecies": {
+			"success": "Species added"
+		},
+		"species": {
+			"alreadyExists": "Tank already has this species"
+		},
+		"noSpecies": "Tank has no species",
+		"notFound": "Tank not found",
+		"speciesNotFound": "Species not found",
+		"mainSpeciesNotFound": "Main species not found"
 	},
 	"mailer": {
 		"error": {
@@ -74,6 +106,7 @@
 			"lenght": "Password has to be at least {{passwordLenght}} characters"
 		},
 		"role": {
+			"notFound": "Role not found",
 			"notExists": "Please select an existing role"
 		},
 		"name": {
@@ -90,7 +123,7 @@
 			"notExists": "JWT token doesn't belong to any existing user"
 		},
     "lead": {
-      "notExists": "Lead does not exist"
+      "notExists": "subscription does not exist"
     },
     "locale": {
       "required": "The language is required"
@@ -99,6 +132,9 @@
     	"tankIdOrUserId": {
     		"required": "Please provide a tank id or user id"
     	}
+    },
+    "permission": {
+    	"notExists": "Permission does not exist"
     }
 	},
   "lead": {
@@ -117,5 +153,12 @@
 			"success": "The subscription has been deleted successfully",
 			"error": "The subscription could not be deleted"
 		}
-  }
+  },
+  "image": {
+  	"notSaved": "Image not saved"
+  },
+  "compatibility": {
+  	"notFound": "Compatibility not found"
+  },
+  "notImplemented": "Feature not implemented"
 }

@@ -27,7 +27,7 @@ exports.update = async (req, res, next) => {
 
 		return res.status(200).json({
 			permission,
-			message: req.i18n.t('permission.update.success', {permission}),
+			message: req.i18n.t('permission.update.success'),
 		})
 		
 	} catch (err) {

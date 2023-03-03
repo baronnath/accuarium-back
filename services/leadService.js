@@ -104,7 +104,7 @@ exports.sendConfirmation = async (lead, req, res, next) => {
 		lead.email,
 		'lead-confirmation',
 		data,
-		req.i18n.t('lead.confirmation.subject', {lead})
+		req.i18n.t('lead.confirmation.subject')
 	);
 
 	try{

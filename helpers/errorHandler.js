@@ -27,7 +27,6 @@ exports.handleError = (err, req, res) => {
 
   	err.statusCode = err.statusCode || 500;
   	err.status = err.status || 'error';
-  	err.message = req.i18n.t(err.message) + (err.data ? ': ' + err.data : '' );
 
   	if (env === 'development') {
 	    sendErrorDev(err, req, res);
@@ -37,7 +36,8 @@ exports.handleError = (err, req, res) => {
 };
 
 const sendErrorDev = (err, req, res) => {
-  	logger.error(err.statusCode + ' - ' + err.message);
+	err.message = req.i18n.t(err.message) + (err.data ? ': ' + err.data : '' );
+	logger.error(err.statusCode + ' - ' + err.message);
 
 	res.status(err.statusCode).json({
 		status: err.status,
@@ -50,6 +50,6 @@ const sendErrorDev = (err, req, res) => {
 const sendErrorProd = (err, req, res) => {
 	res.status(err.statusCode).json({
 		status: err.status,
-		message: err.message
+		message: err.message,
 	});
 };

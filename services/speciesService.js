@@ -268,12 +268,12 @@ exports.search = async (req, res, next) => {
     // Look for the main species
 		tank = await Tank.findById(tank);
 		if(!tank){
-    	throw new ErrorHandler(404, 'tank.notExists');
+    	throw new ErrorHandler(404, 'tank.notFound');
 		}
 
     let { species: mainSpecies } = this.findMainSpecies(tank.species);
     if(!mainSpecies)
-    	throw new ErrorHandler(404, 'tank.noMainSpecies');
+    	throw new ErrorHandler(404, 'tank.mainSpeciesNotFound');
     
     // Overwrite params with the tank main species' params
     const params = mainSpecies.parameters;

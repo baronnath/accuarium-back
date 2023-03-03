@@ -2,7 +2,10 @@
 	"user": {
 		"permission": {
 			"denied": "No tienes permisos suficientes para realizar esta acción",
-			"notAny": "No tienes permisos suficientes para modificar otros usuarios"
+			"notAny": "No tienes permisos suficientes para modificar otros usuarios",
+			"update": {
+	  		"success": "Permiso actualizado"
+	  	}
 		},
 		"login": {
 			"success": "Hola, {{user.name}}",
@@ -36,18 +39,47 @@
 			"subject": "¡Hola, {{user.name}}! Confirma tu dirrección email",
 			"title": "Confirmación de registro",
 			"preheader": "Gracias por registrarte. ¡Solo un pasito más! Confirma tu cuenta de correo."
-		}
+		},
+		"notFound": "No se ha encontrado al usuario"
 	},
 	"role": {
 		"permission": {
 			"denied": "No tienes permisos suficientes para modificar o asignar roles"
 		}
 	},
+	"species": {
+		"create": {
+			"success": "Especie {{species.scientificName}} creada"
+		},
+		"update": {
+			"success": "Especie actualizada"
+		},
+		"upload": {
+			"success": "Especies añadidas"
+		},
+		"notFound": "No se ha encontrado la especie"
+	},
 	"tank": {
+		"create": {
+			"success": "Tanque creado"
+		},
+		"update": {
+			"success": "Tanque actualizado"
+		},
 		"delete": {
 			"success": "El tanque {{tank.name}} ha sido eliminado",
 			"error": "No se pudo borrar el tanque"
-		}
+		},
+		"addSpecies": {
+			"success": "Especie añadida"
+		},
+		"species": {
+			"alreadyExists": "El tanque ya tiene esta especie"
+		},
+		"noSpecies": "El tanque no tiene especies",
+		"notFound": "No se ha encontrado el tanque",
+		"speciesNotFound": "No se ha encontrado la especie",
+		"mainSpeciesNotFound": "No se ha encontrado la especie principal"
 	},
 	"mailer": {
 		"error": {
@@ -74,6 +106,7 @@
 			"lenght": "La contraseña debe ser de al manos {{passwordLenght}} caracteres'"
 		},
 		"role": {
+			"notFound": "No se ha encontrado el rol",
 			"notExists": "Selecciona un rol existente"
 		},
 		"name": {
@@ -90,7 +123,7 @@
 			"notExists": "El código no corresponde a ningún usuario registrado"
 		},
     "lead": {
-      "notExists": "Lead does not exist"
+      "notExists": "No existe la suscripción"
     },
     "locale": {
       "required": "El idioma es necesario"
@@ -99,6 +132,9 @@
     	"tankIdOrUserId": {
     		"required": "El id de tanque o el id del usuario es necesario"
     	}
+    },
+    "permission": {
+    	"notExists": "El permiso no existe"
     }
 	},
   "lead": {
@@ -117,5 +153,12 @@
 			"success": "La suscripción ha sido eliminada correctamente",
 			"error": "La suscripción no ha podido ser borrada"
 		}
-  }
+  },
+  "image": {
+  	"notSaved": "No se guardó la imagen"
+  },
+  "compatibility": {
+  	"notFound": "No se ha encontrado la compatibilidad",
+  },
+  "notImplemented": "Característica no implementada"
 }
