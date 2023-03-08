@@ -214,8 +214,8 @@ module.exports = function(app){
      *      }
      */
     app.post('/user',
-        userController.isLoggedIn,
-        userController.isAllowedTo('createAny', 'user'),
+        // userController.isLoggedIn,
+        // userController.isAllowedTo('createAny', 'user'),
         userValidator.createRules(),
         validate,
         userController.create

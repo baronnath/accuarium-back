@@ -86,7 +86,8 @@ exports.create = async (req, res, next) => {
 		role: role._id
 	});
 
-	return await user.save();
+	await user.save();
+	return await user.populate('role');
 }
 
 exports.get = async (req, res, next) => {
@@ -261,10 +262,8 @@ exports.verify = async (req) =>{
 
 	else if(user.confirmationToken != confirmationToken)
 		throw new ErrorHnadler(406, 'vaildation.confirmationToken.error');
-    
-	const accessToken = jwt.sign({ userId: user._id }, jwtSecret, {
-			expiresIn: '7d'
-		});
+   
+  const accessToken = await this.createAccessToken(user);
 
 	user.accessToken = accessToken;
 	user.confirmationToken = null;

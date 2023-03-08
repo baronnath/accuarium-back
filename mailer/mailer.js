@@ -18,7 +18,7 @@ exports.Email = class Email {
     	if(!data)
     		this.data = data;
     	if(!subject)
-    		this.subject = 'Acquarium message';
+    		this.subject = 'Accuarium app message';
     	else{
     		this.subject = subject;
     	}
