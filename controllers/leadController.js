@@ -10,8 +10,6 @@ exports.create = async (req, res, next) => {
 
 		lead = await leadService.create(req, res, next);
 
-		this.sendConfirmation(lead, req, res, next);
-
 		return res.status(201).json({
 			lead: lead,
 			message: req.i18n.t('lead.create.success'),
@@ -77,15 +75,6 @@ exports.delete = async (req, res, next) => {
 			message: req.i18n.t('lead.delete.success',{lead}),
 		})
 		
-	} catch (err) {
-		next(err)
-	}
-}
-
-exports.sendConfirmation = async (lead, req, res, next) => {
-
-	try{
-		leadService.sendConfirmation(lead, req, res, next);
 	} catch (err) {
 		next(err)
 	}

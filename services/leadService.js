@@ -1,8 +1,10 @@
 // services/leadService.js
 
-const Lead 				= require('../models/lead');
+const Lead 					= require('../models/lead');
 const {	ErrorHandler, handleError } = require('../helpers/errorHandler');
-const mailer 			= require('../mailer/mailer');
+const mailer 				= require('../mailer/mailer');
+const env 					= process.env.NODE_ENV || 'development';
+const serverConfig	= require(__dirname + '../../config/server')[env];
 
 let lead;
 
@@ -17,6 +19,8 @@ exports.create = async (req, res, next) => {
 		email: email,
 		locale: locale,
 	});
+
+  this.sendConfirmation(lead, req, res, next);
 
 	return await lead.save();
 }
@@ -88,9 +92,6 @@ exports.delete = async (req) => {
 }
 
 exports.sendConfirmation = async (lead, req, res, next) => {
-
-	const env = process.env.NODE_ENV || 'development';
-	const serverConfig	= require(__dirname + '../../config/server')[env];
 
 	data = {
 		url: serverConfig.front.url,
