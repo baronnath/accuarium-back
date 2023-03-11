@@ -147,6 +147,27 @@ exports.resendRules = () => {
   ]
 }
 
+exports.sendResetPasswordEmailRules = () => {
+  return [
+    body('email')
+        .isEmail().withMessage('validation.email.format')
+        .not().isEmpty().withMessage('validation.email.required')
+  ]
+}
+
+exports.resetPasswordRules = () => {
+  return [
+    body('email')
+        .isEmail().withMessage('validation.email.format')
+        .not().isEmpty().withMessage('validation.email.required'),
+    body('password')
+        .not().isEmpty().withMessage('validation.passwrod.required')
+        .isLength({ min: passwordLenght }).withMessage('validation.password.lenght', {passwordLenght}),
+    body('code')
+      .not().isEmpty().withMessage('validation.confirmationToken.required')
+  ]
+}
+
 exports.searchRules = () => {
   return [
     query('page')

@@ -393,5 +393,17 @@ module.exports = function(app){
         userController.search
     );
 
+    app.post('/user/sendresetpasswordemail',
+        userValidator.sendResetPasswordEmailRules(),
+        validate,
+        userController.sendResetPasswordEmail
+    );
+
+    app.patch('/user/resetpassword',
+        userValidator.resetPasswordRules(),
+        validate,
+        userController.resetPassword
+    );
+
 }
 

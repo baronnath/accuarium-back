@@ -1,5 +1,7 @@
 // services/userService.js
 
+const env = process.env.NODE_ENV || 'development';
+const serverConfig	= require(__dirname + '../../config/server')[env];
 const User 				= require('../models/user');
 const Role 				= require('../models/role');
 const bcrypt  			= require('bcrypt');
@@ -56,7 +58,7 @@ exports.create = async (req, res, next) => {
 	const { email, name, password } = req.body;
 	let { role } = req.body;
 	const confToken = await this.confirmationToken();
-    const hashedPassword = await hashPassword(password);
+  const hashedPassword = await hashPassword(password);
 
 	user = await User.findOne({email: email});
 	if(user)
@@ -261,7 +263,7 @@ exports.verify = async (req) =>{
 		throw new ErrorHandler(406, 'user.login.alreadyConfirmed');
 
 	else if(user.confirmationToken != confirmationToken)
-		throw new ErrorHnadler(406, 'vaildation.confirmationToken.error');
+		throw new ErrorHandler(406, 'validation.confirmationToken.error');
    
   const accessToken = await this.createAccessToken(user);
 
@@ -330,9 +332,6 @@ exports.createAccessToken = async (user) => {
 
 exports.sendInvitation = async (user, req, res, next) => {
 
-	const env = process.env.NODE_ENV || 'development';
-	const serverConfig	= require(__dirname + '../../config/server')[env];
-
 	data = {
 		url: serverConfig.front.url,
 		title: req.i18n.t('user.invitation.title'),
@@ -354,6 +353,72 @@ exports.sendInvitation = async (user, req, res, next) => {
 	} catch (err) {
 		next(err)
 	}
+}
+
+exports.sendResetPasswordEmail = async (req, res, next) => {
+
+	const { email } = req.body;
+	
+	user = await User.where({email: email}).findOne()
+		.catch( err => {
+			return handleError(err)
+		});
+
+	if(!user)
+		throw new ErrorHandler(406, 'user.notFound');
+
+	const confToken = await this.confirmationToken();
+	user.confirmationToken = confToken;
+
+	user = await user.save();
+
+	data = {
+		url: serverConfig.front.url,
+		title: req.i18n.t('user.resetPassword.title'),
+		email: encodeURI(user.email),
+		confirmationToken: encodeURI(user.confirmationToken),
+		preheader: req.i18n.t('user.resetPassword.preheader')
+	}
+
+	let em = new mailer.Email(
+		user.locale || 'en',
+		user.email,
+		'reset-password',
+		data,
+		req.i18n.t('user.resetPassword.subject', {user})
+	);
+
+	try{
+		await em.send();
+	} catch (err) {
+		next(err)
+	}
+}
+
+exports.resetPassword = async (req) =>{
+	const { email, password, code } = req.body;
+	
+	user = await User.where({email: email}).findOne()
+		.catch( err => {
+			return handleError(err)
+		});
+
+	if(!user)
+		throw new ErrorHandler(406, 'user.notFound');
+
+	if(user.confirmationToken === null)
+		throw new ErrorHandler(406, 'user.login.alreadyConfirmed');
+
+	if(user.confirmationToken != code)
+		throw new ErrorHandler(406, 'validation.confirmationToken.error');
+   
+  const accessToken = await this.createAccessToken(user);
+
+	user.password = await hashPassword(password);
+	user.accessToken = accessToken;
+	user.confirmationToken = null;
+
+	return await user.save();
 }
 
 exports.search = async (req, res, next) => {

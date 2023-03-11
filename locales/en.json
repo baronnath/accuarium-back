@@ -40,6 +40,15 @@
 			"title": "Registration confirmation",
 			"preheader": "Thank you for registering. Only one more step! Confirm your email address"
 		},
+		"sendResetPasswordEmail": {
+			"success": "You've been sent an email"
+		},
+		"resetPassword": {
+			"subject": "{{user.name}}, reset your password",
+			"title": "Hi {{user.name}}, reset your password",
+			"preheader": "If you didn´t reset your password, please ignore this message",
+			"success": "Your password was changed"
+		},
 		"notFound": "User not found"
 	},
 	"role": {

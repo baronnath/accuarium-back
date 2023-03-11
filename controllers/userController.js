@@ -170,6 +170,35 @@ exports.sendInvitation = async (user, req, res, next) => {
 	}
 }
 
+exports.sendResetPasswordEmail = async (req, res, next) => {
+
+	try{
+		await userService.sendResetPasswordEmail(req, res, next);
+
+		res.status(201).json({
+			message: req.i18n.t('user.sendResetPasswordEmail.success')
+		});
+
+	} catch (err) {
+		next(err)
+	}
+}
+
+exports.resetPassword = async (req, res, next) => {
+
+	try{
+		user = await userService.resetPassword(req, res, next);
+
+		res.status(201).json({
+			user,
+			message: req.i18n.t('user.resetPassword.success')
+		});
+
+	} catch (err) {
+		next(err)
+	}
+}
+
 exports.search = async (req, res, next) => {
 		
 	try {

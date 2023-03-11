@@ -40,6 +40,15 @@
 			"title": "Confirmación de registro",
 			"preheader": "Gracias por registrarte. ¡Solo un pasito más! Confirma tu cuenta de correo."
 		},
+		"sendResetPasswordEmail": {
+			"success": "Te hemos enviado un email"
+		},
+		"resetPassword": {
+			"subject": "{{user.name}}, restablece tu contraseña",
+			"title": "Hola, {{user.name}}, restablece tu contraseña",
+			"preheader": "Si no has restablecido tu contraseña, por favor, ignora este mensaje",
+			"success": "Has cambiado la contraseña"
+		},
 		"notFound": "No se ha encontrado al usuario"
 	},
 	"role": {
