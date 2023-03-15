@@ -1,6 +1,8 @@
 // services/speciesService.js
 
 const fs			= require('fs');
+const mongoose  = require('mongoose');
+const ObjectId 	= mongoose.Types.ObjectId;
 const Species		= require('../models/species');
 const Tank		= require('../models/tank');
 const Type			= require('../models/type');
@@ -216,6 +218,11 @@ exports.update = async (req, res, next) => {
 }
 
 exports.search = async (req, res, next) => {
+
+	async function objectIdArray(array){
+		return array.map(val => ObjectId(val));
+	}
+
 	const locale = req.user && req.user.locale || defaultLocale;
 	let {
 		keyword,
@@ -246,7 +253,10 @@ exports.search = async (req, res, next) => {
     behavior
 	} = req.query;
 	const perPage = preferencesConfig.pagination;
+	let query;
 	let criteria = {};
+	let mainSpecies = null;
+	let total;
 
 	if(!field){
 		field = 'scientificName'; // by name return same species in several pages (because name is nullable)
@@ -271,7 +281,8 @@ exports.search = async (req, res, next) => {
     	throw new ErrorHandler(404, 'tank.notFound');
 		}
 
-    let { species: mainSpecies } = this.findMainSpecies(tank.species);
+    let species = this.findMainSpecies(tank.species);
+    mainSpecies = species.species;
     if(!mainSpecies)
     	throw new ErrorHandler(404, 'tank.mainSpeciesNotFound');
     
@@ -331,11 +342,14 @@ exports.search = async (req, res, next) => {
 		criteria.depth = depth;
 	}
 
+
 	if(behavior){
-		criteria.behavior = { $in: behavior } // Matchs any of the colors ($in is like OR and $all like AND)
+		behavior = await objectIdArray(behavior)
+		criteria.behavior = { $in: [ behavior ] } // Matchs any of the colors ($in is like OR and $all like AND)
 	}
 
   if(color){
+  	color = await objectIdArray(color)
 		criteria.color = { $in: color } // Matchs any of the colors ($in is like OR and $all like AND)
 	}
 
@@ -357,58 +371,75 @@ exports.search = async (req, res, next) => {
 	}
 
 	if(cleaning){
-		criteria.cleaning = cleaning;
+		criteria.cleaning = String(cleaning) == "true"; // Value must be boolean, instead reqtrieved from query
 	}
 
 	if(wild){
-		criteria.wild = wild;
+		criteria.wild = String(wild) == "true"; // Value must be boolean, instead reqtrieved from query
 	}
 
 	if(salt){
 		criteria.salt = salt;
 	}
 
-	species = await Species
-		.find(criteria)
-		.sort({[field]: direction})
-		.skip(perPage * page)
-  	.limit(perPage);
+	query = [
+		{
+			$match: criteria
+		}
+	];
 
- 	total = await Species
-		.find(criteria)
-		.count();
+	if(mainSpecies)
+		query = [
+			...query,
+			{
+		   $lookup:
+		     {
+		       from: "compatibilities",
+		       let: { species: "$_id", mainSpecies: mainSpecies._id },
+		       pipeline: [
+		       	{
+		       		$match: {
+		       			$or: [
+		       				{
+		       					$and: [
+			       					{ $expr: { $eq: ["$speciesA", "$$species"] }},
+			       					{ $expr: { $eq: ["$speciesB", "$$mainSpecies"] }},
+			       				],
+			       				$and: [
+			       					{ $expr: { $eq: ["$speciesB", "$$species"] }},
+			       					{ $expr: { $eq: ["$speciesA", "$$mainSpecies"] }},
+			       				]
+		       				}
+		       			],
+		       			compatibility: { $ne: 0 },
+		       		}
+		       	}
+		       ],
+		       as: "compat"
+		     }
+			},
+			{
+	      $unwind: { // Removes species with empty compat (not matching species)
+	        path: "$compat",
+	        preserveNullAndEmptyArrays: false
+	      }
+	    }
+		];
+
+	sp = await Species.aggregate(query)
+	.sort({[field]: direction})
+	.skip(perPage * page)
+  .limit(perPage)
+  .exec();
+
+	species = sp.map(s => this.addSpeciesImages(s));
 
 	return {
 		species,
-		total,
     page,
     field,
     direction
 	}
-
-	 // db.collection.aggregate([
-
-	 //      //{$sort: {...}}
-
-	 //      //{$match:{...}}
-
-	 //      {$facet:{
-
-	 //        "stage1" : [ {"$group": {_id:null, count:{$sum:1}}} ],
-
-	 //        "stage2" : [ { "$skip": 0}, {"$limit": 2} ]
-	  
-	 //      }},
-	     
-	 //     {$unwind: "$stage1"},
-	  
-	 //      //output projection
-	 //     {$project:{
-	 //        count: "$stage1.count",
-	 //        data: "$stage2"
-	 //     }}
-
-	 // ]);
 }
 
 exports.uploadFile = async (req, res, next) => {
@@ -615,4 +646,15 @@ exports.findMainSpecies = (species) => {
     return main;
   else
     return null;
+}
+
+exports.addSpeciesImages = (species) => {
+	const path = urlGenerator.getImagesPath('species') + '/' + species.scientificName.replace(' ', '-').toLowerCase();
+  const exists = fs.existsSync(path);
+  if(exists){
+    images = fs.readdirSync(path);
+    species.images = images;
+  }
+
+  return species;
 }

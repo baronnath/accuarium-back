@@ -3,7 +3,6 @@
 const mongoose  = require('mongoose');
 const mongooseAutopopulate = require('mongoose-autopopulate');
 const fs = require('fs');
-const urlGenerator = require('../helpers/urlGenerator');
 
 const parameter = {
     min: {
@@ -167,17 +166,14 @@ speciesSchema.virtual('images')
 
 // Retrieve all images within the folder named as the species scientific name, no matter file name or extension
 speciesSchema.post(['find', 'findOne'], function(docs) {
+  const { addSpeciesImages } = require('../services/speciesService');
+
   if (!Array.isArray(docs)) {
     docs = [docs];
   }
   
-  for (const species of docs) {
-    const path = urlGenerator.getImagesPath('species') + '/' + species.scientificName.replace(' ', '-').toLowerCase();
-    const exists = fs.existsSync(path);
-    if(exists){
-      images = fs.readdirSync(path);
-      species.images = images;
-    }
+  for (let species of docs) {
+    species = addSpeciesImages(species);
   }
 });
 
