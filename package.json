@@ -36,6 +36,7 @@
     "mongodb": "4.13",
     "mongoose": "^6.9.1",
     "mongoose-autopopulate": "^0.16.0",
+    "mongoose-seed": "^0.6.0",
     "morgan": "^1.9.1",
     "multer": "^1.4.2",
     "nodemailer": "^6.6.3",
@@ -46,7 +47,6 @@
   "devDependencies": {
     "cross-env": "^7.0.2",
     "jest": "^27.2.4",
-    "mongoose-seed": "^0.6.0",
     "nodemon": "^2.0.4"
   }
 }
