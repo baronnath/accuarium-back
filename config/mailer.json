@@ -1,12 +1,12 @@
 {
-  "user": "natan.morote@gmail.com",
+  "user": "noreply@accuarium.app",
   "imap": {
-    "host": "imap.gmail.com",
+    "host": "mail.accuarium.app",
     "port": 993,
     "tls": true
   },
   "smtp": {
-    "host": "smtp.gmail.com",
+    "host": "mail.accuarium.app",
     "port": 465,
     "tls": true
   }

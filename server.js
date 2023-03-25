@@ -74,7 +74,7 @@ server.listen(port, err => {
 		handleError(err);
     };
 
-	logger.debug(`
+	logger.info(`
 		====================================
 		🛡️  Server listening on port: ${port} 🛡️ 
 		====================================
