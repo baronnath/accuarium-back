@@ -1,7 +1,7 @@
 {
 	"debug": false,
 	"saveMissing": false,
-	"load": "languageOnly",
+	"preload": ["en", "es"],
 	"backend": {
 		"loadPath": "./locales/{{lng}}.json",
 		"addPath": "./locales/{{lng}}.missing.json",

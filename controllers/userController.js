@@ -11,6 +11,7 @@ exports.isLoggedIn = async (req, res, next) => {
 
 	try {
 		req.user = await userService.isLoggedIn(req, res, next);
+		await this.setLang(req, res, next);
  	} catch (err) {
 		next(err)
 	}
@@ -52,6 +53,7 @@ exports.get = async (req, res, next) => {
 		
 	try {
 		user = await userService.get(req, res, next);
+		await this.setLang(req, res, next);
 
 		return res.status(200).json({
 			user
@@ -209,6 +211,14 @@ exports.search = async (req, res, next) => {
 			total
 		})
 
+	} catch (err) {
+		next(err)
+	}
+}
+
+exports.setLang = async (req, res, next) => {
+	try {
+		return userService.setLang(req, res, next);
 	} catch (err) {
 		next(err)
 	}

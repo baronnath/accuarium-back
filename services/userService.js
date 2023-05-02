@@ -484,5 +484,16 @@ async function validatePassword (plainPassword, hashedPassword) {
 	return await bcrypt.compare(plainPassword, hashedPassword);
 }
 
+exports.setLang = async (req, res, next) => {
+
+	return await req.i18n
+	  .changeLanguage(req.user.locale)
+	  .then(t => {
+	  	return true
+	  })
+	  .catch(err => {
+	    throw new ErrorHandler(500, 'user.changeLanguageError');
+	  });
+}
 
 

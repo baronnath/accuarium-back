@@ -52,7 +52,7 @@ exports.httpLogger = morgan(
   	':method :url :status :response-time ms - :res[content-length] - :reqBody',
   	{ 
   		stream: {
-		  write: message => winstonLogger.api(message.substring(0, message.lastIndexOf('\n')))
+			  write: message => winstonLogger.api(message.substring(0, message.lastIndexOf('\n')))
+			}
 		}
-	}
 );
