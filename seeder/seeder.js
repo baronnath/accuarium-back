@@ -3,6 +3,7 @@
 const seeder 	= require('mongoose-seed');
 const env 		= process.env.NODE_ENV || 'development';
 const config 	= require('../config/server')[env];
+const mongooseConfig = require('../config/mongoose');
 const dotenv  = require('dotenv');
 const fs 		= require('fs');
 const { getArgs, isObject, isEmpty } = require('../helpers/helpers');
@@ -47,7 +48,7 @@ fs.readdir(seedsPath, function(err, filenames) {
 
 	promise.then(() => {
 
-		seeder.connect(process.env["database_connection_string_" + env], (err) => {
+		seeder.connect(process.env["database_connection_string_" + env], mongooseConfig, (err) => {
 
 			if(err){
 				return console.log('Connection failed: ' + err);
