@@ -88,7 +88,7 @@
 		"noSpecies": "El tanque no tiene especies",
 		"notFound": "No se ha encontrado el tanque",
 		"speciesNotFound": "No se ha encontrado la especie",
-		"mainSpeciesNotFound": "No se ha encontrado la especie principal"
+		"mainSpeciesNotFound": "No se ha encontrado la especie principal, selecciona una"
 	},
 	"mailer": {
 		"error": {

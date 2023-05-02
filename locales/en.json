@@ -88,7 +88,7 @@
 		"noSpecies": "Tank has no species",
 		"notFound": "Tank not found",
 		"speciesNotFound": "Species not found",
-		"mainSpeciesNotFound": "Main species not found"
+		"mainSpeciesNotFound": "Main species not found, please select one"
 	},
 	"mailer": {
 		"error": {
