@@ -282,6 +282,9 @@ exports.search = async (req, res, next) => {
 		}
 
     let species = this.findMainSpecies(tank.species);
+    if(!species){
+    	throw new ErrorHandler(404, 'tank.mainSpeciesNotFound');
+    }
     mainSpecies = species.species;
     if(!mainSpecies)
     	throw new ErrorHandler(404, 'tank.mainSpeciesNotFound');
@@ -327,19 +330,19 @@ exports.search = async (req, res, next) => {
   }
 
 	if(type){
-		criteria.type = type;
+		criteria.type = ObjectId(type);
 	}
 
 	if(family){
-		criteria.family = family;
+		criteria.family = ObjectId(family);
 	}
 
 	if(group){
-		criteria.group = group;
+		criteria.group = ObjectId(group);
 	}
 
 	if(depth){
-		criteria.depth = depth;
+		criteria.depth = ObjectId(depth);
 	}
 
 
@@ -371,11 +374,11 @@ exports.search = async (req, res, next) => {
 	}
 
 	if(cleaning){
-		criteria.cleaning = String(cleaning) == "true"; // Value must be boolean, instead reqtrieved from query
+		criteria.cleaning = String(cleaning) == "true"; // Value must be boolean, instead of the retrieved from query
 	}
 
 	if(wild){
-		criteria.wild = String(wild) == "true"; // Value must be boolean, instead reqtrieved from query
+		criteria.wild = String(wild) == "true"; // Value must be boolean, instead of the retrieved from query
 	}
 
 	if(salt){
@@ -395,7 +398,7 @@ exports.search = async (req, res, next) => {
 		   $lookup:
 		     {
 		       from: "compatibilities",
-		       let: { species: "$_id", mainSpecies: mainSpecies._id },
+		       let: { species: "$_id", mainSpecies: ObjectId(mainSpecies._id) },
 		       pipeline: [
 		       	{
 		       		$match: {
@@ -404,8 +407,10 @@ exports.search = async (req, res, next) => {
 		       					$and: [
 			       					{ $expr: { $eq: ["$speciesA", "$$species"] }},
 			       					{ $expr: { $eq: ["$speciesB", "$$mainSpecies"] }},
-			       				],
-			       				$and: [
+			       				]
+		       				},
+		       				{
+	       				    $and: [
 			       					{ $expr: { $eq: ["$speciesB", "$$species"] }},
 			       					{ $expr: { $eq: ["$speciesA", "$$mainSpecies"] }},
 			       				]
@@ -425,6 +430,10 @@ exports.search = async (req, res, next) => {
 	      }
 	    }
 		];
+
+	// console.log(query);
+	// console.log(query[0].$match);
+	// console.log(query[1].$lookup.pipeline[0].$match.$or[0].$and[0].$expr);
 
 	sp = await Species.aggregate(query)
 	.sort({[field]: direction})
