@@ -28,7 +28,11 @@ dotenv.config();
 
 // MongoDB connection
 mongoose.set("strictQuery", false); // This line is becuase of a DeprecationWarning: Mongoose: the `strictQuery` option will be switched back to `false` by default in Mongoose 7
-mongoose.connect(process.env["database_connection_string_" + env], mongooseConfig)
+mongooseEnv = {
+    "tlsCertificateKeyFilePassword": process.env.tls_certificate_key_file_password,
+    "pass": process.env.mongo_pass
+}
+mongoose.connect(process.env["database_connection_string_" + env], { ...mongooseConfig, ...mongooseEnv })
 .catch(err => {
 	logger.api(err.message);
 });

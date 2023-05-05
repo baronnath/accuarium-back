@@ -1,2 +1,8 @@
-{
-}
+ {
+    "tls": true,
+    "tlsInsecure": true,
+    "tlsCAFile": "/etc/ssl/rootCA.pem",
+    "tlsCertificateKeyFile": "/etc/ssl/mongodb.pem",
+    "user": "accua",
+ }
+
