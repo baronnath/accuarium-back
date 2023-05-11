@@ -304,9 +304,11 @@ function isCoexistenceCompatible (species) {
 	const numSpecimen = species.numSpecimen;
 
 	if(coexistence.indiv && numSpecimen == 1) isCompatible = true;
-	if(coexistence.couple && numSpecimen == 2) isCompatible = true;
-	if(numSpecimen > 1)
-		if(!coexistence.indiv || !coexistence.couple)
+	if(numSpecimen == 2)
+		if(coexistence.couple || coexistence.onlyMasc || coexistence.onlyMasc)
+			isCompatible = true;
+	if(numSpecimen > 2)
+		if(coexistence.onlyMasc || coexistence.onlyMasc || coexistence.harem || coexistence.inverseHarem || coexistence.mixedGroup)
 			isCompatible = true;
 
 	return isCompatible;
