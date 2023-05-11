@@ -11,7 +11,7 @@ exports.create = async (req, res, next) => {
 		tank = await tankService.create(req, res, next);
 
 		return res.status(201).json({
-			tank: tank,
+			tanks: tank,
 			message: req.i18n.t('tank.create.success', {tank}),
 		})
 
