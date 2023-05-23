@@ -301,33 +301,42 @@ exports.search = async (req, res, next) => {
     params.kh.min ? maxKh = params.kh.max : null;
   }
 
+  // Water chemistry params
+  // The params is not considered if null 
+  let paramsCriteria = [];
+
   if(minTemp){
-    criteria['parameters.temperature.max'] = { $gte: minTemp };
+    paramsCriteria.push({'$or': [{ $expr: { $gte: ["$parameters.temperature.max", minTemp] }}, { "parameters.temperature.max": null }] });
   }
   if(maxTemp){
-    criteria['parameters.temperature.min'] = { $lte: maxTemp };
+    paramsCriteria.push({'$or': [{ $expr: { $lte: ["$parameters.temperature.min", maxTemp] }}, { "parameters.temperature.min": null }] });
   }
 
   if(minPh){
-    criteria['parameters.ph.max'] = { $gte: minPh };
+    paramsCriteria.push({'$or': [{ $expr: { $gte: ["$parameters.ph.max", minPh] }}, { "parameters.ph.min": null }] });
   }
   if(maxPh){
-    criteria['parameters.ph.min'] = { $lte: maxPh };
+    paramsCriteria.push({'$or': [{ $expr: { $lte: ["$parameters.ph.min", maxPh] }}, { "parameters.ph.max": null }] });
   }
 
   if(minGh){
-    criteria['parameters.gh.max'] = { $gte: minGh };
+    paramsCriteria.push({'$or': [{ $expr: { $gte: ["$parameters.gh.max", minGh] }}, { "parameters.gh.max": null }] });
   }
   if(maxGh){
-    criteria['parameters.gh.min'] = { $lte: maxGh };
+    paramsCriteria.push({'$or': [{ $expr: { $lte: ["$parameters.gh.min", maxGh] }}, { "parameters.gh.min": null }] });
   }
 
   if(minKh){
-    criteria['parameters.kh.max'] = { $gte: minKh };
+    paramsCriteria.push({'$or': [{ $expr: { $gte: ["$parameters.kh.max", minKh] }}, { "parameters.kh.max": null }] });
   }
   if(maxKh){
-    criteria['parameters.kh.min'] = { $lte: maxKh };
+    paramsCriteria.push({'$or': [{ $expr: { $lte: ["$parameters.kh.min", maxKh] }}, { "parameters.kh.min": null }] });
   }
+
+  if (paramsCriteria.length) {
+  	criteria['$and'] = paramsCriteria;
+  }
+  // Fin water chemistry params
 
 	if(type){
 		criteria.type = ObjectId(type);
@@ -391,49 +400,67 @@ exports.search = async (req, res, next) => {
 		}
 	];
 
-	if(mainSpecies)
+	if(tank && tank.species) {
+
+		let speciesIds = [];
+		let compat = [];
+
+		tank.species.map(sp => {
+			s = sp.species;
+			speciesIds.push(ObjectId(s._id));
+
+			compat = [
+				...compat,
+				{
+					$and: [
+	 					{ $expr: { $eq: ["$speciesA", "$$species"] }},
+	 					{ $expr: { $eq: ["$speciesB", ObjectId(s._id)] }},
+	 				]
+				},
+				{
+ 					$and: [
+	 					{ $expr: { $eq: ["$speciesB", "$$species"] }},
+	 					{ $expr: { $eq: ["$speciesA", ObjectId(s._id)] }},
+	 				]
+				}
+			];	
+		});
+
 		query = [
 			...query,
 			{
-		   $lookup:
-		     {
-		       from: "compatibilities",
-		       let: { species: "$_id", mainSpecies: ObjectId(mainSpecies._id) },
+		    $lookup: {
+		      from: "compatibilities",
+		       let: { species: "$_id" },
 		       pipeline: [
 		       	{
 		       		$match: {
-		       			$or: [
-		       				{
-		       					$and: [
-			       					{ $expr: { $eq: ["$speciesA", "$$species"] }},
-			       					{ $expr: { $eq: ["$speciesB", "$$mainSpecies"] }},
-			       				]
-		       				},
-		       				{
-	       				    $and: [
-			       					{ $expr: { $eq: ["$speciesB", "$$species"] }},
-			       					{ $expr: { $eq: ["$speciesA", "$$mainSpecies"] }},
-			       				]
-		       				}
-		       			],
+		       			$or: compat,
 		       			compatibility: { $ne: 0 },
 		       		}
 		       	}
 		       ],
-		       as: "compat"
-		     }
-			},
-			{
-	      $unwind: { // Removes species with empty compat (not matching species)
-	        path: "$compat",
-	        preserveNullAndEmptyArrays: false
-	      }
-	    }
+		       as: "compatibility"
+		    }
+		  },
+		  {
+		    $match: {
+		      compatibility: { $size: speciesIds.length }
+		    }
+		  },
+		  {
+		    $project: {
+		      _id: 1,
+		      scientificName: 1,
+		      name: 1,
+		      otherNames: 1,
+		      compatibility: 1
+		    }
+		  }
 		];
+	}
 
-	// console.log(query);
-	// console.log(query[0].$match);
-	// console.log(query[1].$lookup.pipeline[0].$match.$or[0].$and[0].$expr);
+	// console.log(JSON.stringify(query, null, 4));
 
 	sp = await Species.aggregate(query)
 	.sort({[field]: direction})
