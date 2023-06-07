@@ -110,6 +110,13 @@ exports.get = async (req, res, next) => {
 	return user;
 }
 
+exports.getAll = async (req, res, next) => {
+
+	users = await User.find();
+
+	return users;
+}
+
 exports.update = async (req, res, next) => {
 	const { userId, email, password, name, locale, units} = req.body;
 	let { role } = req.body;

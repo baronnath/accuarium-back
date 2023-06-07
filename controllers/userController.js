@@ -64,6 +64,20 @@ exports.get = async (req, res, next) => {
 	}
 }
 
+exports.getAll = async (req, res, next) => {
+		
+	try {
+		const users = await userService.getAll(req, res, next);
+
+    return res.status(200).json({
+			users
+		})
+
+	} catch (err) {
+		next(err)
+	}
+}
+
 exports.update = async (req, res, next) => {
 
 	try {

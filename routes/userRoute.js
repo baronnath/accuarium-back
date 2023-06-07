@@ -279,6 +279,12 @@ module.exports = function(app){
         userController.get
     );
 
+    app.get('/users',
+        userController.isLoggedIn,
+        userController.isAllowedTo('readAny', 'user'),
+        userController.getAll
+    );
+
     // UPDATE USER
     /**
      * @api {put} /user Update
