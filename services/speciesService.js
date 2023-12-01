@@ -281,6 +281,10 @@ exports.search = async (req, res, next) => {
     	throw new ErrorHandler(404, 'tank.notFound');
 		}
 
+		// Add tank volume as max tank volume if not specified
+    !maxMinTank ? maxMinTank = tank.liters : null;
+    console.log(tank.liters);
+
     let species = this.findMainSpecies(tank.species);
     if(!species){
     	throw new ErrorHandler(404, 'tank.mainSpeciesNotFound');
@@ -302,7 +306,7 @@ exports.search = async (req, res, next) => {
   }
 
   // Water chemistry params
-  // The params is not considered if null 
+  // The param is not considered if null 
   let paramsCriteria = [];
 
   if(minTemp){
