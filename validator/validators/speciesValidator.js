@@ -95,7 +95,24 @@ exports.createRules = () => {
 }
 
 exports.getRules = () => {
-  return []
+    return [
+        oneOf(
+            [
+                query('speciesId').exists(),
+                query('scientificName').exists()
+            ],
+            'validation.speciesIdOrSspeciesId.required'
+        ),
+        query('speciesId')
+            .if(query('scientificName').not().exists())
+            .not().isEmpty().withMessage('validation.species.required'),
+        query('speciesId')
+            .if(query('scientificName').not().exists())
+            .isHexadecimal().withMessage('validation.id.format'),
+        query('scientificName')
+            .if(query('speciesId').not().exists())
+            .not().isEmpty().withMessage('validation.species.required'),
+    ]
 }
 
 exports.deleteRules = this.getRules;

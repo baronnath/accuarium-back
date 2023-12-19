@@ -240,7 +240,9 @@ exports.addSpecies = async (req, res, next) => {
 	
 function saveImage(image) {
 	let match = /\.(\w+)$/.exec(image.uri);
-	let fileType = match ? `${match[1]}` : `jpeg`; // Figure out image extension and store
+	if(match[1] != 'jpeg' && match[1] != 'jpg')
+		throw new ErrorHandler(401, 'image.invalidFormat');
+	let fileType = `jpeg`; // Figure out image extension and store
 	fs.writeFile(`${imagePath}${tank._id}.${fileType}`, image.base64, 'base64', function(err) {
 	  if(err)
 	  	throw new ErrorHandler(500, 'image.notSaved');

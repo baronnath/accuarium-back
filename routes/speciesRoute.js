@@ -21,16 +21,16 @@ module.exports = function(app){
     );
 
 	app.get('/species',
-        userController.isLoggedIn,
-        userController.isAllowedTo('readAny', 'species'),
-        // speciesValidator.getRules(),
-        // validate,
+        // userController.isLoggedIn,
+        // userController.isAllowedTo('readAny', 'species'),
+        speciesValidator.getRules(),
+        validate,
         speciesController.get
     );
 
     app.get('/species/search',
-        userController.isLoggedIn,
-        userController.isAllowedTo('readAny', 'species'),
+        // userController.isLoggedIn,
+        // userController.isAllowedTo('readAny', 'species'),
         speciesValidator.searchRules(),
         validate,
         speciesController.search

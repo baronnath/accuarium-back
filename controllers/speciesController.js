@@ -39,9 +39,9 @@ exports.update = async (req, res, next) => {
 
 exports.get = async (req, res, next) => {
 
-	const { speciesId } = req.query;
+	const { speciesId, scientificName } = req.query;
 
-	if(speciesId){
+	if(speciesId || scientificName){
 
 		try {
 			const species = await speciesService.get(req, res, next);

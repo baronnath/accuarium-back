@@ -107,17 +107,22 @@ exports.create = async (req, res, next) => {
 }
 
 exports.get = async (req, res, next) => {
-	const { speciesId } = req.query;
+	const { speciesId, scientificName } = req.query;
 
 	if(speciesId){
 		species = await Species
 			.findById(speciesId);
-	}else{
-		throw new ErrorHandler(404, 'species.notFound');
 	}
 
-	return species
+	if(scientificName) {
+		species = await Species
+			.findOne({scientificName: scientificName});
+	}
 
+	if(!species)
+		throw new ErrorHandler(404, 'species.notFound');
+
+	return species
 }
  
 exports.getAll = async (req, res, next) => {
@@ -223,7 +228,7 @@ exports.search = async (req, res, next) => {
 		return array.map(val => ObjectId(val));
 	}
 
-	const locale = req.user && req.user.locale || defaultLocale;
+	const locale = req.user && req.user.locale || req.query.locale || defaultLocale;
 	let {
 		keyword,
 		field,
