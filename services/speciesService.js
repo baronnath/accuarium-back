@@ -127,9 +127,17 @@ exports.get = async (req, res, next) => {
  
 exports.getAll = async (req, res, next) => {
 
-	species = await Species.find().limit(50);
+	species = await Species.find();
 
 	return species;
+}
+
+exports.sitemapReport =  async (req, res, next) => {
+
+	species = await Species.find();
+
+	// Select scientificName field ("select" from mongoose is not working to filter fields) and format
+	return species.map((sp, i) => sp.scientificName.replace(' ', '-').toLowerCase());
 }
 
 exports.update = async (req, res, next) => {

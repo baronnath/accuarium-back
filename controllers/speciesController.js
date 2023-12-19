@@ -39,13 +39,12 @@ exports.update = async (req, res, next) => {
 
 exports.get = async (req, res, next) => {
 
-	const { speciesId, scientificName } = req.query;
+	const { speciesId, scientificName, sitemapReport } = req.query;
 
 	if(speciesId || scientificName){
-
 		try {
 			const species = await speciesService.get(req, res, next);
-
+			
 			return res.status(200).json({
 				species
 			})
@@ -53,12 +52,20 @@ exports.get = async (req, res, next) => {
 		} catch (err) {
 			next(err)
 		}
-
-	}else{
-		exports.getAll(req, res, next);
 	}
 
+	if(sitemapReport){
+		try {
+			const species = await speciesService.sitemapReport(req, res, next);
+			
+			return res.status(200).json({
+				species
+			})
 
+		} catch (err) {
+			next(err)
+		}
+	}
 }
 
 

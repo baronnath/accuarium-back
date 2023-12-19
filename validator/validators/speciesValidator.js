@@ -99,18 +99,22 @@ exports.getRules = () => {
         oneOf(
             [
                 query('speciesId').exists(),
-                query('scientificName').exists()
+                query('scientificName').exists(),
+                query('sitemapReport').exists(),
             ],
             'validation.speciesIdOrSspeciesId.required'
         ),
         query('speciesId')
             .if(query('scientificName').not().exists())
+            .if(query('sitemapReport').not().exists())
             .not().isEmpty().withMessage('validation.species.required'),
         query('speciesId')
             .if(query('scientificName').not().exists())
+            .if(query('sitemapReport').not().exists())
             .isHexadecimal().withMessage('validation.id.format'),
         query('scientificName')
             .if(query('speciesId').not().exists())
+            .if(query('sitemapReport').not().exists())
             .not().isEmpty().withMessage('validation.species.required'),
     ]
 }
