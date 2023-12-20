@@ -40,15 +40,15 @@ exports.createRules = () => {
 exports.getRules = () => {
   return [
     oneOf([
-        body('userId').exists(),
-        body('email').exists()
+        query('userId').exists(),
+        query('email').exists()
     ],
     'validation.emailOrId.required'),
-    body('userId')
-        .if(body('email').not().exists())
+    query('userId')
+        .if(query('email').not().exists())
         .isHexadecimal().withMessage('validation.id.format'),
-    body('email')
-        .if(body('userId').not().exists())
+    query('email')
+        .if(query('userId').not().exists())
         .isEmail().withMessage('validation.email.format')
         .custom(value => {
             return User.findOne({email: value}).then(user => {
