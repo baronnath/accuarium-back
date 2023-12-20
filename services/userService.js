@@ -175,7 +175,7 @@ exports.update = async (req, res, next) => {
 }
 
 exports.delete = async (req, res, next) => {
-	const { userId, email } = req.body;
+	const { userId, email } = req.query;
 
 	// Check if the user is trying to delete his own user or anyone else
 	if((userId && userId != req.user._id) || (email && email != req.user.email)){
