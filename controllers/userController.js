@@ -98,7 +98,7 @@ exports.delete = async (req, res, next) => {
 
 	try {
 		
-		user = await userService.delete(req);
+		user = await userService.delete(req, res, next);
 
 		return res.status(201).json({
 			message: req.i18n.t('user.delete.success',{user}),

@@ -174,8 +174,8 @@ exports.update = async (req, res, next) => {
 	return await user.save();
 }
 
-exports.delete = async (req) => {
-	const { userId, email } = req.query
+exports.delete = async (req, res, next) => {
+	const { userId, email } = req.body;
 
 	// Check if the user is trying to delete his own user or anyone else
 	if((userId && userId != req.user._id) || (email && email != req.user.email)){
@@ -186,18 +186,19 @@ exports.delete = async (req) => {
 			throw new ErrorHandler(403, 'user.permission.notAny');
 	}
 
+	let deletedUser = null;
 	if(userId){
 		deletedUser = await User
-			.findOneAndDelete({ _id:userId});
+			.findByIdAndDelete(userId);
 	}
-	else if(email){
+	if(email){
 		deletedUser = await User
 			.findOneAndDelete({email: email});
 	}
 
-    if (!deletedUser) {
-    	throw new ErrorHandler(500, 'user.delete.error');
-    }
+  if (!deletedUser) {
+  	throw new ErrorHandler(500, 'user.delete.error');
+  }
 
 	return deletedUser;
 }
